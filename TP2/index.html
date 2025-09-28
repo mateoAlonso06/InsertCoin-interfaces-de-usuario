@@ -5,14 +5,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="styles/common.css" />
+    <link rel="stylesheet" href="styles/header.css">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script src="https://kit.fontawesome.com/a405ba9b1d.js" crossorigin="anonymous"></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
       rel="stylesheet"
     />
   </head>
   <body>
+    <!-- Header -->
+     <header>
+        <nav class="navbar">
+            <div class="menu_container">
+                <div class="menu_burger">
+                    <i class="fa-solid fa-bars"></i>        
+                </div>
+                <div class="logo-titulo">
+                <h1>Insert<span>Coin</span></h1>
+                <span class="span-icon"><img src="assets/icons/logo-insertcoin.svg" alt=""></span>
+                </div>
+            </div>
+            <div class="input_search">
+                <input type="text" placeholder="Search...">
+            </div>
+            <div class="icon_profile">
+                <i class="fa-solid fa-user"></i>
+            </div>
+        </nav>
+    </header>
+    <!-- aside categorias -->
+     <aside class="menu_categorias">
+      <ul>
+    <li>
+      <img src="assets/icons/Nuevos.svg" alt="Arcade Icon" class="categoria-icon">
+      <a href="#">Nuevos</a>
+    </li>
+    <li>
+      <img src="assets/icons/shooter.svg" alt="Shooter Icon" class="categoria-icon">
+      <a href="#">Shooters</a>
+    </li>
+    <li>
+      <img src="assets/icons/puzzle.svg" alt="Puzzle Icon" class="categoria-icon">
+      <a href="#">Puzzle</a>
+    </li>
+    <li>
+      <img src="assets/icons/carreras.svg" alt="Carreras Icon" class="categoria-icon">
+      <a href="#">Carreras</a>
+    </li>
+    <li>
+      <img src="assets/icons/aventuras.svg" alt="Aventuras Icon" class="categoria-icon">
+      <a href="#">Aventuras</a>
+    </li>
+    <li>
+      <img src="assets/icons/recomendados.svg" alt="Recomendados Icon" class="categoria-icon">
+      <a href="#">Recomendados</a>
+    </li>
+  </ul>
+      </aside>
+      <nav class="menu-profile">
+          <ul>
+            <li><i class="fa-solid fa-user"></i><a href="#">Mi perfil</a></li>
+            <li><i class="fa-solid fa-star"></i><a href="#">Logros</a></li>
+            <li><i class="fa-solid fa-earth-americas"></i><a href="#">Lenguaje</a></li>
+            <li><i class="fa-solid fa-right-to-bracket"></i><a href="#">Cerrar sesion</a></li>
+          </ul>
+      </nav>
+    <!-- Footer -->
     <footer class="site-footer">
       <div class="footer-container">
         <div class="footer-top">
@@ -139,6 +199,7 @@
     </footer>
 
     <script src="scripts/script.js"></script>
+    <script src="scripts/navbar.js"></script>
     <script
       src="https://kit.fontawesome.com/a405ba9b1d.js"
       crossorigin="anonymous"
