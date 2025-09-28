@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login</title>
+    <script src="https://kit.fontawesome.com/a405ba9b1d.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="TP2/styles/common.css">
+    <link rel="stylesheet" href="login.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<body>
+
+
+    <!--Campos del formulario
+    Email
+    contraseña
+    enlace para olvidar contraseña
+    boton iniciar sesion
+    boton de iniciar sesion con google
+    boton de iniciar sesion con facebook
+    boton de registrarse
+    -->
+    <div class="form-container">
+        <div class="logo">
+            <img src="assets/icons/logo-insertcoin.svg" alt="Logo InsertCoin">
+        </div>
+        <form class="login-form">
+            <div class="inputs-form-login">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Email">
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" placeholder="password">
+                <a href="#" class="form-link">¿Has olvidado tu contraseña?</a>
+            </div>
+            <button type="submit" class="login-btn">Iniciar Sesión</button>
+            <h6>O iniciar sesión con</h6>
+            <div class="social-login">
+                <button type="button" class="google-login"><i class="fab fa-google"></i> Iniciar sesión con Google</button>
+                <button type="button" class="facebook-login"><i class="fab fa-facebook-f"></i> Iniciar sesión con Facebook</button>
+            </div>
+            <div class="register">
+                <a href="#" class="form-link">Registrarme</a>    
+            </div>
+        </form>
+    </div>
+</body>
+</html>             

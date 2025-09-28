@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+    <script src="https://kit.fontawesome.com/a405ba9b1d.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="TP2/styles/common.css">
+    <link rel="stylesheet" href="login.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+<body>
+
+
+    <!--Campos
+        Nombre
+        Apellido
+        Nombre de usuario
+        Edad
+        Email
+        Contraseña
+        Repetir contraseña
+        Captcha
+        btn registrarse
+        link ya estoy registrado
+    
+    -->
+    <div class="form-container">
+        <p id="ua">Unete a </p>
+        <p id="n">nosotros</p>
+        <form class="login-form">
+            <label for="text">Nombre <span class="obligatorio">*</span></label>
+            <input type="text" placeholder="Nombre" required>
+            <label for="text">Apellido <span class="obligatorio">*</span></label>
+            <input type="text" placeholder="Apellido" required>
+            <label for="text">Nombre de usuario</label>
+            <input type="text" placeholder="Nombre de usuario">
+            <label for="number">Edad <span class="obligatorio">*</span></label>
+            <input type="number" placeholder="Edad" required>
+            <label for="email">Email <span class="obligatorio">*</span></label>
+            <input type="email" placeholder="Email" required>
+            <label for="password">Contraseña <span class="obligatorio">*</span></label>
+            <input type="password" placeholder="Contraseña" required>
+            <label for="password">Repetir contraseña <span class="obligatorio">*</span></label>
+            <input type="password" placeholder="Repetir contraseña" required>
+            <div class="g-recaptcha" data-sitekey="your_site_key"></div>
+            <script src="https://www.google.com/recaptcha/api.js" async defer id="captcha"></script>
+        </form>
+        <button type="submit" class="login-btn">Registrarse</button>
+        <div class="register">
+            <a href="#" class="form-link">Ya estoy registrado</a>
+        </div>
+    </div>
+
+</body>
+</html>
