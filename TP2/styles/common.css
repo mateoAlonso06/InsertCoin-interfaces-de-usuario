@@ -56,6 +56,7 @@ body {
   font-size: 1.6rem;
   font-family: var(--font-family-primary);
   line-height: 1.5;
+  background-color: var(--color-bg-800);
 }
 
 img,
@@ -102,6 +103,120 @@ a {
   color: inherit;
 }
 
+
+/* -- HOME PAGE -- */
+home-content {
+  padding: 2rem 4rem;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+/* --- SECCIÓN DE CATEGORÍA DE JUEGOS --- */
+.game-category-section {
+  margin-bottom: 4rem;
+}
+
+.category-title {
+  font-family: var(--font-family-primary);
+  font-size: 1.7rem;
+  color: var(--color-accent-300);
+  margin-bottom: 0.5rem;
+}
+
+.game-cards-wrapper {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+}
+
+/* --- TARJETA DE JUEGO (GAME CARD) --- */
+.game-card {
+  flex: 0 0 210px;
+  background-color: var(--color-bg-900);
+  border: 2px solid var(--color-primary-500);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  scroll-snap-align: start;
+}
+
+.game-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(9, 170, 201, 0.3);
+}
+
+.game-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-bottom: 2px solid var(--color-primary-500);
+}
+
+.game-card .game-title {
+  font-family: var(--font-family-primary);
+  font-size: 1.2rem;
+  color: var(--color-neutral-100);
+  padding: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-grow: 1;
+}
+
+.game-card .play-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  background-color: var(--color-primary-400);
+  color: var(--color-bg-900);
+  font-family: var(--font-family-primary);
+  font-size: 1.2rem;
+  padding: 1rem;
+  text-align: center;
+  transition: background-color 0.2s ease;
+}
+
+.game-card .play-button:hover {
+  background-color: var(--color-primary-300);
+  color: var(--color-bg-900);
+}
+
+.play-button .fa-play {
+  font-size: 1rem;
+}
+
+
+
+
+/* --- DISEÑO RESPONSIVO --- */
+@media (max-width: 768px) {
+  .home-content {
+    padding: 2rem 1.5rem;
+  }
+
+  .page-title {
+    font-size: 2.2rem;
+  }
+
+  .category-title {
+    font-size: 1.8rem;
+  }
+
+  .game-cards-wrapper {
+    /* Mantenemos el mismo gap reducido para móvil */
+    gap: 1.5rem; 
+  }
+  
+  .game-card {
+    flex: 0 0 180px;
+  }
+}
+
+/* --- FOOTER STYLES --- */
 .site-footer {
   background-color: var(--color-bg-800);
   color: var(--color-neutral-300);
