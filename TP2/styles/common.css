@@ -103,36 +103,134 @@ a {
   color: inherit;
 }
 
-
 /* -- HOME PAGE -- */
-home-content {
+.home-content {
   padding: 2rem 4rem;
-  max-width: 1600px;
+  max-width: 1800px;
   margin: 0 auto;
+}
+
+@media (max-width: 1600px) {
+  .home-content {
+    max-width: 1200px;
+  }
+}
+
+.page-title {
+  text-align: center;
+  margin-bottom: 4rem;
+  font-size: 2.8rem;
+  color: var(--color-primary-300);
+}
+
+/* --- BANNER PRINCIPAL --- */
+.main-banner {
+  position: relative;
+  width: 100%;
+  height: min(500px, 45vh);
+  min-height: 400px;
+  background-image: url('../assets/img/banner-dinorey.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4rem;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Overlay oscuro para mejorar la legibilidad del texto */
+.main-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.banner-content {
+  position: relative;
+  /* Para que el z-index funcione sobre el overlay */
+  z-index: 2;
+  text-align: center;
+  padding: 2rem;
+}
+
+.banner-title {
+  font-family: var(--font-family-primary);
+  font-size: 8rem;
+  color: var(--color-neutral-100);
+  margin: 0 0 1rem 0;
+  letter-spacing: 4px;
+}
+
+.banner-subtitle {
+  font-family: var(--font-family-primary);
+  font-size: 3rem;
+  color: var(--color-neutral-100);
+  margin: 0 0 1.5rem 0;
+  font-weight: 400;
+}
+
+.banner-play-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: var(--color-accent-400);
+  color: var(--color-bg-900);
+  padding: 1.5rem 2.5rem;
+  border-radius: 2rem;
+  font-family: var(--font-family-primary);
+  font-size: 3rem;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+}
+
+.banner-bottom-text {
+  font-family: 'Rock Salt', cursive;
+  font-size: 3.5rem;
+  font-weight: bold;
+  color: var(--color-primary-300);
+  margin-top: 2rem;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 /* --- SECCIÓN DE CATEGORÍA DE JUEGOS --- */
 .game-category-section {
-  margin-bottom: 4rem;
+  width: 100%;
+  margin: 0 auto 4rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  text-align: left;
 }
 
 .category-title {
   font-family: var(--font-family-primary);
   font-size: 1.7rem;
-  color: var(--color-accent-300);
-  margin-bottom: 0.5rem;
+  color: var(--color-accent-400);
+  margin: 0;
+  text-align: left;
 }
 
 .game-cards-wrapper {
   display: flex;
+  justify-content: flex-start;
   gap: 1.5rem;
   overflow-x: auto;
-  padding-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  width: 100%;
 }
 
 /* --- TARJETA DE JUEGO (GAME CARD) --- */
 .game-card {
-  flex: 0 0 210px;
+  flex: 0 0 280px;
   background-color: var(--color-bg-900);
   border: 2px solid var(--color-primary-500);
   border-radius: 8px;
@@ -141,6 +239,7 @@ home-content {
   flex-direction: column;
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   scroll-snap-align: start;
+  text-align: center;
 }
 
 .game-card:hover {
@@ -150,16 +249,16 @@ home-content {
 
 .game-card img {
   width: 100%;
-  height: 160px;
+  height: 260px;
   object-fit: cover;
   border-bottom: 2px solid var(--color-primary-500);
 }
 
 .game-card .game-title {
   font-family: var(--font-family-primary);
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   color: var(--color-neutral-100);
-  padding: 1rem;
+  padding: 1.2rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -174,8 +273,8 @@ home-content {
   background-color: var(--color-primary-400);
   color: var(--color-bg-900);
   font-family: var(--font-family-primary);
-  font-size: 1.2rem;
-  padding: 1rem;
+  font-size: 1.4rem;
+  padding: 1.2rem;
   text-align: center;
   transition: background-color 0.2s ease;
 }
@@ -189,33 +288,6 @@ home-content {
   font-size: 1rem;
 }
 
-
-
-
-/* --- DISEÑO RESPONSIVO --- */
-@media (max-width: 768px) {
-  .home-content {
-    padding: 2rem 1.5rem;
-  }
-
-  .page-title {
-    font-size: 2.2rem;
-  }
-
-  .category-title {
-    font-size: 1.8rem;
-  }
-
-  .game-cards-wrapper {
-    /* Mantenemos el mismo gap reducido para móvil */
-    gap: 1.5rem; 
-  }
-  
-  .game-card {
-    flex: 0 0 180px;
-  }
-}
-
 /* --- FOOTER STYLES --- */
 .site-footer {
   background-color: var(--color-bg-800);
@@ -226,8 +298,14 @@ home-content {
 }
 
 .footer-container {
-  max-width: 1200px;
+  max-width: 1600px;
   margin: 0 auto;
+}
+
+@media (max-width: 1600px) {
+  .footer-container {
+    max-width: 1200px;
+  }
 }
 
 a {
@@ -387,30 +465,4 @@ a:hover {
 
 .footer-bottom a:hover {
   color: var(--color-primary-300);
-}
-
-
-/* --- RESPONSIVE DESIGN --- */
-@media (max-width: 992px) {
-  .footer-top {
-    flex-direction: column;
-  }
-
-  .footer-col-main {
-    margin-bottom: 2rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .site-footer {
-    padding: 3rem 1rem;
-  }
-
-  .footer-links-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .sponsors-logos {
-    gap: 1rem;
-  }
 }
