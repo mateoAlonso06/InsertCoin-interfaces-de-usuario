@@ -1,0 +1,95 @@
+:root {
+  /* Primario */
+  --color-primary-300: #40E1FF;
+  --color-primary-400: #0BD5FF;
+  --color-primary-500: #09AAC9;
+  --color-primary-700: #005F80;
+
+  /* Secundario */
+  --color-secondary-300: #ED6DED;
+  --color-secondary-400: #E545E5;
+  --color-secondary-500: #BA38F5;
+  --color-secondary-700: #E94560;
+
+  /* Acento */
+  --color-accent-300: #FFE54D;
+  --color-accent-400: #FFD700;
+  --color-accent-500: #CCAC00;
+
+  /* Neutros */
+  --color-neutral-100: #F5F5F5;
+  --color-neutral-200: #EEEEEE;
+  --color-neutral-300: #E0E0E0;
+  --color-neutral-500: #997F00; /* en la captura aparece así, aunque no es gris */
+  --color-neutral-700: #424242;
+  --color-neutral-800: #212121;
+
+  /* Background */
+  --color-bg-700: #0F0F23;
+  --color-bg-800: #1A1A2E;
+  --color-bg-900: #16213E;
+
+  /* Fuentes */
+  --font-family-primary: 'Prestige Elite Std', serif;
+  --font-family-secondary: 'Gothic A1', sans-serif;
+}
+
+/* General */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 62.5%;
+    /* 62.5% de 16px = 10px */
+    scroll-behavior: smooth;
+    box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  font-size: 1.6rem;
+  line-height: 1.5;
+}
+
+img, picture, video, canvas {
+  display: block;
+  max-width: 100%;
+}
+
+button, input, textarea, select {
+  font: inherit;
+  color: inherit;
+}
+
+
+h1 {
+    font-size: 48px;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+h4 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+ul, ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
