@@ -59,7 +59,7 @@ body {
   display: flex;
   flex-direction: column;
   width: 100%;
-  background-color: var(--color-bg-800);
+  background-color: var(--color-bg-700);
 }
 
 img,

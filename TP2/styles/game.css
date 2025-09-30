@@ -1,0 +1,173 @@
+.main-game{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 6rem;
+    padding: 0;
+}
+
+.breadcrumb{
+    margin-left: 8rem;
+    width: 100%;
+}
+
+.breadcrumb ul {
+    display: flex;
+    flex-wrap: nowrap;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.breadcrumb li {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+.breadcrumb li:not(:last-child)::after {
+    content: ">";
+    margin: 0 8px;
+    color: #ccc;
+}
+
+/*section game*/
+.game_container{
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    width:98%;
+    margin: 1rem 1rem 1rem 1rem;
+    background-color: var(--color-bg-800);
+    border-radius: 10px;
+}
+
+.game-ejecutando{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: flex-start;
+    width: 80%;
+    margin: 1.2rem;
+}
+
+.game-screen {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background-image: url('../assets/img/Pegsolitarie.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin: 0;
+    padding: 0;
+}
+
+.game-ejecutando h3{
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--color-neutral-100);
+    margin-top: -4.5rem;
+}
+
+/*controles*/
+.game-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    width: 40%;
+    margin: 1.2rem;
+}
+
+.controles, .explicacion{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+}
+
+.controles h3{
+    font-size: 24px;
+    font-weight: 400;
+    margin: 1rem 0 0 0;
+    color: var(--color-neutral-100);
+}
+.controles p {
+    font-size: 16px;
+    font-weight: 400;
+    margin: 0.5rem 1rem 0 1rem;
+    color: var(--color-neutral-100);
+    text-align: center;
+}
+
+.explicacion h3{
+    font-size: 24px;
+    font-weight: 400;
+    margin: 5rem 0 0 0;
+    color: var(--color-neutral-100);
+}
+
+.explicacion p {
+    font-size: 16px;
+    font-weight: 400;
+    margin: 1.5rem 1rem 0 1rem;
+    color: var(--color-neutral-100);
+    text-align: center;
+}
+
+.personajes{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-self: center;
+}
+
+.personajes h3{
+    font-size: 24px;
+    font-weight: 400;
+    margin: 5rem 0 0 0;
+    color: var(--color-neutral-100);
+}
+
+.avatares {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5rem;
+    margin: 1.8rem 0 0 0;
+}
+
+
+.personaje-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+}
+
+.personaje{
+    display: flex;
+    flex-direction: column;
+    width: 120px;
+    height: 120px;
+    border: 2px solid var(--color-neutral-100);
+    border-radius: 50%;
+    background-color: var(--color-bg-800);
+    cursor: pointer;
+}
+
+.personaje img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.personaje-container h4 {
+    margin: 8px 0 0 0;
+    font-size: 16px;
+    color: var(--color-neutral-100);
+    text-align: center;
+    font-weight: 400;
+}
