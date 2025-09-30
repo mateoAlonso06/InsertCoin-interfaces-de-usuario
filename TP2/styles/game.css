@@ -34,7 +34,7 @@
 }
 
 /*section game*/
-.game_container{
+.game_container, .comments-section {
     display: flex;
     justify-content: center;
     align-items: stretch;
@@ -87,7 +87,7 @@
     justify-content: start;
 }
 
-.controles h3{
+.controles h3, h4{
     font-size: 24px;
     font-weight: 400;
     margin: 1rem 0 0 0;
@@ -170,4 +170,9 @@
     color: var(--color-neutral-100);
     text-align: center;
     font-weight: 400;
+}
+
+textarea {
+    width: 72.75rem;
+    height: 12.31rem;
 }
