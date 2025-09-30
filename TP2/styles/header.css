@@ -47,20 +47,19 @@ nav{
 .logo-titulo{
     display: flex;
     align-items: center;
-    
 }
 
 h1{
-    color: violet;
+    color: var(--color-secondary-400);
     font-family: var(--font-family-primary);
     font-size: 2rem;
     margin-left: 10px;
     width: 100%;
-    
+    margin-bottom: -.4rem;
 }
 
 h1 span {
-    color: yellow;
+    color: var(--color-accent-300);
 }
 
 
@@ -119,7 +118,7 @@ h1 span {
     position: fixed;
     top: 62px;
     left: 0;
-    width: 250px;
+    width: 180px;
     height: calc(100vh - 62px);
     background: var(--color-bg-800);
     box-shadow: 2px 0 8px rgba(0,0,0,0.2);
@@ -130,6 +129,7 @@ h1 span {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    overflow-y: auto;
 }
 
 .menu_categorias.open {
@@ -140,7 +140,9 @@ h1 span {
 .menu_categorias ul {
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin-top: -30px;
+    margin-left: -12px;
+    
 }
 
 .menu_categorias li {
@@ -149,6 +151,14 @@ h1 span {
     gap: 3px; /* separación entre icono y texto */
     padding: 8px 0;
     margin-bottom: 8px;
+    
+}
+
+.menu_categorias li:hover {
+    background-color: var(--color-bg-700);
+    border-radius: 8px;
+    padding-left: 5px;
+    transition: background-color 0.3s, padding-left 0.3s;
 }
 
 .categoria-icon {
@@ -165,6 +175,9 @@ h1 span {
     font-family: var(--font-family-primary);
     display: flex;
     align-items: center;
+    font-family: var(--font-family-secondary);
+    font-size: 15px;
+    font-weight: bold;
 }
 /* ...existing code... */
 /* ...existing code... */
@@ -188,7 +201,7 @@ h1 span {
     gap: 12px;
     pointer-events: none; /* evita clics cuando está oculto */
     opacity: 0;
-    height:28%;
+    height:18rem;
 }
 
 .menu-profile.open {
