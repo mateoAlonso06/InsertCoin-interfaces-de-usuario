@@ -5,20 +5,351 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="styles/common.css" />
+    <link rel="stylesheet" href="styles/header.css">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script src="https://kit.fontawesome.com/a405ba9b1d.js" crossorigin="anonymous"></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
       rel="stylesheet"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
+    <!-- Header -->
+     <header>
+        <nav class="navbar">
+            <div class="menu_container">
+                <div class="menu_burger">
+                    <i class="fa-solid fa-bars"></i>        
+                </div>
+                <div class="logo-titulo">
+                <h1>Insert<span>Coin</span></h1>
+                <span class="span-icon"><img src="assets/icons/logo-insertcoin.svg" alt=""></span>
+                </div>
+            </div>
+            <div class="input_search">
+                <input type="text" placeholder="Search...">
+            </div>
+            <div class="icon_profile">
+                <i class="fa-solid fa-user"></i>
+            </div>
+        </nav>
+    </header>
+    <!-- aside categorias -->
+     <aside class="menu_categorias">
+      <ul>
+    <li>
+      <img src="assets/icons/Nuevos.svg" alt="Arcade Icon" class="categoria-icon">
+      <a href="#">Nuevos</a>
+    </li>
+    <li>
+      <img src="assets/icons/De-moda 7.svg" alt="Shooter Icon" class="categoria-icon">
+      <a href="#">De moda</a>
+    </li>
+    <li>
+      <img src="assets/icons/Accion.svg" alt="Puzzle Icon" class="categoria-icon">
+      <a href="#">Acción</a>
+    </li>
+    <li>
+      <img src="assets/icons/Aventuras.svg" alt="Carreras Icon" class="categoria-icon">
+      <a href="#">Aventuras</a>
+    </li>
+    <li>
+      <img src="assets/icons/Arcade.svg" alt="Aventuras Icon" class="categoria-icon">
+      <a href="#">Arcade</a>
+    </li>
+    <li>
+      <img src="assets/icons/Consolas.svg" alt="Recomendados Icon" class="categoria-icon">
+      <a href="#">Consolas</a>
+    </li>
+    <li>
+      <img src="assets/icons/Cartas.svg" alt="Recomendados Icon" class="categoria-icon">
+      <a href="#">Cartas</a>
+    </li>
+    <li>
+      <img src="assets/icons/Carreras.svg" alt="Recomendados Icon" class="categoria-icon">
+      <a href="#">Carreras</a>
+    </li>
+    <li>
+      <img src="assets/icons/Deportes.svg" alt="Recomendados Icon" class="categoria-icon">
+      <a href="#">Deportes</a>
+    </li>
+    <li>
+      <img src="assets/icons/Torres.svg" alt="Recomendados Icon" class="categoria-icon">
+      <a href="#">Defensa de torres</a>
+    </li>
+    <li>
+      <img src="assets/icons/Escape.svg" alt="Recomendados Icon" class="categoria-icon">
+      <a href="#">Escape</a>
+    </li>
+    <li>
+      <img src="assets/icons/Futbol.svg" alt="Recomendados Icon" class="categoria-icon">
+      <a href="#">Fútbol</a>
+    </li>
+    <li>
+      <img src="assets/icons/Motos.svg" alt="Recomendados Icon" class="categoria-icon">
+      <a href="#">Motos</a>
+    </li>
+    <li>
+      <img src="assets/icons/Puzzle.svg" alt="Recomendados Icon" class="categoria-icon">
+      <a href="#">Puzzle</a>
+    </li>
+    <li>
+      <img src="assets/icons/Terror.svg" alt="Recomendados Icon" class="categoria-icon">
+      <a href="#">Terror</a>
+    </li>
+    <li>
+      <img src="assets/icons/Shooter.svg" alt="Recomendados Icon" class="categoria-icon">
+      <a href="#">Shooter</a>
+    </li>
+  </ul>
+      </aside>
+      <nav class="menu-profile">
+          <ul>
+            <li><i class="fa-solid fa-user"></i><a href="#">Mi perfil</a></li>
+            <li><i class="fa-solid fa-star"></i><a href="#">Logros</a></li>
+            <li><i class="fa-solid fa-earth-americas"></i><a href="#">Lenguaje</a></li>
+            <li><i class="fa-solid fa-right-to-bracket"></i><a href="#">Cerrar sesion</a></li>
+          </ul>
+      </nav>
+
+    <main class="home-content">
+      <section class="main-banner">
+        <div class="banner-content">
+          <h1 class="banner-title">Dinorey</h1>
+          <p class="banner-subtitle">Jugá a este nuevo juego</p>
+          <a href="#" class="banner-play-button">
+            <span>Jugar</span>
+            <i class="fas fa-play-circle"></i>
+          </a>
+          <p class="banner-bottom-text">Peg Solitaire</p>
+        </div>
+      </section>
+
+      <section class="game-category-section">
+        <h2 class="category-title">Jugado recientemente</h2>
+        <div class="game-cards-wrapper">
+          <div class="game-card">
+            <img
+              src="assets/cards/card-super-mario.png"
+              alt="Super Mario Bros."
+            />
+            <h3 class="game-title">Super Mario Bros.</h3>
+            <a href="#" class="play-button"
+              ><i class="fas fa-play"></i> Jugar</a
+            >
+          </div>
+          <div class="game-card">
+            <img src="assets/cards/card-tetris.png" alt="Tetris" />
+            <h3 class="game-title">Tetris</h3>
+            <a href="#" class="play-button"
+              ><i class="fas fa-play"></i> Jugar</a
+            >
+          </div>
+          <div class="game-card">
+            <img src="assets/cards/card-pacman.png" alt="Pac-Man" />
+            <h3 class="game-title">Pac-Man</h3>
+            <a href="#" class="play-button"
+              ><i class="fas fa-play"></i> Jugar</a
+            >
+          </div>
+          <div class="game-card">
+            <img src="assets/cards/card-ultimate-mk.svg" alt="Mortal Kombat" />
+            <h3 class="game-title">Ultimate Mortal...</h3>
+            <a href="#" class="play-button"
+              ><i class="fas fa-play"></i> Jugar</a
+            >
+          </div>
+          <div class="game-card">
+            <img
+              src="assets/cards/card-space-invaders.svg"
+              alt="Space Invaders"
+            />
+            <h3 class="game-title">Space Invaders</h3>
+            <a href="#" class="play-button"
+              ><i class="fas fa-play"></i> Jugar</a
+            >
+          </div>
+          <div class="game-card">
+            <img src="assets/cards/card-megaman.svg" alt="Mega Man 2" />
+            <h3 class="game-title">Mega Man 2</h3>
+            <a href="#" class="play-button"
+              ><i class="fas fa-play"></i> Jugar</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <section class="game-category-section">
+        <h2 class="category-title">Recomendados</h2>
+        <div class="game-cards-wrapper">
+          <div class="game-card">
+            <img src="assets/cards/card-donkey-kong.svg" alt="Donkey Kong" />
+            <h3 class="game-title">Donkey Kong</h3>
+            <a href="#" class="play-button"
+              ><i class="fas fa-play"></i> Jugar</a
+            >
+          </div>
+          <div class="game-card">
+            <img src="assets/cards/card-mario-kart64.svg" alt="Mario Kart 64" />
+            <h3 class="game-title">Mario Kart 64</h3>
+            <a href="#" class="play-button"
+              ><i class="fas fa-play"></i> Jugar</a
+            >
+          </div>
+          <div class="game-card">
+            <img
+              src="assets/cards/card-street-fighter.svg"
+              alt="Street Fighter"
+            />
+            <h3 class="game-title">Street Fighter...</h3>
+            <a href="#" class="play-button"
+              ><i class="fas fa-play"></i> Jugar</a
+            >
+          </div>
+          <div class="game-card">
+            <img src="assets/cards/card-super-ghouls.svg" alt="Super Ghouls" />
+            <h3 class="game-title">Super Ghouls...</h3>
+            <a href="#" class="play-button"
+              ><i class="fas fa-play"></i> Jugar</a
+            >
+          </div>
+          <div class="game-card">
+            <img src="assets/cards/card-zelda.svg" alt="The Legend of Zelda" />
+            <h3 class="game-title">The Legend of...</h3>
+            <a href="#" class="play-button"
+              ><i class="fas fa-play"></i> Jugar</a
+            >
+          </div>
+          <div class="game-card">
+            <img src="assets/cards/card-retro-bowl.png" alt="Retro Bowl" />
+            <h3 class="game-title">Retro Bowl</h3>
+            <a href="#" class="play-button"
+              ><i class="fas fa-play"></i> Jugar</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <section class="game-category-section">
+        <h2 class="category-title">Arcade</h2>
+        <div class="game-cards-wrapper">
+          <div class="game-card">
+            <img src="assets/cards/card-galaga.svg" alt="Galaga" />
+            <h3 class="game-title">Galaga</h3>
+            <a href="#" class="play-button"
+              ><i class="fas fa-play"></i> Jugar</a
+            >
+          </div>
+          <div class="game-card">
+            <img
+              src="assets/cards/card-bubbñe-bobble.svg"
+              alt="Bubble Bobble"
+            />
+            <h3 class="game-title">Bubble Bobble</h3>
+            <a href="#" class="play-button"
+              ><i class="fas fa-play"></i> Jugar</a
+            >
+          </div>
+          <div class="game-card">
+            <img src="assets/cards/card-frogger.svg" alt="Frogger" />
+            <h3 class="game-title">Frogger</h3>
+            <a href="#" class="play-button"
+              ><i class="fas fa-play"></i> Jugar</a
+            >
+          </div>
+          <div class="game-card">
+            <img src="assets/cards/card-commando.png" alt="Commando" />
+            <h3 class="game-title">Commando</h3>
+            <a href="#" class="play-button"
+              ><i class="fas fa-play"></i> Jugar</a
+            >
+          </div>
+          <div class="game-card">
+            <img src="assets/cards/card-out-run.png" alt="Out Run" />
+            <h3 class="game-title">Out Run</h3>
+            <a href="#" class="play-button"
+              ><i class="fas fa-play"></i> Jugar</a
+            >
+          </div>
+          <div class="game-card">
+            <img src="assets/cards/card-galaxian.png" alt="Galaxian" />
+            <h3 class="game-title">Galaxian</h3>
+            <a href="#" class="play-button"
+              ><i class="fas fa-play"></i> Jugar</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <section class="game-category-section">
+        <h2 class="category-title">Shooter</h2>
+        <div class="game-cards-wrapper">
+          <div class="game-card">
+            <img
+              src="assets/cards/card-old-retro-shooter.png"
+              alt="Old Retro Shooter"
+            />
+            <h3 class="game-title">Old Retro Shooter</h3>
+            <a href="#" class="play-button"
+              ><i class="fas fa-play"></i> Jugar</a
+            >
+          </div>
+          <div class="game-card">
+            <img src="assets/cards/card-time-crisis.png" alt="Time Crisis" />
+            <h3 class="game-title">Time Crisis</h3>
+            <a href="#" class="play-button"
+              ><i class="fas fa-play"></i> Jugar</a
+            >
+          </div>
+          <div class="game-card">
+            <img src="assets/cards/card-r-type.png" alt="R-Type" />
+            <h3 class="game-title">R-Type</h3>
+            <a href="#" class="play-button"
+              ><i class="fas fa-play"></i> Jugar</a
+            >
+          </div>
+          <div class="game-card">
+            <img src="assets/cards/card-duke-nukem.png" alt="Duke Nukem 3D" />
+            <h3 class="game-title">Duke Nukem 3D</h3>
+            <a href="#" class="play-button"
+              ><i class="fas fa-play"></i> Jugar</a
+            >
+          </div>
+          <div class="game-card">
+            <img src="assets/cards/card-xevious.png" alt="Xevious" />
+            <h3 class="game-title">Xevious</h3>
+            <a href="#" class="play-button"
+              ><i class="fas fa-play"></i> Jugar</a
+            >
+          </div>
+          <div class="game-card">
+            <img
+              src="assets/cards/card-shock-troopers.png"
+              alt="Shock Troopers 2nd Squad"
+            />
+            <h3 class="game-title">Shock Troopers...</h3>
+            <a href="#" class="play-button"
+              ><i class="fas fa-play"></i> Jugar</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
     <footer class="site-footer">
       <div class="footer-container">
         <div class="footer-top">
           <div class="footer-col-main">
             <div class="footer-logo">
-              <a href="#" class="logo-text">Insert<span class="logo-text-accent">Coin</span></a>
+              <a href="#" class="logo-text"
+                >Insert<span class="logo-text-accent">Coin</span></a
+              >
               <img
                 src="assets/icons/logo-insertcoin.svg"
                 alt="Logo InsertCoin"
@@ -104,19 +435,12 @@
           </div>
         </div>
 
-
-            <div class="footer-sponsors">
+        <div class="footer-sponsors">
           <h2>Patrocinadores</h2>
           <div class="sponsors-logos">
             <img src="assets/img/logo-nintendo.svg" alt="Logo Nintendo" />
-            <img
-              src="assets/img/logo-nauhty-dog.svg"
-              alt="Logo Naughty Dog"
-            />
-            <img
-              src="assets/img/logo-rockstar.svg"
-              alt="Logo Rockstar Games"
-            />
+            <img src="assets/img/logo-nauhty-dog.svg" alt="Logo Naughty Dog" />
+            <img src="assets/img/logo-rockstar.svg" alt="Logo Rockstar Games" />
             <img src="assets/img/logo-ea.svg" alt="Logo EA Sports" />
             <img src="assets/img/logo-sega.svg" alt="Logo Sega" />
             <img src="assets/img/logo-xbox.svg" alt="Logo Xbox" />
@@ -139,6 +463,7 @@
     </footer>
 
     <script src="scripts/script.js"></script>
+    <script src="scripts/navbar.js"></script>
     <script
       src="https://kit.fontawesome.com/a405ba9b1d.js"
       crossorigin="anonymous"
