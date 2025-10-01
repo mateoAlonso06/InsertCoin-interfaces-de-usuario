@@ -39,7 +39,7 @@
     justify-content: center;
     align-items: stretch;
     width:98%;
-    margin: 1rem 1rem 1rem 1rem;
+    margin: 0rem 1rem 1rem 1rem;
     background-color: var(--color-bg-800);
     border-radius: 10px;
 }
@@ -47,6 +47,7 @@
 .game-ejecutando{
     display: flex;
     flex-direction: column;
+    flex-grow: 3;
     align-items: start;
     justify-content: flex-start;
     width: 80%;
@@ -55,19 +56,25 @@
 
 .game-screen {
     width: 100%;
-    aspect-ratio: 16/9;
-    background-image: url('../assets/img/Pegsolitarie.svg');
-    background-repeat: no-repeat;
-    background-size: contain;
-    margin: 0;
-    padding: 0;
+    position: relative;
 }
+
+.game-screen div{
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    color: var(--color-neutral-100);
+    cursor: pointer;
+}
+
+
 
 .game-ejecutando h3{
     font-size: 24px;
     font-weight: 400;
     color: var(--color-neutral-100);
-    margin-top: -4.5rem;
+    margin-top: .5rem;
 }
 
 /*controles*/
@@ -78,6 +85,7 @@
     justify-content: start;
     width: 40%;
     margin: 1.2rem;
+    flex-grow: 1;
 }
 
 .controles, .explicacion{
@@ -155,6 +163,8 @@
     border-radius: 50%;
     background-color: var(--color-bg-800);
     cursor: pointer;
+    min-width: 65px;
+    min-height: 65px;
 }
 
 .personaje img {
@@ -170,4 +180,148 @@
     color: var(--color-neutral-100);
     text-align: center;
     font-weight: 400;
+}
+
+/*parte de sobre el juego y multimedia*/
+
+.container-info-multimedia{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: start;
+    width: 98%;
+    margin: 1rem 1rem 1rem 1rem;
+    padding: 0;
+    gap: 1rem;
+    border-radius: 10px;
+}
+
+.information-game {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    width: 55%;
+    height: 629px;
+    flex-grow: 3;
+    background-color: var(--color-bg-800);
+    border-radius: 10px;
+    
+}
+
+.information-game h4 {
+    font-size: 32px;
+    font-weight: 200;
+    color: var(--color-neutral-100);
+    margin: 2rem 0 0 2rem;
+}
+
+.details {
+    font-size: 16px;
+    font-weight: bold;
+    font-family: Montserrat;
+    color: var(--color-neutral-100);
+    margin: 1rem 2rem 0 2rem;
+    text-align: start;
+    line-height: 1.5;
+}
+.details p {
+    margin-bottom: 2rem;
+}
+
+.details p a:last-child {
+    border-bottom: 1px solid var(--color-accent-400);
+    color:var(--color-accent-400) ;
+}
+
+.share-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 1.2rem 0 0 0;
+}
+
+.share-container p {
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--color-neutral-100);
+}
+
+.share-icons {
+    display: flex;
+    justify-content: center;
+    width: 85%;
+    gap: 2rem;
+    margin-top: 1rem;
+    border-top: 5px solid var(--color-neutral-100);
+}
+
+.share-icons a {
+    color: var(--color-neutral-100);
+    font-size: 5rem;
+}
+
+/*multimedia*/
+
+.multimedia{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+    height: 629px;
+    flex-grow: 1;
+    background-color: var(--color-bg-800);
+    border-radius: 10px;
+}
+
+.multimedia h4 {
+  align-self: flex-start; /* rompe la alineación del align-items del padre */
+  margin-left: 5rem; 
+  margin-bottom: 1rem;
+  color: var(--color-neutral-100);
+  font-size: 30px;
+  font-weight: 100;     /* opcional, separa un poco del borde */
+}
+
+.images-multimedia {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  place-items: center;
+}
+
+.multimedia img {
+  width: 309px;
+  height: 199px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.image-wrapper {
+  position: relative; /* referencia para el icono */
+  display: inline-block;
+}
+
+.image-wrapper img {
+  display: block;
+  border-radius: 10px;
+  width: 309px;
+  height: 199px;
+  object-fit: cover;
+}
+
+.image-wrapper i {
+  position: absolute;
+  top: 50%;   
+  left: 50%;  
+  transform: translate(-50%, -50%); /* lo centra exacto */
+  font-size: 6rem;   /* tamaño del ícono */
+  color: #FFD43B;
+  cursor: pointer;
+}
+.image-wrapper i:hover {
+  color: #e100ff; /* cambia de color al pasar el mouse */
 }
