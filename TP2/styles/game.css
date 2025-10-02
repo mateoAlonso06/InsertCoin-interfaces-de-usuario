@@ -64,11 +64,12 @@
 .game-screen div{
     position: absolute;
     bottom: 1rem;
-    right: 1rem;
+    right:0rem;
     font-size: 1.5rem;
     color: var(--color-neutral-100);
     cursor: pointer;
 }
+
 
 .game-screen img{
     width: 100%;
@@ -319,17 +320,18 @@
   width: 309px;
   height: 199px;
   object-fit: cover;
+  pointer-events: none;
 }
 
 .image-wrapper i {
   position: absolute;
   top: 50%;   
   left: 50%;  
-  transform: translate(-50%, -50%); /* lo centra exacto */
-  font-size: 6rem;   /* tamaño del ícono */
-  color: #FFD43B;
+  transform: translate(-50%, -50%); 
+  font-size: 6rem;   
+  color: var(--color-accent-400);
   cursor: pointer;
 }
 .image-wrapper i:hover {
-  color: #e100ff; /* cambia de color al pasar el mouse */
+  color: var(--color-accent-300); ; 
 }
