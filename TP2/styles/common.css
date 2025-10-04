@@ -222,39 +222,32 @@ a {
   text-align: left;
 }
 
-.game-cards-wrapper {
-  display: flex;
-  justify-content: flex-start;
-  gap: 1.5rem;
-  overflow-x: auto;
-  padding-bottom: 0.5rem;
-  width: 100%;
-}
-
-/* --- TARJETA DE JUEGO (GAME CARD) --- */
 .game-card {
   flex: 0 0 280px;
   background-color: var(--color-bg-900);
-  border: 2px solid var(--color-primary-500);
-  border-radius: 8px;
+  border: 3.5px solid var(--color-primary-400);
+  border-radius: 10px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  transition: all 1s ease;
   scroll-snap-align: start;
   text-align: center;
+  margin-right: 1.5rem; /* Add margin for spacing between cards */
 }
 
 .game-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(9, 170, 201, 0.3);
+  transform: scale(1.1);
+  box-shadow: 0 12px 32px rgba(9, 170, 201, 0.45), 0 2px 8px rgba(0, 0, 0, 0.12);
+  border-color: var(--color-primary-300);
+  transition: box-shadow 0.3s, border-color 0.3s;
 }
 
 .game-card img {
   width: 100%;
   height: 260px;
   object-fit: cover;
-  border-bottom: 2px solid var(--color-primary-500);
+  border-bottom: 3.5px solid var(--color-primary-700);
 }
 
 .game-card .game-title {
