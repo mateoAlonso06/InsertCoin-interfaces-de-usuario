@@ -20,7 +20,7 @@
     line-height: 40px;
     width: 50px;
     color: white;
-    z-index: 500;
+    z-index: 50;
     cursor: pointer;
     transition: 2s ease all;
     user-select: none; /*evita que se seleccione el texto al hacer click*/
