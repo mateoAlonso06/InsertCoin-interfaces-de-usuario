@@ -5,7 +5,7 @@ header{
     display: flex;
     align-items: center;
     justify-content: center;
-    position: fixed;
+    position: sticky;
     top: 0;
     z-index: 100;
 }
@@ -61,7 +61,6 @@ h1{
 h1 span {
     color: var(--color-accent-300);
 }
-
 
 .span-icon img{
     width: 3.5rem;
