@@ -1,95 +1,62 @@
-// Loader retro para InsertCoin
+// Loading simple para InsertCoin
 document.addEventListener('DOMContentLoaded', function() {
-    const loaderWrapper = document.getElementById('loader-wrapper');
-    const progressBarFill = document.getElementById('progress-bar-fill');
-    const progressPercentage = document.getElementById('progress-percentage');
+    // Obtener elementos del DOM
+    const loader = document.getElementById('loader-wrapper');
+    const progressBar = document.getElementById('progress-fill');
+    const progressText = document.getElementById('progress-text');
+    const messageText = document.getElementById('loading-message');
     
+    // Variables de control
     let progress = 0;
-    const duration = 5000; // 5 segundos
-    const interval = 50; // Actualización cada 50ms para suavidad
-    const increment = (100 / (duration / interval));
     
-    // Mensajes que van cambiando durante la carga
-    const loadingMessages = [
-        'PREPARANDO EXPERIENCIA RETRO',
-        'CARGANDO JUEGOS CLÁSICOS',
-        'INICIALIZANDO ARCADE',
-        'CONECTANDO CON LOS 80S',
+    // Mensajes que cambian durante la carga
+    const messages = [
+        'CARGANDO JUEGOS...',
+        'PREPARANDO ARCADE...',
         'INSERTANDO MONEDA...',
-        'GAME READY!'
+        'LISTO PARA JUGAR!'
     ];
     
-    const messageElement = document.querySelector('.loading-message p');
-    let messageIndex = 0;
-    
-    // Función para actualizar el progreso
-    function updateProgress() {
-        if (progress < 100) {
-            progress += increment;
-            
-            // Asegurar que no pase del 100%
-            if (progress > 100) progress = 100;
-            
-            // Actualizar barra de progreso
-            progressBarFill.style.width = progress + '%';
-            progressPercentage.textContent = Math.floor(progress) + '%';
-            
-            // Cambiar mensaje cada cierto porcentaje
-            const newMessageIndex = Math.floor((progress / 100) * (loadingMessages.length - 1));
-            if (newMessageIndex !== messageIndex && newMessageIndex < loadingMessages.length) {
-                messageIndex = newMessageIndex;
-                messageElement.textContent = loadingMessages[messageIndex];
-            }
-            
-            // Continuar actualizando
-            setTimeout(updateProgress, interval);
+    // Función principal que actualiza el progreso
+    function updateLoader() {
+        // Incrementar progreso
+        progress += 2; // 2% cada vez
+        
+        // Actualizar barra de progreso
+        progressBar.style.width = progress + '%';
+        
+        // Actualizar texto del porcentaje
+        progressText.textContent = progress + '%';
+        
+        // Cambiar mensaje según el progreso
+        if (progress <= 25) {
+            messageText.textContent = messages[0];
+        } else if (progress <= 50) {
+            messageText.textContent = messages[1];
+        } else if (progress <= 75) {
+            messageText.textContent = messages[2];
         } else {
-            // Carga completada
-            setTimeout(hideLoader, 500); // Pequeña pausa antes de ocultar
+            messageText.textContent = messages[3];
+        }
+        
+        // Si no llegó al 100%, continuar
+        if (progress < 100) {
+            setTimeout(updateLoader, 100); // Cada 100ms
+        } else {
+            // Ocultar loader cuando termine
+            setTimeout(hideLoader, 500);
         }
     }
     
     // Función para ocultar el loader
     function hideLoader() {
-        loaderWrapper.style.opacity = '0';
-        loaderWrapper.style.transition = 'opacity 0.5s ease-out';
-        
-        setTimeout(() => {
-            loaderWrapper.style.display = 'none';
-            // Mostrar el contenido principal
-            document.body.style.overflow = 'auto';
-        }, 500);
+        loader.style.display = 'none';
+        document.body.style.overflow = 'auto';
     }
     
-    // Ocultar overflow del body mientras carga
+    // Bloquear scroll mientras carga
     document.body.style.overflow = 'hidden';
     
-    // Iniciar la animación de carga
-    setTimeout(updateProgress, 300); // Pequeña pausa inicial para efecto
-    
-    // Efecto de sonido retro simulado (opcional - usando Web Audio API)
-    function playRetroSound() {
-        try {
-            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            const oscillator = audioContext.createOscillator();
-            const gainNode = audioContext.createGain();
-            
-            oscillator.connect(gainNode);
-            gainNode.connect(audioContext.destination);
-            
-            oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
-            oscillator.frequency.exponentialRampToValueAtTime(400, audioContext.currentTime + 0.1);
-            
-            gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
-            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
-            
-            oscillator.start(audioContext.currentTime);
-            oscillator.stop(audioContext.currentTime + 0.1);
-        } catch (e) {
-            // Silenciar errores de audio si no es compatible
-        }
-    }
-    
-    // Reproducir sonido al final de la carga (comentado para no molestar)
-    // setTimeout(playRetroSound, duration);
+    // Iniciar carga después de 500ms
+    setTimeout(updateLoader, 500);
 });
