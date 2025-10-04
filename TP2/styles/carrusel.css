@@ -1,57 +1,71 @@
-.game-category-section {
-    position: relative;
-    margin-bottom: 2rem;
+.recommended-games h3 {
+    text-align: start;
+    color: yellow;
 }
 
-.carousel-container {
-    position: relative;
-}
-
-.carousel-list {
-    overflow: hidden;
-    width: 100%;
-}
-
-.carousel-track {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-}
-
-.carousel-prev,
-.carousel-next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
-    background-color: rgba(9, 170, 201, 0.7);
-    color: var(--color-neutral-100);
-    border: 2px solid var(--color-primary-300);
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
+.recommended-games .principal-container {
     display: flex;
     align-items: center;
-    justify-content: center;
+    position: relative;
+}
+
+.recommended-games .principal-container .left-arrow,
+.recommended-games .principal-container .right-arrow {
+    position: absolute;
+    border: none;
+    background:rgb(0, 0, 0,0.3) ;
+    font-size: 40px;
+    height: 50%;
+    top: calc(50% - 25%);
+    line-height: 40px;
+    width: 50px;
+    color: white;
+    z-index: 500;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    font-size: 2rem;
+    transition: 2s ease all;
+    user-select: none; /*evita que se seleccione el texto al hacer click*/
 }
 
-.carousel-prev:hover,
-.carousel-next:hover {
-    background-color: var(--color-primary-500);
-    transform: translateY(-50%) scale(1.1);
+.recommended-games .principal-container .left-arrow{
+    left: 0;
 }
 
-.carousel-prev {
-    left: -25px;
+.recommended-games .principal-container .right-arrow{
+    right: 0;
 }
 
-.carousel-next {
-    right: -25px;
+.recommended-games .carousel-container {
+    width: 100%;
+    padding: 20px 0;
+    overflow: hidden;
+    scroll-behavior: smooth;
 }
 
-.carousel-prev[style*="display: none"],
-.carousel-next[style*="display: none"] {
-    display: none !important;
+.recommended-games .carousel-container .carousel {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.recommended-games .carousel-container .carousel .game-card {
+    /* To show, for example, 5 movies at a time */
+    min-width: 10%; /* 100% / 5 = 20% */
+    transition: .3s ease-in all;
+    box-shadow:5xp 5px 10px rgba(0,0,0,.5);
+    margin: 10px;
+    cursor: pointer;
+}
+
+.recommended-games .carousel-container .carousel .game-card:hover {
+    transform: scale(1.1);
+    transform-origin: center;
+    transition: .5s ease-in-out all;
+}
+
+.recommended-games .carousel-container .carousel .game-card img {
+    width: 100%;
+    vertical-align: top; /* Removes extra space below inline images */
+}
+
+.hidden {
+    display: none;
 }
