@@ -1,9 +1,9 @@
+
 .main-game{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100%;
     margin-top: 6rem;
     padding: 0;
 }
@@ -478,4 +478,19 @@ textarea:focus {
 }
 .image-wrapper i:hover {
   color: var(--color-accent-300); ; 
+}
+
+/* modificacion minima del carrusel por especificidad para adaptarlo al game.html */
+.main-game .recommended-games {
+    width: 98%; 
+    margin: auto;
+    margin: 5rem auto;
+    padding: 0;
+}
+
+.main-game .recommended-games .title-carousel-games {
+    text-align: left;
+    margin-left: 1rem; 
+    font-size: 20px;
+    color: var(--color-neutral-100);
 }

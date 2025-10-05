@@ -7,8 +7,8 @@
     <title>Document</title>
     <link rel="stylesheet" href="styles/style.css" />
     <link rel="stylesheet" href="styles/header-footer.css">
-    <link rel="stylesheet" href="styles/game.css">
     <link rel="stylesheet" href="styles/carrusel.css">
+    <link rel="stylesheet" href="styles/game.css">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <script src="https://kit.fontawesome.com/a405ba9b1d.js" crossorigin="anonymous"></script>
@@ -197,7 +197,83 @@
             </div>
         </aside>
     </section>
+    <section class="recommended-games">
+      <h3 class="title-carousel-games">Juegos relacionados</h3>  
+
+      <div class="principal-container">
+        <button role="button" id="left-arrow" class="left-arrow"><i class="fas fa-angle-left"></i></button>
+        <div class="carousel-container">
+          <div class="carousel">
+             <div class="game-card">
+              <div class="cont-hover" data-title="Ajedrez">
+                <img src="assets/cards/minijuegos-ajedrez.png" alt="Ajedrez" />
+              </div>
+              <h3 class="game-title">Ajedrez</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+            <div class="game-card">
+              <div class="cont-hover" data-title="Tetris">
+                <img src="assets/cards/card-tetris.png" alt="Tetris" />
+              </div>
+              <h3 class="game-title">Tetris</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+            <div class="game-card">
+              <div class="cont-hover" data-title="Batalla naval">
+                <img src="assets/cards/batallaNaval.png" alt="Batalla naval" />
+              </div>
+              <h3 class="game-title">Batalla naval</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+            <div class="game-card">
+              <div class="cont-hover" data-title="4 en raya">
+                <img src="assets/cards/4enraya.png" alt="4 en raya" />
+              </div>
+              <h3 class="game-title">4 en raya</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+            <div class="game-card">
+              <div class="cont-hover" data-title="TA TE TI">
+                <img src="assets/cards/tateti.png" alt="TA TE TI" />
+              </div>
+              <h3 class="game-title">TA TE TI</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+            <div class="game-card">
+              <div class="cont-hover" data-title="Rompecabezas de 15">
+                <img src="assets/cards/Rompe15.png" alt="Rompecabezas de 15" />
+              </div>
+              <h3 class="game-title">Rompecabezas de 15</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+            <div class="game-card">
+              <div class="cont-hover" data-title="dominó">
+                <img src="assets/cards/domino.png" alt="dominó" />
+              </div>
+              <h3 class="game-title">dominó</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+            <div class="game-card">
+              <div class="cont-hover" data-title="Solitario">
+                <img src="assets/cards/solitario.png" alt="Solitario" />
+              </div>
+              <h3 class="game-title">Solitario</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+            <div class="game-card">
+              <div class="cont-hover" data-title="Sudoku">
+                <img src="assets/cards/ultimate-sudoku.png" alt="Sudoku" />
+              </div>
+              <h3 class="game-title">Sudoku</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+          </div>
+        </div>
+        <button role="button" id="right-arrow" class="right-arrow"><i class="fas fa-angle-right"></i></button>
+      </div>
+    </section> 
     </main>
+    
     <section class="ctn-comments-public">
         <section class="comments-section">
             <h4>Comentarios</h4>
@@ -425,6 +501,7 @@
 
     <script src="scripts/script.js"></script>
     <script src="scripts/navbar.js"></script>
+    <script src="scripts/carrusel.js"></script>
     <script src="https://kit.fontawesome.com/a405ba9b1d.js" crossorigin="anonymous"></script>
 </body>
 
