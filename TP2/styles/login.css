@@ -134,9 +134,12 @@ input::placeholder {
     color: var(--color-accent-400);
 }
 
-#captcha {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+.recaptcha {
+    width: 100%; 
+    max-width: 300px;
+    display: block;
+    margin: 10px auto;
+    
 }
 
 .obligatorio {
