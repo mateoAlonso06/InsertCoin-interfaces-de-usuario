@@ -6,8 +6,8 @@
 
     <title>Login</title>
     <script src="https://kit.fontawesome.com/a405ba9b1d.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="TP2/styles/common.css">
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="styles/common.css">
+    <link rel="stylesheet" href="styles/login.css">
     <link
       href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
       rel="stylesheet"
@@ -16,21 +16,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <body>
 
-
-    <!--Campos del formulario
-    Email
-    contraseña
-    enlace para olvidar contraseña
-    boton iniciar sesion
-    boton de iniciar sesion con google
-    boton de iniciar sesion con facebook
-    boton de registrarse
-    -->
     <div class="form-container">
         <div class="logo">
             <img src="assets/icons/logo-insertcoin.svg" alt="Logo InsertCoin">
         </div>
-        <form class="login-form">
+        <form class="login-form" id="login-form" method="post">
             <div class="inputs-form-login">
                 <label for="email">Email</label>
                 <input type="email" id="email" placeholder="Email">
@@ -49,5 +39,9 @@
             </div>
         </form>
     </div>
+
+    <script src="/TP2/scripts/forms.js "> </script>
+    <script src="https://kit.fontawesome.com/a405ba9b1d.js" crossorigin="anonymous"></script>
+
 </body>
 </html>             

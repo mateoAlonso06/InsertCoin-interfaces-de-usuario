@@ -27,6 +27,13 @@
   --color-neutral-700: #424242;
   --color-neutral-800: #212121;
 
+  /* Errores*/
+  --color-error-300: #D32F2F;
+  --color-error-400: #F44336;
+  --color-error-500: #B71C1C;
+
+
+
   /* Background */
   --color-bg-700: #0F0F23;
   --color-bg-800: #1A1A2E;

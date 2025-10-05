@@ -4,7 +4,7 @@ Hoja de estilos para formulario de login y posible sign-up
 
 body {
     font-family: var(--font-family-primary);
-    background-image: url("./TP2/assets/img/fondo_background.jpg");
+    background-image: url("../assets/img/fondo_background.jpg   "); /* Ruta de la imagen de fondo */
     background-size: cover;      /* Cubre toda la pantalla */
     background-repeat: no-repeat; /* Evita que se repita */
     background-position: center;  /* Centra la imagen */    
@@ -15,6 +15,14 @@ body {
 label {
     margin-top: 1.5rem;
 }
+
+.logo {
+    display: block;
+    margin: 0 auto 1rem auto;
+    width: 120px;
+    height: auto;
+}
+
 
 .form-container {
     max-width: 40rem;
@@ -133,4 +141,25 @@ input::placeholder {
 
 .obligatorio {
     color: var(--color-accent-400);
+}
+
+/*------------MENSAJE DE ERROR-----------*/
+
+.error {
+    color: var(--color-error-400);
+    margin-bottom: 5px;
+    font-size: 10px;
+}
+
+.input-error {
+    border: 2px solid var(--color-error-400) !important; /* Asegura prioridad */
+}
+
+.input-group {
+    position: relative;
+    width: 100%;
+}
+
+.error-field + .warning-icon {
+    display: block;
 }
