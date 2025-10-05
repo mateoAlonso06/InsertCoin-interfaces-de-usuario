@@ -1,6 +1,6 @@
 .recommended-games h3 {
     text-align: start;
-    color: yellow;
+    color: var(--color-accent-400);
 }
 
 .recommended-games .principal-container {
@@ -47,8 +47,9 @@
 }
 
 .recommended-games .carousel-container .carousel .game-card {
-    /* To show, for example, 5 movies at a time */
-    min-width: 10%; /* 100% / 5 = 20% */
+    /* 100% / 6 = 16.666...% */
+    /* Restamos 20px (10px de margen izquierdo + 10px de margen derecho) */
+    min-width: calc(16.666% - 20px); 
     transition: .3s ease-in all;
     box-shadow:5xp 5px 10px rgba(0,0,0,.5);
     margin: 10px;

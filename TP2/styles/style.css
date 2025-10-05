@@ -322,10 +322,50 @@ a {
   scroll-snap-align: start;
   text-align: center;
   margin-right: 1.5rem;
+  
   /* Add margin for spacing between cards */
 }
 
-.game-card:hover {
+ .cont-hover{
+  width: 100%;
+  height: 260px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cont-hover::after {
+  content: attr(data-title); /* toma el valor del atributo */
+  position: absolute;
+  inset: 0; /* top, right, bottom, left = 0 */
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  display: flex;             /* para centrar el texto */
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  color: white; /* Color interior (fill) */
+    
+    /* Simulates a 1px black stroke using 4 shadows */
+    text-shadow: 
+        -2px -2px 0 #000,  /* Superior izquierda */
+         2px -2px 0 #000,  /* Superior derecha */
+        -2px  2px 0 #000,  /* Inferior izquierda */
+         2px  2px 0 #000;  /* Inferior derecha */
+}
+
+/* al hacer hover aparece */
+.cont-hover:hover::after {
+  opacity: 1;
+}
+
+.cont-hover:hover + .game-title{ /*al ser hermano, se tiene que utilizar el +*/
+  opacity: 0;
+}
+
+.game-card:hover .game-title {
   transform: scale(1.1);
   box-shadow: 0 12px 32px rgba(9, 170, 201, 0.45), 0 2px 8px rgba(0, 0, 0, 0.12);
   border-color: var(--color-primary-300);
@@ -348,12 +388,18 @@ a {
   overflow: hidden;
   text-overflow: ellipsis;
   flex-grow: 1;
+  text-align: center;
 }
+
+
 
 .game-card .play-button {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: auto;
+  width: 90%;
+  margin-bottom: 1rem;
   gap: 0.8rem;
   background-color: var(--color-primary-400);
   color: var(--color-bg-900);
@@ -362,13 +408,27 @@ a {
   padding: 1.2rem;
   text-align: center;
   transition: background-color 0.2s ease;
+  border-radius: 8px;
+  position: relative;
+    overflow: hidden; /* Crucial: Hides the shine effect until it moves over the button */
+    z-index: 1
 }
 
 .game-card .play-button:hover {
   background-color: var(--color-primary-300);
   color: var(--color-bg-900);
+  animation: pulse 0.6s ease infinite alternate;
 }
 
 .play-button .fa-play {
   font-size: 1rem;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.08); 
+    }
 }
