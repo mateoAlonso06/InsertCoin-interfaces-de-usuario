@@ -1,130 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="styles/common.css" />
-    <link rel="stylesheet" href="styles/header.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <script src="https://kit.fontawesome.com/a405ba9b1d.js" crossorigin="anonymous"></script>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <!-- Header -->
-     <header>
-        <nav class="navbar">
-            <div class="menu_container">
-                <div class="menu_burger">
-                    <i class="fa-solid fa-bars"></i>        
-                </div>
-                <div class="logo-titulo">
-                <h1>Insert<span>Coin</span></h1>
-                <span class="span-icon"><img src="assets/icons/logo-insertcoin.svg" alt=""></span>
-                </div>
-            </div>
-            <div class="input_search">
-                <input type="text" placeholder="Search...">
-            </div>
-            <div class="icon_profile">
-                <i class="fa-solid fa-user"></i>
-            </div>
-        </nav>
-    </header>
-    <!-- aside categorias -->
-     <aside class="menu_categorias">
-      <ul>
-    <li>
-      <img src="assets/icons/Nuevos.svg" alt="Arcade Icon" class="categoria-icon">
-      <a href="#">Nuevos</a>
-    </li>
-    <li>
-      <img src="assets/icons/De-moda 7.svg" alt="Shooter Icon" class="categoria-icon">
-      <a href="#">De moda</a>
-    </li>
-    <li>
-      <img src="assets/icons/Accion.svg" alt="Puzzle Icon" class="categoria-icon">
-      <a href="#">Acción</a>
-    </li>
-    <li>
-      <img src="assets/icons/Aventuras.svg" alt="Carreras Icon" class="categoria-icon">
-      <a href="#">Aventuras</a>
-    </li>
-    <li>
-      <img src="assets/icons/Arcade.svg" alt="Aventuras Icon" class="categoria-icon">
-      <a href="#">Arcade</a>
-    </li>
-    <li>
-      <img src="assets/icons/Consolas.svg" alt="Recomendados Icon" class="categoria-icon">
-      <a href="#">Consolas</a>
-    </li>
-    <li>
-      <img src="assets/icons/Cartas.svg" alt="Recomendados Icon" class="categoria-icon">
-      <a href="#">Cartas</a>
-    </li>
-    <li>
-      <img src="assets/icons/Carreras.svg" alt="Recomendados Icon" class="categoria-icon">
-      <a href="#">Carreras</a>
-    </li>
-    <li>
-      <img src="assets/icons/Deportes.svg" alt="Recomendados Icon" class="categoria-icon">
-      <a href="#">Deportes</a>
-    </li>
-    <li>
-      <img src="assets/icons/Torres.svg" alt="Recomendados Icon" class="categoria-icon">
-      <a href="#">Defensa de torres</a>
-    </li>
-    <li>
-      <img src="assets/icons/Escape.svg" alt="Recomendados Icon" class="categoria-icon">
-      <a href="#">Escape</a>
-    </li>
-    <li>
-      <img src="assets/icons/Futbol.svg" alt="Recomendados Icon" class="categoria-icon">
-      <a href="#">Fútbol</a>
-    </li>
-    <li>
-      <img src="assets/icons/Motos.svg" alt="Recomendados Icon" class="categoria-icon">
-      <a href="#">Motos</a>
-    </li>
-    <li>
-      <img src="assets/icons/Puzzle.svg" alt="Recomendados Icon" class="categoria-icon">
-      <a href="#">Puzzle</a>
-    </li>
-    <li>
-      <img src="assets/icons/Terror.svg" alt="Recomendados Icon" class="categoria-icon">
-      <a href="#">Terror</a>
-    </li>
-    <li>
-      <img src="assets/icons/Shooter.svg" alt="Recomendados Icon" class="categoria-icon">
-      <a href="#">Shooter</a>
-    </li>
-  </ul>
-      </aside>
-      <nav class="menu-profile">
-          <ul>
-            <li><i class="fa-solid fa-user"></i><a href="#">Mi perfil</a></li>
-            <li><i class="fa-solid fa-star"></i><a href="#">Logros</a></li>
-            <li><i class="fa-solid fa-earth-americas"></i><a href="#">Lenguaje</a></li>
-            <li><i class="fa-solid fa-right-to-bracket"></i><a href="#">Cerrar sesion</a></li>
-          </ul>
-      </nav>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="styles/style.css" />
+  <link rel="stylesheet" href="styles/header-footer.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="styles/carrusel.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <script src="https://kit.fontawesome.com/a405ba9b1d.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+  <!-- Loading Screen -->
+  <div id="loader-wrapper">
+    <div class="loader-container">
+      <div class="logo-loading">
+        <h1>Insert<span>Coin</span></h1>
+      </div>
+
+      <div class="simple-spinner"></div>
+
+      <div class="progress-container">
+        <div class="progress-bar">
+          <div id="progress-fill"></div>
+        </div>
+        <div id="progress-text">0%</div>
+      </div>
+
+      <div id="loading-message">CARGANDO JUEGOS...</div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <nav class="navbar">
+      <div class="menu_container">
+        <div class="menu_burger">
+          <i class="fa-solid fa-bars"></i>
+        </div>
+        <div class="logo-titulo">
+          <h1>Insert<span>Coin</span></h1>
+          <span class="span-icon"><img src="assets/icons/logo-insertcoin.svg" alt="" /></span>
+        </div>
+      </div>
+      <div class="input_search">
+        <input type="text" placeholder="Search..." />
+      </div>
+      <div class="icon_profile">
+        <i class="fa-solid fa-user"></i>
+      </div>
+    </nav>
+  </header>
+  <!-- aside categorias -->
+  <aside class="menu_categorias">
+    <ul>
+      <li>
+        <img src="assets/icons/Nuevos.svg" alt="Arcade Icon" class="categoria-icon" />
+        <a href="#">Nuevos</a>
+      </li>
+      <li>
+        <img src="assets/icons/De-moda 7.svg" alt="Shooter Icon" class="categoria-icon" />
+        <a href="#">De moda</a>
+      </li>
+      <li>
+        <img src="assets/icons/Accion.svg" alt="Puzzle Icon" class="categoria-icon" />
+        <a href="#">Acción</a>
+      </li>
+      <li>
+        <img src="assets/icons/Aventuras.svg" alt="Carreras Icon" class="categoria-icon" />
+        <a href="#">Aventuras</a>
+      </li>
+      <li>
+        <img src="assets/icons/Arcade.svg" alt="Aventuras Icon" class="categoria-icon" />
+        <a href="#">Arcade</a>
+      </li>
+      <li>
+        <img src="assets/icons/Consolas.svg" alt="Recomendados Icon" class="categoria-icon" />
+        <a href="#">Consolas</a>
+      </li>
+      <li>
+        <img src="assets/icons/Cartas.svg" alt="Recomendados Icon" class="categoria-icon" />
+        <a href="#">Cartas</a>
+      </li>
+      <li>
+        <img src="assets/icons/Carreras.svg" alt="Recomendados Icon" class="categoria-icon" />
+        <a href="#">Carreras</a>
+      </li>
+      <li>
+        <img src="assets/icons/Deportes.svg" alt="Recomendados Icon" class="categoria-icon" />
+        <a href="#">Deportes</a>
+      </li>
+      <li>
+        <img src="assets/icons/Torres.svg" alt="Recomendados Icon" class="categoria-icon" />
+        <a href="#">Defensa de torres</a>
+      </li>
+      <li>
+        <img src="assets/icons/Escape.svg" alt="Recomendados Icon" class="categoria-icon" />
+        <a href="#">Escape</a>
+      </li>
+      <li>
+        <img src="assets/icons/Futbol.svg" alt="Recomendados Icon" class="categoria-icon" />
+        <a href="#">Fútbol</a>
+      </li>
+      <li>
+        <img src="assets/icons/Motos.svg" alt="Recomendados Icon" class="categoria-icon" />
+        <a href="#">Motos</a>
+      </li>
+      <li>
+        <img src="assets/icons/Puzzle.svg" alt="Recomendados Icon" class="categoria-icon" />
+        <a href="#">Puzzle</a>
+      </li>
+      <li>
+        <img src="assets/icons/Terror.svg" alt="Recomendados Icon" class="categoria-icon" />
+        <a href="#">Terror</a>
+      </li>
+      <li>
+        <img src="assets/icons/Shooter.svg" alt="Recomendados Icon" class="categoria-icon" />
+        <a href="#">Shooter</a>
+      </li>
+    </ul>
+  </aside>
+  <nav class="menu-profile">
+    <ul>
+      <li><i class="fa-solid fa-user"></i><a href="#">Mi perfil</a></li>
+      <li><i class="fa-solid fa-star"></i><a href="#">Logros</a></li>
+      <li>
+        <i class="fa-solid fa-earth-americas"></i><a href="#">Lenguaje</a>
+      </li>
+      <li>
+        <i class="fa-solid fa-right-to-bracket"></i><a href="#">Cerrar sesion</a>
+      </li>
+    </ul>
+  </nav>
 
     <main class="home-content">
       <section class="main-banner">
         <div class="banner-content">
           <h1 class="banner-title">Dinorey</h1>
           <p class="banner-subtitle">Jugá a este nuevo juego</p>
-          <a href="#" class="banner-play-button">
+          <a href="game.html" class="banner-play-button">
             <span>Jugar</span>
             <i class="fas fa-play-circle"></i>
           </a>
@@ -132,341 +153,474 @@
         </div>
       </section>
 
-      <section class="game-category-section">
-        <h2 class="category-title">Jugado recientemente</h2>
-        <div class="game-cards-wrapper">
-          <div class="game-card">
-            <img
-              src="assets/cards/card-super-mario.png"
-              alt="Super Mario Bros."
-            />
-            <h3 class="game-title">Super Mario Bros.</h3>
-            <a href="#" class="play-button"
-              ><i class="fas fa-play"></i> Jugar</a
-            >
-          </div>
-          <div class="game-card">
-            <img src="assets/cards/card-tetris.png" alt="Tetris" />
-            <h3 class="game-title">Tetris</h3>
-            <a href="#" class="play-button"
-              ><i class="fas fa-play"></i> Jugar</a
-            >
-          </div>
-          <div class="game-card">
-            <img src="assets/cards/card-pacman.png" alt="Pac-Man" />
-            <h3 class="game-title">Pac-Man</h3>
-            <a href="#" class="play-button"
-              ><i class="fas fa-play"></i> Jugar</a
-            >
-          </div>
-          <div class="game-card">
-            <img src="assets/cards/card-ultimate-mk.svg" alt="Mortal Kombat" />
-            <h3 class="game-title">Ultimate Mortal...</h3>
-            <a href="#" class="play-button"
-              ><i class="fas fa-play"></i> Jugar</a
-            >
-          </div>
-          <div class="game-card">
-            <img
-              src="assets/cards/card-space-invaders.svg"
-              alt="Space Invaders"
-            />
-            <h3 class="game-title">Space Invaders</h3>
-            <a href="#" class="play-button"
-              ><i class="fas fa-play"></i> Jugar</a
-            >
-          </div>
-          <div class="game-card">
-            <img src="assets/cards/card-megaman.svg" alt="Mega Man 2" />
-            <h3 class="game-title">Mega Man 2</h3>
-            <a href="#" class="play-button"
-              ><i class="fas fa-play"></i> Jugar</a
-            >
-          </div>
-        </div>
-      </section>
+    <section class="recommended-games">
+      <h3>Jugado recientemente</h3>  
 
-      <section class="game-category-section">
-        <h2 class="category-title">Recomendados</h2>
-        <div class="game-cards-wrapper">
-          <div class="game-card">
-            <img src="assets/cards/card-donkey-kong.svg" alt="Donkey Kong" />
-            <h3 class="game-title">Donkey Kong</h3>
-            <a href="#" class="play-button"
-              ><i class="fas fa-play"></i> Jugar</a
-            >
-          </div>
-          <div class="game-card">
-            <img src="assets/cards/card-mario-kart64.svg" alt="Mario Kart 64" />
-            <h3 class="game-title">Mario Kart 64</h3>
-            <a href="#" class="play-button"
-              ><i class="fas fa-play"></i> Jugar</a
-            >
-          </div>
-          <div class="game-card">
-            <img
-              src="assets/cards/card-street-fighter.svg"
-              alt="Street Fighter"
-            />
-            <h3 class="game-title">Street Fighter...</h3>
-            <a href="#" class="play-button"
-              ><i class="fas fa-play"></i> Jugar</a
-            >
-          </div>
-          <div class="game-card">
-            <img src="assets/cards/card-super-ghouls.svg" alt="Super Ghouls" />
-            <h3 class="game-title">Super Ghouls...</h3>
-            <a href="#" class="play-button"
-              ><i class="fas fa-play"></i> Jugar</a
-            >
-          </div>
-          <div class="game-card">
-            <img src="assets/cards/card-zelda.svg" alt="The Legend of Zelda" />
-            <h3 class="game-title">The Legend of...</h3>
-            <a href="#" class="play-button"
-              ><i class="fas fa-play"></i> Jugar</a
-            >
-          </div>
-          <div class="game-card">
-            <img src="assets/cards/card-retro-bowl.png" alt="Retro Bowl" />
-            <h3 class="game-title">Retro Bowl</h3>
-            <a href="#" class="play-button"
-              ><i class="fas fa-play"></i> Jugar</a
-            >
+      <div class="principal-container">
+        <button role="button" id="left-arrow" class="left-arrow"><i class="fas fa-angle-left"></i></button>
+        <div class="carousel-container">
+          <div class="carousel">
+             <div class="game-card" >
+              <div class="cont-hover"data-title="Super Mario Bros.">
+                <img src="assets/cards/card-super-mario.png" alt="Super Mario Bros." />
+              </div>
+              <h3 class="game-title">Super Mario Bros.</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+            <div class="game-card">
+              <div class="cont-hover" data-title="Tetris">
+                <img src="assets/cards/card-tetris.png" alt="Tetris" />
+              </div>
+              <h3 class="game-title">Tetris</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+            <div class="game-card" >
+              <div class="cont-hover" data-title="Pac-Man">
+                <img src="assets/cards/card-pacman.png" alt="Pac-Man" />
+              </div>
+              <h3 class="game-title">Pac-Man</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+            <div class="game-card">
+              <div class="cont-hover" data-title="Ultimate mortal kombat 3 ">
+                <img src="assets/cards/card-ultimate-mk.svg" alt="Mortal Kombat" />
+              </div>
+              <h3 class="game-title">Ultimate Mortal kombat 3</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+            <div class="game-card">
+              <div class="cont-hover" data-title="Space Invaders">
+                <img src="assets/cards/card-space-invaders.svg" alt="Space Invaders" />
+              </div>
+              <h3 class="game-title">Space Invaders</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+            <div class="game-card">
+              <div class="cont-hover" data-title="Mega Man 2">
+                <img src="assets/cards/card-megaman.svg" alt="Mega Man 2" />
+              </div>
+              <h3 class="game-title">Mega Man 2</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+            <div class="game-card">
+              <div class="cont-hover" data-title="Ninja Gaiden">
+                <img src="assets/cards/ninja.png" alt="Ninja Gaiden" />
+              </div>
+              <h3 class="game-title">Ninja Gaiden</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+            <div class="game-card">
+              <div class="cont-hover" data-title="Adventure Island">
+                <img src="assets/cards/Adventure_Island.png" alt="Adventure Island" />
+              </div>
+              <h3 class="game-title">Adventure Island</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+            <div class="game-card">
+              <div class="cont-hover" data-title="Takahashi Meijin no Bōken Jima IV">
+                <img src="assets/cards/Takahashi.png" alt="Takahashi Meijin no Bōken Jima IV" />
+              </div>
+              <h3 class="game-title">Takahashi Meijin no Bōken Jima IV</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+            <div class="game-card">
+              <div class="cont-hover" data-title="Donkey Kong 3">
+                <img src="assets/cards/donkeyKongTres.png" alt="Donkey Kong 3" />
+              </div>
+              <h3 class="game-title">Donkey Kong 3</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+            <div class="game-card">
+              <div class="cont-hover" data-title="Double Dragon II: The Revenge">
+                <img src="assets/cards/doubleDragon.png" alt="Double Dragon II: The Revenge" />
+              </div>
+              <h3 class="game-title">Double Dragon II: The Revenge</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+            <div class="game-card">
+              <div class="cont-hover" data-title="Circus Charlie">
+                <img src="assets/cards/circusCharilei.png" alt="Circus Charlie" />
+              </div>
+              <h3 class="game-title">Circus Charlie</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
           </div>
         </div>
-      </section>
+        <button role="button" id="right-arrow" class="right-arrow"><i class="fas fa-angle-right"></i></button>
+      </div>
+    </section> 
 
-      <section class="game-category-section">
-        <h2 class="category-title">Arcade</h2>
-        <div class="game-cards-wrapper">
-          <div class="game-card">
-            <img src="assets/cards/card-galaga.svg" alt="Galaga" />
-            <h3 class="game-title">Galaga</h3>
-            <a href="#" class="play-button"
-              ><i class="fas fa-play"></i> Jugar</a
-            >
-          </div>
-          <div class="game-card">
-            <img
-              src="assets/cards/card-bubbñe-bobble.svg"
-              alt="Bubble Bobble"
-            />
-            <h3 class="game-title">Bubble Bobble</h3>
-            <a href="#" class="play-button"
-              ><i class="fas fa-play"></i> Jugar</a
-            >
-          </div>
-          <div class="game-card">
-            <img src="assets/cards/card-frogger.svg" alt="Frogger" />
-            <h3 class="game-title">Frogger</h3>
-            <a href="#" class="play-button"
-              ><i class="fas fa-play"></i> Jugar</a
-            >
-          </div>
-          <div class="game-card">
-            <img src="assets/cards/card-commando.png" alt="Commando" />
-            <h3 class="game-title">Commando</h3>
-            <a href="#" class="play-button"
-              ><i class="fas fa-play"></i> Jugar</a
-            >
-          </div>
-          <div class="game-card">
-            <img src="assets/cards/card-out-run.png" alt="Out Run" />
-            <h3 class="game-title">Out Run</h3>
-            <a href="#" class="play-button"
-              ><i class="fas fa-play"></i> Jugar</a
-            >
-          </div>
-          <div class="game-card">
-            <img src="assets/cards/card-galaxian.png" alt="Galaxian" />
-            <h3 class="game-title">Galaxian</h3>
-            <a href="#" class="play-button"
-              ><i class="fas fa-play"></i> Jugar</a
-            >
-          </div>
-        </div>
-      </section>
+    <section class="recommended-games">
+      <h3>Recomendados</h3>  
 
-      <section class="game-category-section">
-        <h2 class="category-title">Shooter</h2>
-        <div class="game-cards-wrapper">
-          <div class="game-card">
-            <img
-              src="assets/cards/card-old-retro-shooter.png"
-              alt="Old Retro Shooter"
-            />
-            <h3 class="game-title">Old Retro Shooter</h3>
-            <a href="#" class="play-button"
-              ><i class="fas fa-play"></i> Jugar</a
-            >
-          </div>
-          <div class="game-card">
-            <img src="assets/cards/card-time-crisis.png" alt="Time Crisis" />
-            <h3 class="game-title">Time Crisis</h3>
-            <a href="#" class="play-button"
-              ><i class="fas fa-play"></i> Jugar</a
-            >
-          </div>
-          <div class="game-card">
-            <img src="assets/cards/card-r-type.png" alt="R-Type" />
-            <h3 class="game-title">R-Type</h3>
-            <a href="#" class="play-button"
-              ><i class="fas fa-play"></i> Jugar</a
-            >
-          </div>
-          <div class="game-card">
-            <img src="assets/cards/card-duke-nukem.png" alt="Duke Nukem 3D" />
-            <h3 class="game-title">Duke Nukem 3D</h3>
-            <a href="#" class="play-button"
-              ><i class="fas fa-play"></i> Jugar</a
-            >
-          </div>
-          <div class="game-card">
-            <img src="assets/cards/card-xevious.png" alt="Xevious" />
-            <h3 class="game-title">Xevious</h3>
-            <a href="#" class="play-button"
-              ><i class="fas fa-play"></i> Jugar</a
-            >
-          </div>
-          <div class="game-card">
-            <img
-              src="assets/cards/card-shock-troopers.png"
-              alt="Shock Troopers 2nd Squad"
-            />
-            <h3 class="game-title">Shock Troopers...</h3>
-            <a href="#" class="play-button"
-              ><i class="fas fa-play"></i> Jugar</a
-            >
-          </div>
-        </div>
-      </section>
-    </main>
-    <footer class="site-footer">
-      <div class="footer-container">
-        <div class="footer-top">
-          <div class="footer-col-main">
-            <div class="footer-logo">
-              <a href="#" class="logo-text"
-                >Insert<span class="logo-text-accent">Coin</span></a
-              >
-              <img
-                src="assets/icons/logo-insertcoin.svg"
-                alt="Logo InsertCoin"
-              />
+      <div class="principal-container">
+        <button role="button" id="left-arrow" class="left-arrow"><i class="fas fa-angle-left"></i></button>
+        <div class="carousel-container">
+          <div class="carousel">
+             <div class="game-card">
+              <div class="cont-hover" data-title="Donkey Kong">
+                <img src="assets/cards/card-donkey-kong.svg" alt="Donkey Kong" />
+              </div>
+              <h3 class="game-title">Donkey Kong</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
             </div>
-            <div class="footer-social">
-              <a href="#" aria-label="Facebook"
-                ><i class="fab fa-facebook-f"></i
-              ></a>
-              <a href="#" aria-label="Twitter"
-                ><i class="fab fa-twitter"></i
-              ></a>
-              <a href="#" aria-label="YouTube"
-                ><i class="fab fa-youtube"></i
-              ></a>
-              <a href="#" aria-label="Instagram"
-                ><i class="fab fa-instagram"></i
-              ></a>
+            <div class="game-card">
+              <div class="cont-hover" data-title="Mario Kart 64">
+                <img src="assets/cards/card-mario-kart64.svg" alt="Mario Kart 64" />
+              </div>
+              <h3 class="game-title">Mario Kart 64</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
             </div>
-            <form class="footer-newsletter">
-              <label for="email">Recibir novedades</label>
-              <input type="email" id="email" placeholder="email@ejemplo.com" />
-              <button type="submit">Suscribite</button>
-            </form>
-          </div>
-          <div class="footer-links-grid">
-            <div class="footer-col-links">
-              <h3>Sobre nosotros</h3>
-              <ul>
-                <li><a href="#">Historia</a></li>
-                <li><a href="#">Equipo</a></li>
-                <li><a href="#">Prensa</a></li>
-                <li><a href="#">Trabaja aquí</a></li>
-              </ul>
+            <div class="game-card">
+              <div class="cont-hover" data-title="Street Fighter 2010: the final fight">
+                <img src="assets/cards/card-street-fighter.svg" alt="Street Fighter" />
+              </div>
+              <h3 class="game-title">Street Fighter 2010:the final fight</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
             </div>
-            <div class="footer-col-links">
-              <h3>Categorías</h3>
-              <ul>
-                <li><a href="#">Arcade</a></li>
-                <li><a href="#">Shooters</a></li>
-                <li><a href="#">Puzzle</a></li>
-                <li><a href="#">Carreras</a></li>
-                <li><a href="#">Aventuras</a></li>
-                <li><a href="#">Recomendados</a></li>
-              </ul>
+            <div class="game-card">
+              <div class="cont-hover" data-title="Super Ghouls">
+                <img src="assets/cards/card-super-ghouls.svg" alt="Super Ghouls" />
+              </div>
+              <h3 class="game-title">Super Ghouls...</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
             </div>
-            <div class="footer-col-links">
-              <h3>Comunidad</h3>
-              <ul>
-                <li><a href="#">Foro de jugadores</a></li>
-                <li><a href="#">Ranking de puntuaciones</a></li>
-                <li><a href="#">Sugerencias</a></li>
-              </ul>
+            <div class="game-card">
+              <div class="cont-hover" data-title="The Legend of Zelda">
+                <img src="assets/cards/card-zelda.svg" alt="The Legend of Zelda" />
+              </div>
+              <h3 class="game-title">The Legend of Zelda</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
             </div>
-            <div class="footer-col-links">
-              <h3>Soporte</h3>
-              <ul>
-                <li><a href="#">Centro de ayuda</a></li>
-                <li><a href="#">FAQs</a></li>
-                <li><a href="#">Reportar problemas</a></li>
-                <li><a href="#">Contacto</a></li>
-              </ul>
+            <div class="game-card">
+              <div class="cont-hover" data-title="Retro Bowl">
+                <img src="assets/cards/card-retro-bowl.png" alt="Retro Bowl" />
+              </div>
+              <h3 class="game-title">Retro Bowl</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
             </div>
-            <div class="footer-col-links">
-              <h3>Legal y políticas</h3>
-              <ul>
-                <li><a href="#">Condiciones de uso</a></li>
-                <li><a href="#">Política de Cookies</a></li>
-                <li><a href="#">Políticas de privacidad</a></li>
-                <li><a href="#">Políticas de reembolso</a></li>
-                <li><a href="#">Términos de servicios</a></li>
-              </ul>
+            <div class="game-card">
+              <div class="cont-hover" data-title="Gunstar Heroes">
+                <img src="assets/cards/GunstarHeroes.png" alt="Gunstar Heroes" />
+              </div>
+              <h3 class="game-title">Gunstar Heroes</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
             </div>
-            <div class="footer-col-links">
-              <h3>Promociones y ofertas</h3>
-              <ul>
-                <li><a href="#">Ofertas del día</a></li>
-                <li><a href="#">Cupones y descuentos</a></li>
-                <li><a href="#">Sorteos y concursos</a></li>
-                <li><a href="#">Packs de juegos</a></li>
-              </ul>
+            <div class="game-card">
+              <div class="cont-hover" data-title="golden axe">
+                <img src="assets/cards/goldenaxe.png" alt="golden axe" />
+              </div>
+              <h3 class="game-title">golden axe</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+            <div class="game-card">
+              <div class="cont-hover" data-title="streets of rage">
+                <img src="assets/cards/streetsofrage.png" alt="streets of rage" />
+              </div>
+              <h3 class="game-title">streets of rage</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+            <div class="game-card">
+              <div class="cont-hover" data-title="Beats of Rage">
+                <img src="assets/cards/BeatsofRage.png" alt="Beats of Rage" />
+              </div>
+              <h3 class="game-title">Beats of Rage</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
             </div>
           </div>
         </div>
+        <button role="button" id="right-arrow" class="right-arrow"><i class="fas fa-angle-right"></i></button>
+      </div>
+    </section> 
 
-        <div class="footer-sponsors">
-          <h2>Patrocinadores</h2>
-          <div class="sponsors-logos">
-            <img src="assets/img/logo-nintendo.svg" alt="Logo Nintendo" />
-            <img src="assets/img/logo-nauhty-dog.svg" alt="Logo Naughty Dog" />
-            <img src="assets/img/logo-rockstar.svg" alt="Logo Rockstar Games" />
-            <img src="assets/img/logo-ea.svg" alt="Logo EA Sports" />
-            <img src="assets/img/logo-sega.svg" alt="Logo Sega" />
-            <img src="assets/img/logo-xbox.svg" alt="Logo Xbox" />
-            <img src="assets/img/logo-nvidia.svg" alt="Logo Nvidia" />
-            <img src="assets/img/logo-intel.svg" alt="Logo Intel" />
-            <img src="assets/img/logo-microsoft.svg" alt="Logo Microsoft" />
+    <section class="recommended-games">
+      <h3>Arcade</h3>  
+
+      <div class="principal-container">
+        <button role="button" id="left-arrow" class="left-arrow"><i class="fas fa-angle-left"></i></button>
+        <div class="carousel-container">
+          <div class="carousel">
+             <div class="game-card">
+              <div class="cont-hover" data-title="Galaga">
+                <img src="assets/cards/card-galaga.svg" alt="Galaga" />
+              </div>
+              <h3 class="game-title">Galaga</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+            <div class="game-card">
+              <div class="cont-hover" data-title="Bubble Bobble">
+                <img src="assets/cards/card-bubbñe-bobble.svg" alt="Bubble Bobble" />
+              </div>
+              <h3 class="game-title">Bubble Bobble</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+            <div class="game-card">
+              <div class="cont-hover" data-title="Frogger">
+                <div class="cont-hover">
+                  <img src="assets/cards/card-frogger.svg" alt="Frogger" />
+                </div>
+              </div>
+              <h3 class="game-title">Frogger</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+            <div class="game-card">
+              <div class="cont-hover" data-title="Commando">
+                <img src="assets/cards/card-commando.png" alt="Commando" />
+              </div>
+              <h3 class="game-title">Commando</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+            <div class="game-card">
+              <div class="cont-hover" data-title="Out Run">
+                <img src="assets/cards/card-out-run.png" alt="Out Run" />
+              </div>
+              <h3 class="game-title">Out Run</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+            <div class="game-card">
+              <div class="cont-hover" data-title="Galaxian">
+                <img src="assets/cards/card-galaxian.png" alt="Galaxian" />
+              </div>
+              <h3 class="game-title">Galaxian</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+            <div class="game-card">
+              <div class="cont-hover" data-title="Teenage Mutant Ninja Turtles">
+                <img src="assets/cards/TeenageMutant.png" alt="Teenage Mutant Ninja Turtles" />
+              </div>
+              <h3 class="game-title">Teenage Mutant Ninja Turtles</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+            <div class="game-card">
+              <div class="cont-hover" data-title="Track & Field">
+                <img src="assets/cards/Track&Field.png" alt="Track & Field" />
+              </div>
+              <h3 class="game-title">Track & Field</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+            <div class="game-card">
+              <div class="cont-hover" data-title="Karate Champ">
+                <img src="assets/cards/KarateChamp.png" alt="Karate Champ" />
+              </div>
+              <h3 class="game-title">Karate Champ</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+            <div class="game-card">
+              <div class="cont-hover" data-title="Breakout">
+                <img src="assets/cards/Breakout.png" alt="Breakout" />
+              </div>
+              <h3 class="game-title">Breakout</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+            <div class="game-card">
+              <div class="cont-hover" data-title="Pang">
+                <img src="assets/cards/Pang.png" alt="Pang" />
+              </div>
+              <h3 class="game-title">Pang</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
           </div>
         </div>
+        <button role="button" id="right-arrow" class="right-arrow"><i class="fas fa-angle-right"></i></button>
+      </div>
+    </section> 
 
-        <div class="footer-bottom">
-          <p>2025 Copyright InsertCoin Inc. Todos los derechos reservados</p>
-          <p>
-            Esta página está protegida por reCAPTCHA y contempla las
-            <a href="#">Condiciones de Servicio</a> y la
-            <a href="#">Política de Privacidad</a> de Google y las
-            <a href="#">Condiciones de Servicio</a> de YouTube.
-          </p>
+    <section class="recommended-games">
+      <h3>Shooter</h3>  
+
+      <div class="principal-container">
+        <button role="button" id="left-arrow" class="left-arrow"><i class="fas fa-angle-left"></i></button>
+        <div class="carousel-container">
+          <div class="carousel">
+             <div class="game-card">
+              <div class="cont-hover" data-title="Old Retro Shooter">
+                <img src="assets/cards/card-old-retro-shooter.png" alt="Old Retro Shooter" />
+              </div>
+              <h3 class="game-title">Old Retro Shooter</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+            <div class="game-card">
+              <div class="cont-hover" data-title="Time Crisis">
+                <img src="assets/cards/card-time-crisis.png" alt="Time Crisis" />
+              </div>
+              <h3 class="game-title">Time Crisis</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+            <div class="game-card">
+              <div class="cont-hover" data-title="R-Type">
+                <img src="assets/cards/card-r-type.png" alt="R-Type" />
+              </div>
+              <h3 class="game-title">R-Type</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+            <div class="game-card">
+              <div class="cont-hover" data-title="Duke Nukem 3D">
+                <img src="assets/cards/card-duke-nukem.png" alt="Duke Nukem 3D" />
+              </div>
+              <h3 class="game-title">Duke Nukem 3D</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+            <div class="game-card">
+              <div class="cont-hover" data-title="Xevious">
+                <img src="assets/cards/card-xevious.png" alt="Xevious" />
+              </div>
+              <h3 class="game-title">Xevious</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+            <div class="game-card">
+              <div class="cont-hover" data-title="Shock Troopers 2nd Squad">
+                <img src="assets/cards/card-shock-troopers.png" alt="Shock Troopers 2nd Squad" />
+              </div>
+              <h3 class="game-title">Shock Troopers 2nd Squad</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+            <div class="game-card">
+              <div class="cont-hover" data-title="Wolfenstein 3D">
+                <img src="assets/cards/Wolfenstein3D.png" alt="Wolfenstein 3D" />
+              </div>
+              <h3 class="game-title">Wolfenstein 3D</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+            <div class="game-card">
+              <div class="cont-hover" data-title="Ultrakill">
+                <img src="assets/cards/Ultrakill.png" alt="Ultrakill" />
+              </div>
+              <h3 class="game-title">Ultrakill</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+            <div class="game-card">
+              <div class="cont-hover" data-title="Heretic">
+                <img src="assets/cards/Heretic.png" alt="Heretic" />
+              </div>
+              <h3 class="game-title">Heretic</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+            <div class="game-card">
+              <div class="cont-hover" data-title="Turok 3: Shadow of Oblivion">
+                <img src="assets/cards/Turok.png" alt="Turok 3: Shadow of Oblivion" />
+              </div>
+              <h3 class="game-title">Turok 3: Shadow of Oblivion</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+          </div>
+        </div>
+        <button role="button" id="right-arrow" class="right-arrow"><i class="fas fa-angle-right"></i></button>
+      </div>
+    </section> 
+
+  </main>
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-col-main">
+          <div class="footer-logo">
+            <a href="#" class="logo-text">Insert<span class="logo-text-accent">Coin</span></a>
+            <img src="assets/icons/logo-insertcoin.svg" alt="Logo InsertCoin" />
+          </div>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          </div>
+          <form class="footer-newsletter">
+            <label for="email">Recibir novedades</label>
+            <input type="email" id="email" placeholder="email@ejemplo.com" />
+            <button type="submit">Suscribite</button>
+          </form>
+        </div>
+        <div class="footer-links-grid">
+          <div class="footer-col-links">
+            <h3>Sobre nosotros</h3>
+            <ul>
+              <li><a href="#">Historia</a></li>
+              <li><a href="#">Equipo</a></li>
+              <li><a href="#">Prensa</a></li>
+              <li><a href="#">Trabaja aquí</a></li>
+            </ul>
+          </div>
+          <div class="footer-col-links">
+            <h3>Categorías</h3>
+            <ul>
+              <li><a href="#">Arcade</a></li>
+              <li><a href="#">Shooters</a></li>
+              <li><a href="#">Puzzle</a></li>
+              <li><a href="#">Carreras</a></li>
+              <li><a href="#">Aventuras</a></li>
+              <li><a href="#">Recomendados</a></li>
+            </ul>
+          </div>
+          <div class="footer-col-links">
+            <h3>Comunidad</h3>
+            <ul>
+              <li><a href="#">Foro de jugadores</a></li>
+              <li><a href="#">Ranking de puntuaciones</a></li>
+              <li><a href="#">Sugerencias</a></li>
+            </ul>
+          </div>
+          <div class="footer-col-links">
+            <h3>Soporte</h3>
+            <ul>
+              <li><a href="#">Centro de ayuda</a></li>
+              <li><a href="#">FAQs</a></li>
+              <li><a href="#">Reportar problemas</a></li>
+              <li><a href="#">Contacto</a></li>
+            </ul>
+          </div>
+          <div class="footer-col-links">
+            <h3>Legal y políticas</h3>
+            <ul>
+              <li><a href="#">Condiciones de uso</a></li>
+              <li><a href="#">Política de Cookies</a></li>
+              <li><a href="#">Políticas de privacidad</a></li>
+              <li><a href="#">Políticas de reembolso</a></li>
+              <li><a href="#">Términos de servicios</a></li>
+            </ul>
+          </div>
+          <div class="footer-col-links">
+            <h3>Promociones y ofertas</h3>
+            <ul>
+              <li><a href="#">Ofertas del día</a></li>
+              <li><a href="#">Cupones y descuentos</a></li>
+              <li><a href="#">Sorteos y concursos</a></li>
+              <li><a href="#">Packs de juegos</a></li>
+            </ul>
+          </div>
         </div>
       </div>
-    </footer>
 
-    <script src="scripts/script.js"></script>
-    <script src="scripts/navbar.js"></script>
-    <script
-      src="https://kit.fontawesome.com/a405ba9b1d.js"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+      <div class="footer-sponsors">
+        <h2>Patrocinadores</h2>
+        <div class="sponsors-logos">
+          <img src="assets/img/logo-nintendo.svg" alt="Logo Nintendo" />
+          <img src="assets/img/logo-nauhty-dog.svg" alt="Logo Naughty Dog" />
+          <img src="assets/img/logo-rockstar.svg" alt="Logo Rockstar Games" />
+          <img src="assets/img/logo-ea.svg" alt="Logo EA Sports" />
+          <img src="assets/img/logo-sega.svg" alt="Logo Sega" />
+          <img src="assets/img/logo-xbox.svg" alt="Logo Xbox" />
+          <img src="assets/img/logo-nvidia.svg" alt="Logo Nvidia" />
+          <img src="assets/img/logo-intel.svg" alt="Logo Intel" />
+          <img src="assets/img/logo-microsoft.svg" alt="Logo Microsoft" />
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>2025 Copyright InsertCoin Inc. Todos los derechos reservados</p>
+        <p>
+          Esta página está protegida por reCAPTCHA y contempla las
+          <a href="#">Condiciones de Servicio</a> y la
+          <a href="#">Política de Privacidad</a> de Google y las
+          <a href="#">Condiciones de Servicio</a> de YouTube.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="scripts/script.js"></script>
+  <script src="scripts/navbar.js"></script>
+  <script src="scripts/carrusel.js"></script>
+  <script src="scripts/loading.js"></script>
+  <script src="https://kit.fontawesome.com/a405ba9b1d.js" crossorigin="anonymous"></script>
+</body>
+
 </html>

@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/header-footer.css">
+    <link rel="stylesheet" href="styles/carrusel.css">
+    <link rel="stylesheet" href="styles/game.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script src="https://kit.fontawesome.com/a405ba9b1d.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <div class="menu_container">
+                <div class="menu_burger">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+                <div class="logo-titulo">
+                    <h1>Insert<span>Coin</span></h1>
+                    <span class="span-icon"><img src="assets/icons/logo-insertcoin.svg" alt=""></span>
+                </div>
+            </div>
+            <div class="input_search">
+                <input type="text" placeholder="Search...">
+            </div>
+            <div class="icon_profile">
+                <i class="fa-solid fa-user"></i>
+            </div>
+        </nav>
+    </header>
+    <!-- aside categorias -->
+    <aside class="menu_categorias">
+        <ul>
+            <li>
+                <img src="assets/icons/Nuevos.svg" alt="Arcade Icon" class="categoria-icon">
+                <a href="#">Nuevos</a>
+            </li>
+            <li>
+                <img src="assets/icons/De-moda 7.svg" alt="Shooter Icon" class="categoria-icon">
+                <a href="#">De moda</a>
+            </li>
+            <li>
+                <img src="assets/icons/Accion.svg" alt="Puzzle Icon" class="categoria-icon">
+                <a href="#">Acción</a>
+            </li>
+            <li>
+                <img src="assets/icons/Aventuras.svg" alt="Carreras Icon" class="categoria-icon">
+                <a href="#">Aventuras</a>
+            </li>
+            <li>
+                <img src="assets/icons/Arcade.svg" alt="Aventuras Icon" class="categoria-icon">
+                <a href="#">Arcade</a>
+            </li>
+            <li>
+                <img src="assets/icons/Consolas.svg" alt="Recomendados Icon" class="categoria-icon">
+                <a href="#">Consolas</a>
+            </li>
+            <li>
+                <img src="assets/icons/Cartas.svg" alt="Recomendados Icon" class="categoria-icon">
+                <a href="#">Cartas</a>
+            </li>
+            <li>
+                <img src="assets/icons/Carreras.svg" alt="Recomendados Icon" class="categoria-icon">
+                <a href="#">Carreras</a>
+            </li>
+            <li>
+                <img src="assets/icons/Deportes.svg" alt="Recomendados Icon" class="categoria-icon">
+                <a href="#">Deportes</a>
+            </li>
+            <li>
+                <img src="assets/icons/Torres.svg" alt="Recomendados Icon" class="categoria-icon">
+                <a href="#">Defensa de torres</a>
+            </li>
+            <li>
+                <img src="assets/icons/Escape.svg" alt="Recomendados Icon" class="categoria-icon">
+                <a href="#">Escape</a>
+            </li>
+            <li>
+                <img src="assets/icons/Futbol.svg" alt="Recomendados Icon" class="categoria-icon">
+                <a href="#">Fútbol</a>
+            </li>
+            <li>
+                <img src="assets/icons/Motos.svg" alt="Recomendados Icon" class="categoria-icon">
+                <a href="#">Motos</a>
+            </li>
+            <li>
+                <img src="assets/icons/Puzzle.svg" alt="Recomendados Icon" class="categoria-icon">
+                <a href="#">Puzzle</a>
+            </li>
+            <li>
+                <img src="assets/icons/Terror.svg" alt="Recomendados Icon" class="categoria-icon">
+                <a href="#">Terror</a>
+            </li>
+            <li>
+                <img src="assets/icons/Shooter.svg" alt="Recomendados Icon" class="categoria-icon">
+                <a href="#">Shooter</a>
+            </li>
+        </ul>
+    </aside>
+    <nav class="menu-profile">
+        <ul>
+            <li><i class="fa-solid fa-user"></i><a href="#">Mi perfil</a></li>
+            <li><i class="fa-solid fa-star"></i><a href="#">Logros</a></li>
+            <li><i class="fa-solid fa-earth-americas"></i><a href="#">Lenguaje</a></li>
+            <li><i class="fa-solid fa-right-to-bracket"></i><a href="#">Cerrar sesion</a></li>
+        </ul>
+    </nav>
+    <main class="main-game">
+        <nav class="breadcrumb">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="/Puzzle">Puzzle</a></li>
+                <li><a href="/Puzzle/PegSolitaire">Peg Solitaire</a></li>
+            </ul>
+        </nav>
+        <section class="game_container">
+        <div class="game-ejecutando">
+            <div class="game-screen">
+                <div class="icons-screen-reset">
+                    <i class="fa-solid fa-arrows-rotate"></i>
+                    <i class="fa-solid fa-expand"></i>
+                </div>
+                <!-- ponemos una imagen, luego ira el canvas para el juego -->
+                <img src="assets/img/Pegsolitarie.svg" alt="">
+            </div>
+            <h3>Peg solitaire - Dino rey</h3>
+        </div>
+        <div class="game-info">
+            <div class="controles">
+                <h3>Controles</h3>
+                <img src="assets/img/mouse.svg" alt="">
+                <p>Seleccionar ficha y casillero</p>
+            </div>
+            <div class="explicacion">
+                <h3>Como ganar</h3>
+                <p>El juego termina cuando queda una unica ficha</p>
+            </div>
+            <div class="personajes">
+                <h3>Personajes</h3>
+                <div class="avatares">
+                    <div class="personaje-container">
+                        <div class="personaje"><img src="assets/img/gabu.svg" alt=""></div>
+                        <h4>Gabu</h4>
+                    </div>
+                    <div class="personaje-container">
+                        <div class="personaje"><img src="assets/img/ace.jpeg" alt=""></div>
+                        <h4>Ace</h4>
+                    </div>
+                    <div class="personaje-container">
+                        <div class="personaje"><img src="assets/img/paris.jpeg" alt=""></div>
+                        <h4>Paris</h4>
+                    </div>
+            </div>
+        </div>
+    </section>
+    <section class="container-info-multimedia">
+        <article class="information-game">
+             <h4>Acerca del juego</h4>
+             <div class="details">
+                <p>Prepárate para revivir la emoción de Dino Rey en una experiencia distinta: el clásico Peg Solitaire reinventado con tus dinosaurios favoritos. Cada ficha representa a un dino listo para la batalla, y tu misión es guiarlo en una prueba de inteligencia y estrategia.</p>
+                <p>El funcionamiento es sencillo pero desafiante: selecciona un dinosaurio, hazlo saltar sobre otro adyacente y elimina al que quedó en medio. Con cada movimiento el tablero se vacía, y poco a poco solo los más fuertes permanecen. Tu objetivo final es lograr que quede un único dinosaurio en pie, de preferencia en el centro, y así proclamarlo como el verdadero Rey del Tablero.</p>
+                <p>Este juego no solo pondrá a prueba tu lógica, sino también tu paciencia y capacidad de anticipación. Cada decisión cuenta, cada salto puede marcar la diferencia entre la victoria perfecta o quedarte atrapado con varios dinos en el tablero.
+                   ¿Tendrás la estrategia suficiente para superar el reto y coronar a tu dinosaurio chomo el último sobreviviente?</p>
+                <p><span><i class="fa-solid fa-link"></i><a href="#"></span>Conoce mas sobre el mundo de DinoRey</a></p>   
+                <div class="share-container">
+                    <p>No te olvides de compartir nuestro juego!</p>
+                    <div class="share-icons">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" aria-label="Reddit"><i class="fab fa-reddit-alien"></i></a>
+                    </div>
+                </div>
+             </div>   
+        </article>
+        <aside class="multimedia">
+            <h4>Multimedia</h4>
+            <div class="images-multimedia">
+                <img src="assets/img/rex-multimedia.svg" alt="">
+                <div class="image-wrapper">
+                    <img src="assets/img/card-video-multimedia.svg" alt="">
+                    <i class="fa-solid fa-circle-play"></i>
+                </div>
+                <img src="assets/img/rex-vs-gabu.svg" alt="">
+                <img src="assets/img/gabu-grande.svg" alt="">    
+            </div>
+        </aside>
+    </section>
+    <section class="recommended-games">
+      <h3 class="title-carousel-games">Juegos relacionados</h3>  
+
+      <div class="principal-container">
+        <button role="button" id="left-arrow" class="left-arrow"><i class="fas fa-angle-left"></i></button>
+        <div class="carousel-container">
+          <div class="carousel">
+             <div class="game-card">
+              <div class="cont-hover" data-title="Ajedrez">
+                <img src="assets/cards/minijuegos-ajedrez.png" alt="Ajedrez" />
+              </div>
+              <h3 class="game-title">Ajedrez</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+            <div class="game-card">
+              <div class="cont-hover" data-title="Tetris">
+                <img src="assets/cards/card-tetris.png" alt="Tetris" />
+              </div>
+              <h3 class="game-title">Tetris</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+            <div class="game-card">
+              <div class="cont-hover" data-title="Batalla naval">
+                <img src="assets/cards/batallaNaval.png" alt="Batalla naval" />
+              </div>
+              <h3 class="game-title">Batalla naval</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+            <div class="game-card">
+              <div class="cont-hover" data-title="4 en raya">
+                <img src="assets/cards/4enraya.png" alt="4 en raya" />
+              </div>
+              <h3 class="game-title">4 en raya</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+            <div class="game-card">
+              <div class="cont-hover" data-title="TA TE TI">
+                <img src="assets/cards/tateti.png" alt="TA TE TI" />
+              </div>
+              <h3 class="game-title">TA TE TI</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+            <div class="game-card">
+              <div class="cont-hover" data-title="Rompecabezas de 15">
+                <img src="assets/cards/Rompe15.png" alt="Rompecabezas de 15" />
+              </div>
+              <h3 class="game-title">Rompecabezas de 15</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+            <div class="game-card">
+              <div class="cont-hover" data-title="dominó">
+                <img src="assets/cards/domino.png" alt="dominó" />
+              </div>
+              <h3 class="game-title">dominó</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+            <div class="game-card">
+              <div class="cont-hover" data-title="Solitario">
+                <img src="assets/cards/solitario.png" alt="Solitario" />
+              </div>
+              <h3 class="game-title">Solitario</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+            <div class="game-card">
+              <div class="cont-hover" data-title="Sudoku">
+                <img src="assets/cards/ultimate-sudoku.png" alt="Sudoku" />
+              </div>
+              <h3 class="game-title">Sudoku</h3>
+              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+            </div>
+          </div>
+        </div>
+        <button role="button" id="right-arrow" class="right-arrow"><i class="fas fa-angle-right"></i></button>
+      </div>
+    </section> 
+    </main>
+    
+    <section class="ctn-comments-public">
+        <section class="comments-section">
+            <h4>Comentarios</h4>
+                <div class="user-comment">
+                    <div class="user-avatar">
+                        <img src="assets/img/user.jpg" alt="User Avatar">
+                        <p class="user-name">jijiji</p>
+                    </div>
+
+                    <div class="composer">
+                        <textarea name="comment" id="comment" cols="30" rows="10" placeholder="Deja tu comentario..."></textarea>
+                        <div class="ctn-btn-publicar">
+                            <button class="btn-publicar" type="button">Publicar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comments-list">
+                    <ul>
+                        <li>
+                            <div class="user-comment">
+                                <div class="user-avatar">
+                                    <img src="assets/img/billrizer.jpeg" alt="User Avatar">
+                                    <p class="user-name">bill rizer</p>
+                                </div>
+                            <div class="user-name"></div>
+                            <div class="composer">
+                                <div class="comment-done">
+                                    <p>Gran juego, me da muchos recuerdos de mi infancia!!!</p>
+                                </div>
+                            </div>
+                        </li>      
+                        <li>
+                            <div class="user-comment">
+                                <div class="user-avatar">
+                                    <img src="assets/img/User2.jpg" alt="User Avatar">
+                                    <p class="user-name">scorpion</p>
+                                </div>
+                            <div class="user-name"></div>
+                            <div class="composer">
+                                <div class="comment-done">
+                                    <p>Nada mejor que tomar unos mates mientras vicio a este juegazo</p>
+                            </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="user-comment">
+                                <div class="user-avatar">
+                                    <img src="assets/img/luigi.jpeg" alt="User Avatar">
+                                    <p class="user-name">mario verde</p>
+                                </div>
+                            <div class="user-name"></div>
+                            <div class="composer">
+                                <div class="comment-done">
+                                    <p>Mi hermano es crack en este!!</p>
+                            </div>
+                        </li>      
+                        <li>
+                            <div class="user-comment">
+                                <div class="user-avatar">
+                                    <img src="assets/img/agarrini.png" alt="User Avatar">
+                                    <p class="user-name">Agarrini La</p>
+                                    <p class="user-name">Palini</p>
+
+
+                                </div>
+                            <div class="user-name"></div>
+                            <div class="composer">
+                                <div class="comment-done">
+                                    <p> No me gusto para nada pero la tematica de Dino Rey es muy buena, fue una de las series favoritas de mi infancia</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="user-comment">
+                                <div class="user-avatar">
+                                    <img src="assets/img/dkong.jpeg" alt="User Avatar">
+                                    <p class="user-name">D.Kong</p>
+                                </div>
+                            <div class="user-name"></div>
+                            <div class="composer">
+                                <div class="comment-done">
+                                    <p>Borren</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="user-comment">
+                                <div class="user-avatar">
+                                    <img src="assets/img/abueloBen.png" alt="User Avatar">
+                                    <p class="user-name">Abuelo Max</p>
+                                </div>
+                            <div class="user-name"></div>
+                            <div class="composer">
+                                <div class="comment-done">
+                                    <p>A mi nieto Ben le encanta este juego. Saludos</p>
+                            </div>
+                        </li>
+                    </ul>                
+                </div>
+    </section>  
+    <aside class="publicidad">
+        <img src="assets/img/Publicidad grande.png" alt="Publicidad">
+        <img src="assets/img/Publicidad chica.png" alt="Publicidad">
+    </aside>
+
+
+    </section>
+
+
+
+
+
+
+
+
+
+
+    <!-------------------------------------footer--------------------------------------->
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-col-main">
+                    <div class="footer-logo">
+                        <a href="#" class="logo-text">Insert<span class="logo-text-accent">Coin</span></a>
+                        <img src="assets/icons/logo-insertcoin.svg" alt="Logo InsertCoin" />
+                    </div>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                    <form class="footer-newsletter">
+                        <label for="email">Recibir novedades</label>
+                        <input type="email" id="email" placeholder="email@ejemplo.com" />
+                        <button type="submit">Suscribite</button>
+                    </form>
+                </div>
+                <div class="footer-links-grid">
+                    <div class="footer-col-links">
+                        <h3>Sobre nosotros</h3>
+                        <ul>
+                            <li><a href="#">Historia</a></li>
+                            <li><a href="#">Equipo</a></li>
+                            <li><a href="#">Prensa</a></li>
+                            <li><a href="#">Trabaja aquí</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col-links">
+                        <h3>Categorías</h3>
+                        <ul>
+                            <li><a href="#">Arcade</a></li>
+                            <li><a href="#">Shooters</a></li>
+                            <li><a href="#">Puzzle</a></li>
+                            <li><a href="#">Carreras</a></li>
+                            <li><a href="#">Aventuras</a></li>
+                            <li><a href="#">Recomendados</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col-links">
+                        <h3>Comunidad</h3>
+                        <ul>
+                            <li><a href="#">Foro de jugadores</a></li>
+                            <li><a href="#">Ranking de puntuaciones</a></li>
+                            <li><a href="#">Sugerencias</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col-links">
+                        <h3>Soporte</h3>
+                        <ul>
+                            <li><a href="#">Centro de ayuda</a></li>
+                            <li><a href="#">FAQs</a></li>
+                            <li><a href="#">Reportar problemas</a></li>
+                            <li><a href="#">Contacto</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col-links">
+                        <h3>Legal y políticas</h3>
+                        <ul>
+                            <li><a href="#">Condiciones de uso</a></li>
+                            <li><a href="#">Política de Cookies</a></li>
+                            <li><a href="#">Políticas de privacidad</a></li>
+                            <li><a href="#">Políticas de reembolso</a></li>
+                            <li><a href="#">Términos de servicios</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col-links">
+                        <h3>Promociones y ofertas</h3>
+                        <ul>
+                            <li><a href="#">Ofertas del día</a></li>
+                            <li><a href="#">Cupones y descuentos</a></li>
+                            <li><a href="#">Sorteos y concursos</a></li>
+                            <li><a href="#">Packs de juegos</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-sponsors">
+                <h2>Patrocinadores</h2>
+                <div class="sponsors-logos">
+                    <img src="assets/img/logo-nintendo.svg" alt="Logo Nintendo" />
+                    <img src="assets/img/logo-nauhty-dog.svg" alt="Logo Naughty Dog" />
+                    <img src="assets/img/logo-rockstar.svg" alt="Logo Rockstar Games" />
+                    <img src="assets/img/logo-ea.svg" alt="Logo EA Sports" />
+                    <img src="assets/img/logo-sega.svg" alt="Logo Sega" />
+                    <img src="assets/img/logo-xbox.svg" alt="Logo Xbox" />
+                    <img src="assets/img/logo-nvidia.svg" alt="Logo Nvidia" />
+                    <img src="assets/img/logo-intel.svg" alt="Logo Intel" />
+                    <img src="assets/img/logo-microsoft.svg" alt="Logo Microsoft" />
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>2025 Copyright InsertCoin Inc. Todos los derechos reservados</p>
+                <p>
+                    Esta página está protegida por reCAPTCHA y contempla las
+                    <a href="#">Condiciones de Servicio</a> y la
+                    <a href="#">Política de Privacidad</a> de Google y las
+                    <a href="#">Condiciones de Servicio</a> de YouTube.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts/script.js"></script>
+    <script src="scripts/navbar.js"></script>
+    <script src="scripts/carrusel.js"></script>
+    <script src="https://kit.fontawesome.com/a405ba9b1d.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
