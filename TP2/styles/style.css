@@ -88,6 +88,9 @@ select {
   color: inherit;
 }
 
+input:focus {
+  outline: none;
+}
 
 h1 {
   font-size: 48px;
@@ -162,8 +165,13 @@ a {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Contenedor de progreso */
@@ -205,13 +213,13 @@ a {
 /* -- HOME PAGE -- */
 .home-content {
   padding: 2rem 4rem;
-  max-width: 1800px;
+  width: 100%;
   margin: 0 auto;
 }
 
-@media (max-width: 1600px) {
+@media(min-width: 1200px) {
   .home-content {
-    max-width: 1200px;
+    max-width: 1600px;  
   }
 }
 
@@ -226,18 +234,27 @@ a {
 .main-banner {
   position: relative;
   width: 100%;
-  height: min(500px, 45vh);
-  min-height: 400px;
-  background-image: url('../assets/img/banner-dinorey.jpg');
+  height: 300px;
+  min-height: 200px;
+  background-image: url('../assets/img/banners/banner-dinorey.jpg');
   background-size: cover;
   background-position: center;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
   border-radius: 12px;
   overflow: hidden;
-  padding: 200px;
+  padding: 2rem;
+}
+
+@media (min-width: 1200px) {
+  .main-banner {
+    height: min(500px, 45vh);
+    min-height: 400px;
+    margin-bottom: 4rem;
+    padding: 200px;
+  }
 }
 
 /* Overlay oscuro para mejorar la legibilidad del texto */
@@ -253,73 +270,101 @@ a {
 
 .banner-content {
   position: relative;
-  /* Para que el z-index funcione sobre el overlay */
   z-index: 2;
   text-align: center;
-  padding: 2rem;
+  padding: 1.2rem;
 }
 
 .banner-title {
   font-family: var(--font-family-primary);
-  font-size: 8rem;
+  font-size: 3.2rem;
   color: var(--color-neutral-100);
-  margin: 0 0 1rem 0;
-  letter-spacing: 4px;
+  margin: 0 0 0.8rem 0;
+  letter-spacing: 2px;
 }
 
 .banner-subtitle {
   font-family: var(--font-family-primary);
-  font-size: 3rem;
+  font-size: 1.5rem;
   color: var(--color-neutral-100);
-  margin: 0 0 1.5rem 0;
+  margin: 0 0 1rem 0;
   font-weight: 400;
 }
 
 .banner-play-button {
   display: inline-flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.7rem;
   background-color: var(--color-accent-400);
   color: var(--color-bg-900);
-  padding: 1.5rem 2.5rem;
-  border-radius: 2rem;
+  padding: 1rem 1.5rem;
+  border-radius: 1.2rem;
   font-family: var(--font-family-primary);
-  font-size: 3rem;
+  font-size: 1.5rem;
   font-weight: bold;
   text-decoration: none;
-  transition: all 0.1s ease-out; 
-  
-  /* Sombra (Estilo base): Asegúrate de que la sombra esté bien definida para la sensación de elevación */
-  box-shadow: 0 8px 0 var(--color-accent-700); /* Sombra más oscura que simula la profundidad */
-  
-  /* Ajuste Opcional: Para una mejor separación visual */
-  margin-top: 8px;
+  transition: all 0.1s ease-out;
+  box-shadow: 0 4px 0 var(--color-accent-700);
+  margin-top: 6px;
 }
 
 .banner-play-button:hover {
-  /* 1. Cambiar color para respuesta visual */
-  background-color: var(--color-accent-500); 
-
-  /* 2. Hundir el botón: Desplazarlo hacia abajo la misma cantidad que el tamaño de la sombra (8px) */
-  transform: translateY(8px); 
-
-  /* 3. Eliminar la sombra: Esto simula que el botón toca la superficie */
+  background-color: var(--color-accent-500);
+  transform: translateY(4px);
   box-shadow: 0 0 0 var(--color-accent-700);
 }
 
-/* Estado Activo (:active) - Lo que pasa al hacer clic */
-/* Esto le da la sensación final de 'clic' real */
 .banner-play-button:active {
-  transform: translateY(10px); /* Hundir un poquito más al hacer clic */
+  transform: translateY(6px);
 }
 
 .banner-bottom-text {
   font-family: 'Rock Salt', cursive;
-  font-size: 3.5rem;
+  font-size: 1.7rem;
   font-weight: bold;
   color: var(--color-primary-300);
-  margin-top: 2rem;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  margin-top: 1.2rem;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+@media (min-width: 1200px) {
+  .banner-content {
+    padding: 2rem;
+  }
+
+  .banner-title {
+    font-size: 8rem;
+    margin: 0 0 1rem 0;
+    letter-spacing: 4px;
+  }
+
+  .banner-subtitle {
+    font-size: 3rem;
+    margin: 0 0 1.5rem 0;
+  }
+
+  .banner-play-button {
+    gap: 1rem;
+    padding: 1.5rem 2.5rem;
+    border-radius: 2rem;
+    font-size: 3rem;
+    box-shadow: 0 8px 0 var(--color-accent-700);
+    margin-top: 8px;
+  }
+
+  .banner-play-button:hover {
+    transform: translateY(8px);
+  }
+
+  .banner-play-button:active {
+    transform: translateY(10px);
+  }
+
+  .banner-bottom-text {
+    font-size: 3.5rem;
+    margin-top: 2rem;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  }
 }
 
 /* --- SECCIÓN DE CATEGORÍA DE JUEGOS --- */
@@ -353,11 +398,11 @@ a {
   scroll-snap-align: start;
   text-align: center;
   margin-right: 1.5rem;
-  
+
   /* Add margin for spacing between cards */
 }
 
- .cont-hover{
+.cont-hover {
   width: 100%;
   height: 260px;
   position: relative;
@@ -365,26 +410,34 @@ a {
 }
 
 .cont-hover::after {
-  content: attr(data-title); /* toma el valor del atributo */
+  content: attr(data-title);
+  /* toma el valor del atributo */
   position: absolute;
-  inset: 0; /* top, right, bottom, left = 0 */
+  inset: 0;
+  /* top, right, bottom, left = 0 */
   background-color: rgba(0, 0, 0, 0.6);
   color: white;
   font-size: 1.5rem;
   font-weight: bold;
-  display: flex;             /* para centrar el texto */
+  display: flex;
+  /* para centrar el texto */
   align-items: center;
   justify-content: center;
   opacity: 0;
   transition: opacity 0.3s ease;
-  color: white; /* Color interior (fill) */
-    
-    /* Simulates a 1px black stroke using 4 shadows */
-    text-shadow: 
-        -2px -2px 0 #000,  /* Superior izquierda */
-         2px -2px 0 #000,  /* Superior derecha */
-        -2px  2px 0 #000,  /* Inferior izquierda */
-         2px  2px 0 #000;  /* Inferior derecha */
+  color: white;
+  /* Color interior (fill) */
+
+  /* Simulates a 1px black stroke using 4 shadows */
+  text-shadow:
+    -2px -2px 0 #000,
+    /* Superior izquierda */
+    2px -2px 0 #000,
+    /* Superior derecha */
+    -2px 2px 0 #000,
+    /* Inferior izquierda */
+    2px 2px 0 #000;
+  /* Inferior derecha */
 }
 
 /* al hacer hover aparece */
@@ -392,7 +445,8 @@ a {
   opacity: 1;
 }
 
-.cont-hover:hover + .game-title{ /*al ser hermano, se tiene que utilizar el +*/
+.cont-hover:hover+.game-title {
+  /*al ser hermano, se tiene que utilizar el +*/
   opacity: 0;
 }
 
@@ -441,9 +495,10 @@ a {
   transition: background-color 0.2s ease;
   border-radius: 8px;
   position: relative;
-  overflow: hidden; 
+  overflow: hidden;
   z-index: 1;
-  transition: all 0.3s ease; /* Mejorar la transición base */
+  transition: all 0.3s ease;
+  /* Mejorar la transición base */
 }
 
 .game-card .play-button:hover {
@@ -453,21 +508,27 @@ a {
 }
 
 .game-card .play-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -120%; /* Empieza completamente fuera a la izquierda */
-    width: 100%; /* Ancho del brillo */
-    height: 100%;
-    background: rgba(255, 255, 255, 0.3); /* Color blanco semi-transparente */
-    transform: skewX(-30deg); /* Inclinar para efecto de brillo */
-    transition: transform 0.4s ease-in-out; /* Transición para el deslizamiento */
-    z-index: 2; /* Asegura que esté sobre el botón */
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -120%;
+  /* Empieza completamente fuera a la izquierda */
+  width: 100%;
+  /* Ancho del brillo */
+  height: 100%;
+  background: rgba(255, 255, 255, 0.3);
+  /* Color blanco semi-transparente */
+  transform: skewX(-30deg);
+  /* Inclinar para efecto de brillo */
+  transition: transform 0.4s ease-in-out;
+  /* Transición para el deslizamiento */
+  z-index: 2;
+  /* Asegura que esté sobre el botón */
 }
 
 .game-card .play-button:hover::before {
-    /* Mover el brillo desde el -100% hasta que pase completamente, por ejemplo, 180% */
-    transform: translate(120%,0);
+  /* Mover el brillo desde el -100% hasta que pase completamente, por ejemplo, 180% */
+  transform: translate(120%, 0);
 }
 
 .play-button .fa-play {
@@ -475,10 +536,11 @@ a {
 }
 
 @keyframes pulse {
-    0% {
-        transform: scale(1);
-    }
-    100% {
-        transform: scale(1.08); 
-    }
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1.08);
+  }
 }
