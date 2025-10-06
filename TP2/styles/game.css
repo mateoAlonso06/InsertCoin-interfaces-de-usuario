@@ -1,18 +1,18 @@
-/* ejemplo: background-image: url('../assets/img/banner-dinorey.jpg'); */
+body, main {
+    max-width: 100%;
+}
 
 .main-game{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 6rem;
     padding: 0;
 }
 
 .breadcrumb{
-    margin-left: 5%;
-    width: 95%;
-    padding: 0 1rem;
+    margin-left: 8rem;
+    width: 100%;
 }
 
 .breadcrumb ul {
@@ -27,12 +27,18 @@
     display: flex;
     align-items: center;
     font-size: 14px;
+    color: var(--color-neutral-400);
 }
+
+.breadcrumb li:hover {
+    color: var(--color-accent-300);
+}
+
 
 .breadcrumb li:not(:last-child)::after {
     content: ">";
     margin: 0 8px;
-    color: #ccc;
+    color: var(--color-neutral-100);
 }
 
 /*section game*/
@@ -41,6 +47,7 @@
     justify-content: center;
     align-items: stretch;
     width:98%;
+    height: auto;
     margin: 0rem 1rem 1rem 1rem;
     background-color: var(--color-bg-800);
     border-radius: 10px;
@@ -66,10 +73,8 @@
 .game-screen {
     width: 100%;
     position: relative;
-    height: 0;
-    padding-bottom: 56.25%; /* Relación de aspecto 16:9 */
+    height: 600px;
     border-radius: 10px;
-    overflow: hidden;
 }
 
 .game-screen div{
@@ -84,12 +89,9 @@
 
 
 .game-screen img{
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     border-radius: 10px;
 }
 
@@ -215,12 +217,11 @@
 
 
 /*SECCION DE COMENTARIOS*/
-.ctn-comments-public {
+.ctn-comments-public{
     display: flex;
     flex-direction: row;
     width: 98%;
     margin: 0rem 1rem 1rem 1rem;
-    gap: 1rem;
 }
 
 .comments-section {
@@ -229,8 +230,6 @@
     align-items:flex-start;
     padding: 1rem;
     gap: 1rem;
-    flex: 1;
-    min-width: 300px;
 }
 
 .comments-list {
@@ -323,6 +322,12 @@ textarea:focus {
     border-radius: 10px;
 }
 
+
+.comment-done p{
+    margin-left: 10px;
+    margin-top: 2px;
+}
+
 /*publicidad*/
 
 .publicidad {
@@ -330,22 +335,17 @@ textarea:focus {
     flex-direction: column;
     align-items: center;
     justify-content: start;
-    margin: 1rem 0;
-    gap: 2rem;
-    width: 100%;
-    max-width: 300px;
-    z-index: 10000000;
-}
-
-.publicidad img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    object-fit: cover;
+    margin: 7.8rem 0 0 1rem;
+    gap: 4rem;
+    width: 30%;
+    flex-grow: 1;
 }
 
 .publicidad img:first-child {
+    width: 100%;
     height: 700px;
+    border-radius: 10px;
+    object-fit: cover;
 }
 
 /*parte de sobre el juego y multimedia*/
@@ -454,18 +454,14 @@ textarea:focus {
 
 .images-multimedia {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
   place-items: center;
-  width: 100%;
-  padding: 1rem;
 }
 
 .multimedia img {
-  width: 100%;
-  max-width: 309px;
-  height: auto;
-  min-height: 199px;
+  width: 309px;
+  height: 199px;
   border-radius: 10px;
   object-fit: cover;
 }
@@ -478,10 +474,8 @@ textarea:focus {
 .image-wrapper img {
   display: block;
   border-radius: 10px;
-  width: 100%;
-  max-width: 309px;
-  height: auto;
-  min-height: 199px;
+  width: 309px;
+  height: 199px;
   object-fit: cover;
   pointer-events: none;
 }
