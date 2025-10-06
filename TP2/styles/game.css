@@ -10,8 +10,9 @@
 }
 
 .breadcrumb{
-    margin-left: 8rem;
-    width: 100%;
+    margin-left: 5%;
+    width: 95%;
+    padding: 0 1rem;
 }
 
 .breadcrumb ul {
@@ -65,8 +66,10 @@
 .game-screen {
     width: 100%;
     position: relative;
-    height:676px;
+    height: 0;
+    padding-bottom: 56.25%; /* Relación de aspecto 16:9 */
     border-radius: 10px;
+    overflow: hidden;
 }
 
 .game-screen div{
@@ -81,9 +84,12 @@
 
 
 .game-screen img{
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 10px;
 }
 
@@ -209,11 +215,12 @@
 
 
 /*SECCION DE COMENTARIOS*/
-.ctn-comments-public{
+.ctn-comments-public {
     display: flex;
     flex-direction: row;
     width: 98%;
     margin: 0rem 1rem 1rem 1rem;
+    gap: 1rem;
 }
 
 .comments-section {
@@ -222,6 +229,8 @@
     align-items:flex-start;
     padding: 1rem;
     gap: 1rem;
+    flex: 1;
+    min-width: 300px;
 }
 
 .comments-list {
@@ -321,25 +330,22 @@ textarea:focus {
     flex-direction: column;
     align-items: center;
     justify-content: start;
-    margin: 7.8rem 0 0 1rem;
-    gap: 4rem;
-    width: 30%;
-    flex-grow: 1;
-}
-    .publicidad img:first-child {
-        width: 100%;
-        height: 700px;
-        border-radius: 10px;
-        object-fit: cover;
-        /* Si usas background-image, actualiza la ruta así: */
-        /* background-image: url('../assets/img/publicidad/Publicidad grande.png'); */
-    }
-
-.publicidad img:first-child {
+    margin: 1rem 0;
+    gap: 2rem;
     width: 100%;
-    height: 700px;
+    max-width: 300px;
+    z-index: 10000000;
+}
+
+.publicidad img {
+    width: 100%;
+    height: auto;
     border-radius: 10px;
     object-fit: cover;
+}
+
+.publicidad img:first-child {
+    height: 700px;
 }
 
 /*parte de sobre el juego y multimedia*/
@@ -448,14 +454,18 @@ textarea:focus {
 
 .images-multimedia {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
   place-items: center;
+  width: 100%;
+  padding: 1rem;
 }
 
 .multimedia img {
-  width: 309px;
-  height: 199px;
+  width: 100%;
+  max-width: 309px;
+  height: auto;
+  min-height: 199px;
   border-radius: 10px;
   object-fit: cover;
 }
@@ -468,8 +478,10 @@ textarea:focus {
 .image-wrapper img {
   display: block;
   border-radius: 10px;
-  width: 309px;
-  height: 199px;
+  width: 100%;
+  max-width: 309px;
+  height: auto;
+  min-height: 199px;
   object-fit: cover;
   pointer-events: none;
 }
