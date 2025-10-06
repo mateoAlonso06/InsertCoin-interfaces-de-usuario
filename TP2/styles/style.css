@@ -287,8 +287,30 @@ a {
   font-size: 3rem;
   font-weight: bold;
   text-decoration: none;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+  transition: all 0.1s ease-out; 
+  
+  /* Sombra (Estilo base): Asegúrate de que la sombra esté bien definida para la sensación de elevación */
+  box-shadow: 0 8px 0 var(--color-accent-700); /* Sombra más oscura que simula la profundidad */
+  
+  /* Ajuste Opcional: Para una mejor separación visual */
+  margin-top: 8px;
+}
+
+.banner-play-button:hover {
+  /* 1. Cambiar color para respuesta visual */
+  background-color: var(--color-accent-500); 
+
+  /* 2. Hundir el botón: Desplazarlo hacia abajo la misma cantidad que el tamaño de la sombra (8px) */
+  transform: translateY(8px); 
+
+  /* 3. Eliminar la sombra: Esto simula que el botón toca la superficie */
+  box-shadow: 0 0 0 var(--color-accent-700);
+}
+
+/* Estado Activo (:active) - Lo que pasa al hacer clic */
+/* Esto le da la sensación final de 'clic' real */
+.banner-play-button:active {
+  transform: translateY(10px); /* Hundir un poquito más al hacer clic */
 }
 
 .banner-bottom-text {
@@ -419,14 +441,33 @@ a {
   transition: background-color 0.2s ease;
   border-radius: 8px;
   position: relative;
-    overflow: hidden; /* Crucial: Hides the shine effect until it moves over the button */
-    z-index: 1
+  overflow: hidden; 
+  z-index: 1;
+  transition: all 0.3s ease; /* Mejorar la transición base */
 }
 
 .game-card .play-button:hover {
-  background-color: var(--color-primary-300);
+  /*background-color: var(--color-primary-700);*/
   color: var(--color-bg-900);
   animation: pulse 0.6s ease infinite alternate;
+}
+
+.game-card .play-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -120%; /* Empieza completamente fuera a la izquierda */
+    width: 100%; /* Ancho del brillo */
+    height: 100%;
+    background: rgba(255, 255, 255, 0.3); /* Color blanco semi-transparente */
+    transform: skewX(-30deg); /* Inclinar para efecto de brillo */
+    transition: transform 0.4s ease-in-out; /* Transición para el deslizamiento */
+    z-index: 2; /* Asegura que esté sobre el botón */
+}
+
+.game-card .play-button:hover::before {
+    /* Mover el brillo desde el -100% hasta que pase completamente, por ejemplo, 180% */
+    transform: translate(120%,0);
 }
 
 .play-button .fa-play {
