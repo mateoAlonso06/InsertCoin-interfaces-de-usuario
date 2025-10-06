@@ -87,7 +87,40 @@ input::placeholder {
     cursor: pointer;
     margin-top: 10px;
     margin-bottom: 2rem;
-    transition: background 0.2s;
+     /* Claves para la animación de relleno */
+    position: relative; /* Para posicionar el pseudo-elemento */
+    overflow: hidden;   /* Para que el relleno no se desborde */
+    z-index: 1;         /* Asegura que el botón esté sobre el pseudo-elemento */
+    
+    /* Transición para el texto y color del botón */
+    transition: color 0.3s ease, background  0.3s ease; 
+}
+
+/* PSEUDO-ELEMENTO PARA EL RELLENO */
+.login-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%; /* Inicia en el centro */
+    transform: translateX(-50%) scaleX(0); /* Inicialmente invisible y sin ancho */
+    width: 100%; /* El ancho que tendrá cuando se expanda */
+    height: 100%;
+    background-color: var(--color-primary-700); /* El color del relleno */
+    border-radius: 10px; /* Misma redondez que el botón */
+    transition: transform 0.4s cubic-bezier(0.2, 1, 0.3, 1); /* Transición para la expansión */
+    z-index: -1; /* Detrás del texto del botón */
+}
+
+/* ESTADO HOVER */
+.login-btn:hover {
+    /* El background del botón ya no cambiará, lo hará el pseudo-elemento */
+    background: transparent; /* O el color original si no quieres que desaparezca */
+    color: #f5f5f5; /* Mantiene el color del texto, o cámbialo si el relleno es oscuro */
+}
+
+/* HOVER: EL PSEUDO-ELEMENTO SE EXPANDE */
+.login-btn:hover::before {
+    transform: translateX(-50%) scaleX(1); /* Se expande de 0 a 100% de ancho */
 }
 
 .login-btn:hover {

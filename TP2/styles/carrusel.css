@@ -40,6 +40,7 @@
     padding: 20px 0;
     overflow: hidden;
     scroll-behavior: smooth;
+    position: relative; 
 }
 
 .recommended-games .carousel-container .carousel {
@@ -55,12 +56,17 @@
     box-shadow:5xp 5px 10px rgba(0,0,0,.5);
     margin: 10px;
     cursor: pointer;
+     opacity: 0;
+    transform: translateY(20px);
+    
+    /* IMPORTANTE: Transición de CSS para la animación */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out; 
 }
 
 .recommended-games .carousel-container .carousel .game-card:hover {
     transform: scale(1.1);
     transform-origin: center;
-    transition: .5s ease-in-out all;
+    transition: .5s ease-in-out;
 }
 
 .recommended-games .carousel-container .carousel .game-card img {
@@ -72,3 +78,19 @@
     display: none;
 }
 
+@keyframes fadeInSlideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.game-card.visible-animated {
+    animation: fadeInSlideUp .5s forwards;
+    opacity: 1; /* Sobrescribe la opacidad base */
+    transform: scale(1);  /* Sobrescribe la traslación base */
+}
