@@ -1,5 +1,6 @@
+//VALIDACION PARA LOGIN
 document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('signup-form').addEventListener('submit', function(event) {
+    document.getElementById('login-form').addEventListener('submit', function(event) {
         event.preventDefault();
         let valid = true;
 
@@ -13,35 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     
-    //Validaciones por campo
-
-    //Nombre
-    let nombreInput = document.getElementById('nombre');
-    let nombre = nombreInput.value;
-    if (nombre.trim() === '') {
-        nombreInput.classList.add('input-error');
-        document.getElementById('errorNombre').textContent = 'El nombre es obligatorio';
-        valid = false;
-    }   
-
-    //Apellido
-    let apellidoInput = document.getElementById('apellido');
-    let apellido = apellidoInput.value;
-    if (apellido.trim() === '') {
-        apellidoInput.classList.add('input-error');
-        document.getElementById('errorApellido').textContent = 'El apellido es obligatorio';
-        valid = false;
-    }
-
-    
-    //Edad
-    let edadInput = document.getElementById('edad');
-    let edad = edadInput.value;
-    if (edad.trim() === '' || edad <= 0 || !Number.isInteger(Number(edad))) {
-        edadInput.classList.add('input-error');
-        document.getElementById('errorEdad').textContent = 'La edad es obligatoria';
-        valid = false;
-    }
+    //Validaciones por campo 
 
     //Email
     let email = document.getElementById('email').value;
@@ -65,19 +38,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (password.trim() === '') {
         passwordInput.classList.add('input-error');
         document.getElementById('errorPassword').textContent = 'La contraseña es obligatoria';
-        valid = false;
-    }
-
-    //Repetir Password
-    let repetirPasswordInput = document.getElementById('repetir-contraseña');
-    let repetirPassword = repetirPasswordInput.value;
-    if (repetirPassword.trim() === '') {
-        repetirPasswordInput.classList.add('input-error');
-        document.getElementById('errorRepetirPassword').textContent = 'Debe repetir la contraseña';
-        valid = false;
-    } else if (password !== repetirPassword) {
-        repetirPasswordInput.classList.add('input-error');
-        document.getElementById('errorRepetirPassword').textContent = 'Las contraseñas no coinciden';
         valid = false;
     }
 
@@ -112,8 +72,3 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 });
-
-
-
-
-

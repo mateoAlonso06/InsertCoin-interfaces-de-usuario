@@ -20,27 +20,32 @@
         <div class="logo">
             <img src="assets/icons/logo-insertcoin.svg" alt="Logo InsertCoin">
         </div>
-        <form class="login-form" id="login-form" method="post">
+        <form class="login-form" id="login-form">
             <div class="inputs-form-login">
                 <label for="email">Email</label>
                 <input type="email" id="email" placeholder="Email">
+                <span class="error" id="errorEmail"></span>
+
                 <label for="password">Contraseña</label>
-                <input type="password" id="password" placeholder="password">
+                <input type="password" id="contraseña" placeholder="password">
+                <span class="error" id="errorPassword"></span>
+
                 <a href="#" class="form-link">¿Has olvidado tu contraseña?</a>
             </div>
-            <button type="submit" class="login-btn">Iniciar Sesión</button>
+            <button type="submit" class="login-btn">Iniciar sesión<a href="index.html"></a></button>
             <h6>O iniciar sesión con</h6>
             <div class="social-login">
+                <!-- cambiarlo!!!! -->
                 <button type="button" class="google-login"><i class="fab fa-google"></i> Iniciar sesión con Google</button>
                 <button type="button" class="facebook-login"><i class="fab fa-facebook-f"></i> Iniciar sesión con Facebook</button>
             </div>
             <div class="register">
-                <a href="#" class="form-link">Registrarme</a>    
+                <a href="signup.html" class="form-link">Registrarme</a>    
             </div>
         </form>
     </div>
 
-    <script src="scripts/forms.js "> </script>
+    <script src="scripts/login-form.js"></script>
     <script src="https://kit.fontawesome.com/a405ba9b1d.js" crossorigin="anonymous"></script>
 
 </body>
