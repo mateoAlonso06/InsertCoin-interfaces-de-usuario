@@ -537,12 +537,12 @@ h1 span {
   }
 
   .footer-col-links h3 {
-    font-size: 1.9rem;
+    font-size: 2rem;
     margin-bottom: 1rem;
   }
 
   .footer-col-links ul li {
-    font-size: 1.35rem;
+    font-size: 1.5rem;
   }
 
   .footer-sponsors {
@@ -559,7 +559,6 @@ h1 span {
 
   /* Mantiene dos filas de patrocinadores en desktop */
   .sponsors-logos {
-    flex-direction: column;
     gap: 1rem;
     align-items: center;
     justify-content: center;
@@ -569,6 +568,8 @@ h1 span {
     flex-direction: row;
     gap: 2rem;
     justify-content: flex-start;
+    flex-wrap: nowrap;
+
   }
 
   .sponsors-logos img {
