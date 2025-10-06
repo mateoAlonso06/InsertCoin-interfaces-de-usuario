@@ -1,61 +1,37 @@
-// 1. Selecciona TODOS los contenedores principales (.principal-container)
-const contenedoresCarrusel = document.querySelectorAll('.principal-container');
+// Selecciona todos los carruseles que existan en la página
+const carruseles = document.querySelectorAll('.recommended-games');
 
-// 2. Itera sobre cada uno de ellos
-contenedoresCarrusel.forEach((contenedor) => {
-    const fila = contenedor.querySelector('.carousel-container');
-    const tarjetas = contenedor.querySelectorAll('.game-card');
-    const flechaIzquierda = contenedor.querySelector('.left-arrow');
-    const flechaDerecha = contenedor.querySelector('.right-arrow');
-    
-    // Índice para rastrear la posición actual (empieza en la tarjeta 0)
-    let indiceActual = 0;
-    const totalTarjetas = tarjetas.length;
-    // Cuántas tarjetas se muestran a la vez. Ajusta este número.
-    const tarjetasPorVista = 6; 
+carruseles.forEach(carrusel => {
+  const fila = carrusel.querySelector('.carousel-container');
+  const games = carrusel.querySelectorAll('.game-card');
+  const flechaIzquierda = carrusel.querySelector('.left-arrow');
+  const flechaDerecha = carrusel.querySelector('.right-arrow');
 
-    // Función para actualizar la posición, la visibilidad de las flechas Y LAS CLASES DE ANIMACIÓN
-    const actualizarCarrusel = () => {
-        // A. Calcular la posición de scroll
-        // Mueve una sola tarjeta (calculando su ancho + margen)
-        const anchoTarjeta = tarjetas[0].offsetWidth + (parseFloat(getComputedStyle(tarjetas[0]).marginRight) * 5);
+  // ✅ Mostrar todas las cards al cargar (sin animar aún)
+  games.forEach(game => {
+    game.style.opacity = '1';
+    game.style.transform = 'translateY(0)';
+  });
 
-        // Aplica el desplazamiento suave
-        fila.scrollLeft = indiceActual * anchoTarjeta;
-        
-        // B. GESTIONAR LAS CLASES DE ANIMACIÓN ⬅️ AQUI ESTÁ EL CAMBIO CLAVE
-        tarjetas.forEach((tarjeta, index) => {
-            // Si el índice de la tarjeta está en el rango visible (entre indiceActual y el final de la vista)
-            if (index >= indiceActual && index < indiceActual + tarjetasPorVista) {
-                // Si está visible, aplicamos la clase para que se anime
-                tarjeta.classList.add('visible-animated');
-            } else {
-                // Si no está visible, quitamos la clase
-                tarjeta.classList.remove('visible-animated');
-            }
-        });
-
-        // C. Ocultar/Mostrar flechas (con opacidad)
-        flechaIzquierda.style.opacity = indiceActual > 0 ? '1' : '0.3';
-        flechaDerecha.style.opacity = indiceActual < totalTarjetas - tarjetasPorVista ? '1' : '0.3';
-    };
-
-    // Evento de la flecha derecha
-    flechaDerecha.addEventListener('click', () => {
-        if (indiceActual < totalTarjetas - tarjetasPorVista) {
-            indiceActual++;
-            actualizarCarrusel();
-        }
+  // --- Función para animar las cards en cascada ---
+  function animarGames() {
+    games.forEach((game, i) => {
+      game.classList.remove('animar');
+      void game.offsetWidth; // reinicia animación
+      setTimeout(() => {
+        game.classList.add('animar');
+      }); 
     });
+  }
 
-    // Evento de la flecha izquierda
-    flechaIzquierda.addEventListener('click', () => {
-        if (indiceActual > 0) {
-            indiceActual--;
-            actualizarCarrusel();
-        }
-    });
-    
-    // Inicializa la posición y visibilidad de las flechas al cargar
-    actualizarCarrusel();
+  // --- Movimiento y animación mientras se desliza ---
+  flechaDerecha.addEventListener('click', () => {
+    fila.scrollLeft += fila.offsetWidth;
+    animarGames(); // activa animación solo para este carrusel
+  });
+
+  flechaIzquierda.addEventListener('click', () => {
+    fila.scrollLeft -= fila.offsetWidth;
+    animarGames(); // activa animación solo para este carrusel
+  });
 });
