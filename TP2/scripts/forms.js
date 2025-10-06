@@ -81,8 +81,34 @@ document.addEventListener('DOMContentLoaded', function() {
         valid = false;
     }
 
-    if (!valid) 
+    if (!valid) {
         event.preventDefault(); // Evita el envío del formulario si hay errores
-    
+    } else {
+        // Crear y mostrar overlay
+        const overlay = document.createElement('div');
+        overlay.className = 'overlay';
+        document.body.appendChild(overlay);
+
+        // Activar overlay con un pequeño retraso para la transición
+        setTimeout(() => {
+            overlay.classList.add('active');
+        }, 10);
+
+        // Crear y mostrar mensaje de éxito
+        const successMessage = document.createElement('div');
+        successMessage.className = 'success-message';
+        successMessage.innerHTML = `
+            <h2>¡Registro Exitoso!</h2>
+            <p>Bienvenido a InsertCoin</p>
+        `;
+        document.body.appendChild(successMessage);
+
+        // Redireccionar después de la animación
+        setTimeout(() => {
+            window.location.href = 'index.html';
+        }, 1000);
+
+        event.preventDefault(); 
+    }
 });
 });
