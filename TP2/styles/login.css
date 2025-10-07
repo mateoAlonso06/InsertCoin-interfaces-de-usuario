@@ -151,6 +151,20 @@ input::placeholder {
     justify-content: center;
 }
 
+.social-login a {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    font-size: 10px;
+    cursor: pointer;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
 .register, p {
     text-align: center;
 }
