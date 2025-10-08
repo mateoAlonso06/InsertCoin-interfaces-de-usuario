@@ -85,7 +85,6 @@ h1 span {
 @media (min-width: 1200px) {
     header {
         height: 62px;
-        padding: 0 2.5rem;
     }
 
     nav {
@@ -95,7 +94,7 @@ h1 span {
     }
 
     .menu_container {
-        gap: 2rem;
+        gap: 5px;
         flex: unset;
     }
 
@@ -105,7 +104,7 @@ h1 span {
 
     h1 {
         font-size: 2rem;
-        margin-left: 12px;
+        margin-left: 6px;
         margin-bottom: -.4rem;
     }
 
@@ -140,7 +139,7 @@ h1 span {
         background-color: #232343;
         border: 1px solid var(--color-neutral-100);
         padding-right: 32px;
-        background: url('/TP2/assets/icons/Icon-search.svg') no-repeat right 8px center / 20px auto;
+        background: url('../assets/icons/Icon-search.svg') no-repeat right 8px center / 20px auto;
     }
 
     .fa-solid, .fa-thin, .fa-user {
@@ -183,7 +182,7 @@ h1 span {
 .menu_categorias li {
     display: flex;
     align-items: center;
-    gap: 3px; /* separación entre icono y texto */
+    gap: 3px; 
     padding: 8px 0;
     margin-bottom: 8px;
     
@@ -218,8 +217,8 @@ h1 span {
 /*menu profile*/
 .menu-profile {
     position: fixed;
-    top: 62px; /* justo debajo del header */
-    right: 0px; /* ajusta según tu diseño */
+    top: 62px;
+    right: 0px;
     width: 200px;
     background: var(--color-bg-800);
     box-shadow: 0 8px 8px rgba(0,0,0,0.2);
@@ -271,8 +270,8 @@ h1 span {
   color: var(--color-neutral-300);
   font-family: var(--font-family-secondary);
   padding: 2.5rem 1.2rem;
-  font-size: 1.2rem; /* Más grande para legibilidad */
-  text-align: center; /* Centra todo el contenido */
+  font-size: 1.2rem; 
+  text-align: center; 
 }
 
 .footer-container {
@@ -286,7 +285,7 @@ h1 span {
   gap: 2rem;
   padding-bottom: 2rem;
   border-bottom: 1px solid var(--color-bg-700);
-  align-items: center; /* Centra columnas */
+  align-items: center; 
 }
 
 .footer-col-main {
@@ -443,7 +442,7 @@ h1 span {
   text-align: center;
   padding-top: 1.2rem;
   border-top: 1px solid var(--color-bg-700);
-  font-size: 1.3rem; /* Más grande para legibilidad */
+  font-size: 1.3rem; 
   color: #a9a9a9;
   font-weight: bold;
   letter-spacing: 1px;
@@ -467,7 +466,7 @@ h1 span {
 @media (min-width: 1200px) {
   .site-footer {
     padding: 4rem 2rem;
-    font-size: 1.5rem; /* Mantiene tamaño legible */
+    font-size: 1.5rem; 
     text-align: left;
   }
 

@@ -13,6 +13,7 @@ body, main {
 .breadcrumb{
     margin-left: 8rem;
     width: 100%;
+    height: 36px;
 }
 
 .breadcrumb ul {
@@ -26,7 +27,7 @@ body, main {
 .breadcrumb li {
     display: flex;
     align-items: center;
-    font-size: 14px;
+    font-size: 12px;
     color: var(--color-neutral-400);
 }
 
@@ -73,7 +74,7 @@ body, main {
 .game-screen {
     width: 100%;
     position: relative;
-    height: 600px;
+    height: 575px;
     border-radius: 10px;
 }
 
@@ -97,8 +98,8 @@ body, main {
 
 
 .icons-screen-reset i {
-    margin: 0; /* por si Font Awesome agrega algo */
-    padding: 0; /* elimina espacios internos */
+    margin: 0; 
+    padding: 0; 
 }
 
 .game-ejecutando h3{
@@ -444,12 +445,13 @@ textarea:focus {
 }
 
 .multimedia h4 {
-  align-self: flex-start; /* rompe la alineación del align-items del padre */
-  margin-left: 5rem; 
+  align-self: flex-start; 
+  margin-left: 10px; 
   margin-bottom: 1rem;
+  margin-top: -11rem;
   color: var(--color-neutral-100);
   font-size: 30px;
-  font-weight: 100;     /* opcional, separa un poco del borde */
+  font-weight: 100;    
 }
 
 .images-multimedia {
@@ -457,6 +459,7 @@ textarea:focus {
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
   place-items: center;
+  margin: 10px;
 }
 
 .multimedia img {
@@ -467,7 +470,7 @@ textarea:focus {
 }
 
 .image-wrapper {
-  position: relative; /* referencia para el icono */
+  position: relative; 
   display: inline-block;
 }
 
