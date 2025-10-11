@@ -2,7 +2,7 @@ body, main {
     max-width: 100%;
 }
 
-.main-game{
+.main-game {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -10,7 +10,7 @@ body, main {
     padding: 0;
 }
 
-.breadcrumb{
+.breadcrumb {
     margin-left: 8rem;
     width: 100%;
     height: 36px;
@@ -35,7 +35,6 @@ body, main {
     color: var(--color-accent-300);
 }
 
-
 .breadcrumb li:not(:last-child)::after {
     content: ">";
     margin: 0 8px;
@@ -47,21 +46,21 @@ body, main {
     display: flex;
     justify-content: center;
     align-items: stretch;
-    width:98%;
+    width: 98%;
     height: auto;
     margin: 0rem 1rem 1rem 1rem;
     background-color: var(--color-bg-800);
     border-radius: 10px;
 }
 
-.game-container h2{
+.game-container h2 {
     font-size: 32px;
     font-weight: 200;
     color: var(--color-neutral-100);
     margin: 2rem 0 0 2rem;
 }
 
-.game-ejecutando{
+.game-ejecutando {
     display: flex;
     flex-direction: column;
     flex-grow: 3;
@@ -78,31 +77,29 @@ body, main {
     border-radius: 10px;
 }
 
-.game-screen div{
+.game-screen div {
     position: absolute;
     bottom: .5rem;
-    right:.5rem;
+    right: .5rem;
     color: var(--color-neutral-100);
     cursor: pointer;
     display: flex;
     gap: 5px;
+    z-index: 1000;
 }
 
-
-.game-screen img{
+.game-screen img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
     border-radius: 10px;
 }
 
-
 .icons-screen-reset i {
-    margin: 0; 
-    padding: 0; 
+    margin: 0;
+    padding: 0;
 }
 
-.game-ejecutando h3{
+.game-ejecutando h3 {
     font-size: 24px;
     font-weight: 400;
     color: var(--color-neutral-100);
@@ -110,7 +107,7 @@ body, main {
 }
 
 /*controles*/
-.game-info{
+.game-info {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -120,19 +117,22 @@ body, main {
     flex-grow: 1;
 }
 
-.controles, .explicacion{
+.controles,
+.explicacion {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: start;
 }
 
-.controles h3, h4{
+.controles h3,
+h4 {
     font-size: 24px;
     font-weight: 400;
     margin: 1rem 0 0 0;
     color: var(--color-neutral-100);
 }
+
 .controles p {
     font-size: 16px;
     font-weight: 400;
@@ -141,7 +141,12 @@ body, main {
     text-align: center;
 }
 
-.explicacion h3{
+.controles img {
+    width: 80%;
+    height: 120px;
+}
+
+.explicacion h3 {
     font-size: 24px;
     font-weight: 400;
     margin: 5rem 0 0 0;
@@ -156,37 +161,91 @@ body, main {
     text-align: center;
 }
 
-.personajes{
+/* --- Estilos del Carrusel de Personajes (CORREGIDO) --- */
+.personajes {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-self: center;
+    width: 100%; /* Asegura que ocupe todo el espacio disponible */
 }
 
-.personajes h3{
+.personajes h3 {
     font-size: 24px;
     font-weight: 400;
-    margin: 5rem 0 0 0;
+    margin: 5rem 0 1rem 0; /* Ajuste de margen */
     color: var(--color-neutral-100);
 }
 
-.avatares {
+.carousel-blocka {
+    position: relative; /* CRUCIAL: Establece el contexto para el posicionamiento absoluto de las flechas */
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 5rem;
-    margin: 1.8rem 0 0 0;
+    width: 100%;
+    max-width: 280px; /* Un poco más de espacio para las flechas */
+    margin: 0 auto;
+}
+
+.carousel-window {
+    width: 150px;
+    overflow: hidden;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-btn {
+    position: absolute; /* CLAVE: Saca los botones del flujo normal del documento */
+    top: 50%; /* Los alinea verticalmente al centro del contenedor */
+    transform: translateY(-50%); /* Ajuste fino para un centrado vertical perfecto */
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 50%; /* Hace que los botones sean circulares */
+    width: 40px;
+    height: 40px;
+    color: var(--color-neutral-100);
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+}
+
+#prev-btn {
+    left: 10px; /* Posiciona la flecha izquierda */
+}
+
+#next-btn {
+    right: 10px; /* Posiciona la flecha derecha */
+}
+
+.carousel-btn:hover {
+    background-color: rgba(0, 123, 255, 0.5);
+}
+
+.carousel-btn:disabled {
+    background-color: rgba(50, 50, 50, 0.5);
+    color: #888;
+    cursor: not-allowed;
 }
 
 
+/* Estilos de los Avatares dentro del carrusel */
 .personaje-container {
     display: flex;
     flex-direction: column;
-    align-items: center;    
+    align-items: center;
+    min-width: 150px;
+    box-sizing: border-box;
+    text-align: center;
 }
 
-.personaje{
+.personaje {
     display: flex;
     flex-direction: column;
     width: 120px;
@@ -214,11 +273,8 @@ body, main {
     font-weight: 400;
 }
 
-
-
-
 /*SECCION DE COMENTARIOS*/
-.ctn-comments-public{
+.ctn-comments-public {
     display: flex;
     flex-direction: row;
     width: 98%;
@@ -228,7 +284,7 @@ body, main {
 .comments-section {
     display: flex;
     flex-direction: column;
-    align-items:flex-start;
+    align-items: flex-start;
     padding: 1rem;
     gap: 1rem;
 }
@@ -270,7 +326,7 @@ body, main {
     color: var(--color-neutral-100);
     margin: 0;
     font-size: 0.9rem;
-}    
+}
 
 .user-avatar img {
     width: 90px;
@@ -279,14 +335,12 @@ body, main {
     object-fit: cover;
 }
 
-
-
 .composer {
-    position: relative; 
+    position: relative;
     background: var(--color-neutral-100);
     border: 2px solid;
     border-radius: 10px;
-    flex:1;
+    flex: 1;
 }
 
 textarea {
@@ -319,18 +373,16 @@ textarea:focus {
 }
 
 .comment-done {
-    height: 12.31rem;   
+    height: 12.31rem;
     border-radius: 10px;
 }
 
-
-.comment-done p{
+.comment-done p {
     margin-left: 10px;
     margin-top: 2px;
 }
 
 /*publicidad*/
-
 .publicidad {
     display: flex;
     flex-direction: column;
@@ -350,8 +402,7 @@ textarea:focus {
 }
 
 /*parte de sobre el juego y multimedia*/
-
-.container-info-multimedia{
+.container-info-multimedia {
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
@@ -373,7 +424,6 @@ textarea:focus {
     flex-grow: 3;
     background-color: var(--color-bg-800);
     border-radius: 10px;
-    
 }
 
 .information-game h4 {
@@ -392,13 +442,14 @@ textarea:focus {
     text-align: start;
     line-height: 1.5;
 }
+
 .details p {
     margin-bottom: 2rem;
 }
 
 .details p a:last-child {
     border-bottom: 1px solid var(--color-accent-400);
-    color:var(--color-accent-400) ;
+    color: var(--color-accent-400);
 }
 
 .share-container {
@@ -431,8 +482,7 @@ textarea:focus {
 }
 
 /*multimedia*/
-
-.multimedia{
+.multimedia {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -445,60 +495,61 @@ textarea:focus {
 }
 
 .multimedia h4 {
-  align-self: flex-start; 
-  margin-left: 10px; 
-  margin-bottom: 1rem;
-  margin-top: -11rem;
-  color: var(--color-neutral-100);
-  font-size: 30px;
-  font-weight: 100;    
+    align-self: flex-start;
+    margin-left: 10px;
+    margin-bottom: 1rem;
+    margin-top: -11rem;
+    color: var(--color-neutral-100);
+    font-size: 30px;
+    font-weight: 100;
 }
 
 .images-multimedia {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-  place-items: center;
-  margin: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    place-items: center;
+    margin: 10px;
 }
 
 .multimedia img {
-  width: 309px;
-  height: 199px;
-  border-radius: 10px;
-  object-fit: cover;
+    width: 309px;
+    height: 199px;
+    border-radius: 10px;
+    object-fit: cover;
 }
 
 .image-wrapper {
-  position: relative; 
-  display: inline-block;
+    position: relative;
+    display: inline-block;
 }
 
 .image-wrapper img {
-  display: block;
-  border-radius: 10px;
-  width: 309px;
-  height: 199px;
-  object-fit: cover;
-  pointer-events: none;
+    display: block;
+    border-radius: 10px;
+    width: 309px;
+    height: 199px;
+    object-fit: cover;
+    pointer-events: none;
 }
 
 .image-wrapper i {
-  position: absolute;
-  top: 50%;   
-  left: 50%;  
-  transform: translate(-50%, -50%); 
-  font-size: 6rem;   
-  color: var(--color-accent-400);
-  cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 6rem;
+    color: var(--color-accent-400);
+    cursor: pointer;
 }
+
 .image-wrapper i:hover {
-  color: var(--color-accent-300); ; 
+    color: var(--color-accent-300);
 }
 
 /* modificacion minima del carrusel por especificidad para adaptarlo al game.html */
 .main-game .recommended-games {
-    width: 98%; 
+    width: 98%;
     margin: auto;
     margin: 5rem auto;
     padding: 0;
@@ -506,7 +557,7 @@ textarea:focus {
 
 .main-game .recommended-games .title-carousel-games {
     text-align: left;
-    margin-left: 1rem; 
+    margin-left: 1rem;
     font-size: 20px;
     color: var(--color-neutral-100);
 }

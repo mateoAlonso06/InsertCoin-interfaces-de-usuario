@@ -121,7 +121,7 @@
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="/Puzzle">Puzzle</a></li>
-                <li><a href="/Puzzle/PegSolitaire">Peg Solitaire</a></li>
+                <li><a href="/Puzzle/PegSolitaire">Blocka</a></li>
             </ul>
         </nav>
         <section class="game_container">
@@ -131,37 +131,59 @@
                     <i class="fa-solid fa-arrows-rotate"></i>
                     <i class="fa-solid fa-expand"></i>
                 </div>
-                <!-- ponemos una imagen, luego ira el canvas para el juego -->
-                <img src="assets/img/peg-solitaire-utils/Pegsolitarie.svg" alt="">
+                <canvas id="canvas" style="background-color: rgb(11, 27, 42); display: flex; width: 100%;height: 575px;">
+
+                </canvas>
             </div>
-            <h3>Peg solitaire - Dino rey</h3>
+            <h3>Blocka - Dragon ball z</h3>
         </div>
         <div class="game-info">
             <div class="controles">
                 <h3>Controles</h3>
-                <img src="assets/img/peg-solitaire-utils/mouse.svg" alt="">
-                <p>Seleccionar ficha y casillero</p>
+                <img src="assets/img/blocka/Mouses-blocka.jpg" alt="">
+                <p>Haz click para rotar las piezas.</p>
             </div>
             <div class="explicacion">
                 <h3>Como ganar</h3>
-                <p>El juego termina cuando queda una unica ficha</p>
+                <p>completa la imagen antes de que se acabe el tiempo.</p>
             </div>
             <div class="personajes">
-                <h3>Personajes</h3>
-                <div class="avatares">
-                    <div class="personaje-container">
-                        <div class="personaje"><img src="assets/img/peg-solitaire-utils/avatares-pegsolitaire/gabu.svg" alt=""></div>
-                        <h4>Gabu</h4>
-                    </div>
-                    <div class="personaje-container">
-                        <div class="personaje"><img src="assets/img/peg-solitaire-utils/avatares-pegsolitaire/ace.jpeg" alt=""></div>
-                        <h4>Ace</h4>
-                    </div>
-                    <div class="personaje-container">
-                        <div class="personaje"><img src="assets/img/peg-solitaire-utils/avatares-pegsolitaire/paris.jpeg" alt=""></div>
-                        <h4>Paris</h4>
-                    </div>
-            </div>
+              <h3>Personajes</h3>
+              <div class="carousel-blocka">
+                  <button id="prev-btn" class="carousel-btn">
+                      <i class="fa-solid fa-chevron-left"></i>
+                  </button>
+          
+                  <div class="carousel-window">
+                      <div class="carousel-track">
+                          <div class="personaje-container">
+                              <div class="personaje"><img src="assets/img/peg-solitaire-utils/avatares-pegsolitaire/gabu.svg" alt=""></div>
+                              <h4>Gabu</h4>
+                          </div>
+                          <div class="personaje-container">
+                              <div class="personaje"><img src="assets/img/peg-solitaire-utils/avatares-pegsolitaire/ace.jpeg" alt=""></div>
+                              <h4>Ace</h4>
+                          </div>
+                          <div class="personaje-container">
+                              <div class="personaje"><img src="assets/img/peg-solitaire-utils/avatares-pegsolitaire/paris.jpeg" alt=""></div>
+                              <h4>Paris</h4>
+                          </div>
+                          <div class="personaje-container">
+                              <div class="personaje"><img src="assets/img/peg-solitaire-utils/avatares-pegsolitaire/gabu.svg" alt=""></div>
+                              <h4>Otro 1</h4>
+                          </div>
+                          <div class="personaje-container">
+                              <div class="personaje"><img src="assets/img/peg-solitaire-utils/avatares-pegsolitaire/ace.jpeg" alt=""></div>
+                              <h4>Otro 2</h4>
+                          </div>
+                      </div>
+                  </div>
+          
+                  <button id="next-btn" class="carousel-btn">
+                      <i class="fa-solid fa-chevron-right"></i>
+                  </button>
+              </div>
+          </div>
         </div>
     </section>
     <section class="container-info-multimedia">
@@ -526,6 +548,7 @@
     <script src="scripts/script.js"></script>
     <script src="scripts/navbar.js"></script>
     <script src="scripts/carrusel.js"></script>
+    <script src="scripts/carrusel-blocka.js"></script>
     <script src="https://kit.fontawesome.com/a405ba9b1d.js" crossorigin="anonymous"></script>
 </body>
 
