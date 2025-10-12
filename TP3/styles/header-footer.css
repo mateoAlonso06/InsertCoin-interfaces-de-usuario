@@ -8,7 +8,7 @@ header {
     justify-content: center;
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 100000000000000;
     left: 0;
     padding: 0 1rem;
 }

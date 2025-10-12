@@ -1,50 +1,88 @@
-document.addEventListener('DOMContentLoaded', () => {
+// En tu archivo: scripts/carrusel-blocka.js
 
-    const track = document.querySelector('.carousel-track');
-    if (!track) return; // Si no hay carrusel en la página, no hace nada
+export let personajeSeleccionadoSrc = null;
 
-    const slides = Array.from(track.children);
-    const nextButton = document.getElementById('next-btn');
-    const prevButton = document.getElementById('prev-btn');
+// Referencias a los elementos del carrusel
+const track = document.querySelector('.carousel-track');
+const slides = Array.from(track.children);
+const prevButton = document.getElementById('prev-btn');
+const nextButton = document.getElementById('next-btn');
+let currentIndex = 0;
+
+/**
+ * Función central que actualiza la vista del carrusel y la selección.
+ */
+function updateCarouselView() {
+    if (slides.length === 0) return;
+    
     const slideWidth = slides[0].getBoundingClientRect().width;
-    let currentIndex = 0;
+    track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+    
+    // Actualiza la variable que se exportará
+    personajeSeleccionadoSrc = slides[currentIndex].querySelector('img')?.src;
 
-    // Función para mover el carrusel a un slide específico
-    const moveToSlide = (targetIndex) => {
-        track.style.transform = 'translateX(-' + slideWidth * targetIndex + 'px)';
-        currentIndex = targetIndex;
-        updateArrows();
-    };
-
-    // Función para actualizar el estado de los botones (activado/desactivado)
-    const updateArrows = () => {
-        if (currentIndex === 0) {
-            prevButton.disabled = true;
+    // Resalta visualmente el slide actual
+    slides.forEach((slide, index) => {
+        if (index === currentIndex) {
+            slide.querySelector('.personaje').style.borderColor = 'var(--color-accent-400)';
         } else {
-            prevButton.disabled = false;
-        }
-
-        if (currentIndex === slides.length - 1) {
-            nextButton.disabled = true;
-        } else {
-            nextButton.disabled = false;
-        }
-    };
-
-    // Evento para el botón "Siguiente"
-    nextButton.addEventListener('click', () => {
-        if (currentIndex < slides.length - 1) {
-            moveToSlide(currentIndex + 1);
+            slide.querySelector('.personaje').style.borderColor = 'var(--color-neutral-100)';
         }
     });
 
-    // Evento para el botón "Anterior"
-    prevButton.addEventListener('click', () => {
-        if (currentIndex > 0) {
-            moveToSlide(currentIndex - 1);
-        }
-    });
+    // Actualiza los botones
+    prevButton.disabled = (currentIndex === 0);
+    nextButton.disabled = (currentIndex === slides.length - 1);
+}
 
-    // Inicializa el estado de los botones al cargar la página
-    updateArrows();
+// Eventos para los botones de navegación manual
+nextButton.addEventListener('click', () => {
+    if (currentIndex < slides.length - 1) {
+        currentIndex++;
+        updateCarouselView();
+    }
 });
+prevButton.addEventListener('click', () => {
+    if (currentIndex > 0) {
+        currentIndex--;
+        updateCarouselView();
+    }
+});
+
+// Inicializa la vista del carrusel al cargar la página
+document.addEventListener('DOMContentLoaded', updateCarouselView);
+
+
+// =======================================================
+// NUEVA FUNCIÓN DE ANIMACIÓN (MUCHO MÁS SIMPLE)
+// =======================================================
+
+/**
+ * Inicia una animación de ruleta y llama a una función callback cuando termina.
+ */
+export function iniciarSeleccionAleatoria(onCompleteCallback) {
+    const duracionTotal = 2500; // 2.5 segundos de animación
+    const intervalo = 100;    // Cambia de imagen cada 100ms
+    
+    let tiempoTranscurrido = 0;
+
+    const animacion = setInterval(() => {
+        // Mueve la selección al siguiente personaje de forma circular
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateCarouselView();
+        
+        tiempoTranscurrido += intervalo;
+
+        // Cuando se acaba el tiempo, se detiene la animación
+        if (tiempoTranscurrido >= duracionTotal) {
+            clearInterval(animacion);
+
+            // Elige el personaje final de forma 100% aleatoria
+            currentIndex = Math.floor(Math.random() * slides.length);
+            updateCarouselView();
+            
+            // Llama a la función callback con la imagen final
+            onCompleteCallback(personajeSeleccionadoSrc);
+        }
+    }, intervalo);
+}

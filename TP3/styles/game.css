@@ -1,24 +1,32 @@
+/* ======================================================= */
+/* Reset Básico y Layout Principal */
+/* ======================================================= */
+
+*, *::before, *::after {
+    box-sizing: border-box; /* Manejo predecible del tamaño de los elementos */
+}
+
 body, main {
     max-width: 100%;
+    overflow-x: hidden; /* Evita la barra de scroll horizontal */
 }
 
 .main-game {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 0;
+    width: 100%;
+    padding: 0 1.5rem; /* Espacio lateral para todo el contenido */
 }
 
 .breadcrumb {
-    margin-left: 8rem;
     width: 100%;
     height: 36px;
+    margin: 1rem 0;
 }
 
 .breadcrumb ul {
     display: flex;
-    flex-wrap: nowrap;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -41,43 +49,56 @@ body, main {
     color: var(--color-neutral-100);
 }
 
-/*section game*/
+/* ======================================================= */
+/* Contenedor del Juego y Columnas */
+/* ======================================================= */
+
 .game_container {
     display: flex;
-    justify-content: center;
     align-items: stretch;
-    width: 98%;
-    height: auto;
-    margin: 0rem 1rem 1rem 1rem;
+    width: 100%;
+    margin: 1rem 0;
     background-color: var(--color-bg-800);
     border-radius: 10px;
-}
-
-.game-container h2 {
-    font-size: 32px;
-    font-weight: 200;
-    color: var(--color-neutral-100);
-    margin: 2rem 0 0 2rem;
+    gap: 1.5rem; /* Espacio entre la columna del juego y la de información */
 }
 
 .game-ejecutando {
     display: flex;
     flex-direction: column;
-    flex-grow: 3;
-    align-items: start;
-    justify-content: flex-start;
-    width: 80%;
     margin: 1.2rem;
+    flex: 2; /* Ocupa 3 partes del espacio flexible */
+    min-width: 0; /* Permite que el elemento se encoja si es necesario */
+}
+
+.game-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1.2rem;
+    flex: 1; /* Ocupa 1 parte del espacio flexible */
+    min-width: 0;
 }
 
 .game-screen {
     width: 100%;
-    position: relative;
+    position: relative; /* Contexto para el menú y los iconos */
     height: 575px;
     border-radius: 10px;
+    background-image: url('https://e0.pxfuel.com/wallpapers/691/991/desktop-wallpaper-background-dragon-ball-z-dragon-ball-super-scenery.jpg');
+    background-size: cover; /* Hace que la imagen cubra todo el div sin deformarse */
+    background-position: center; /* Centra la imagen */
 }
 
-.game-screen div {
+#canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background-color: transparent;
+}
+
+.icons-screen-reset {
     position: absolute;
     bottom: .5rem;
     right: .5rem;
@@ -85,18 +106,7 @@ body, main {
     cursor: pointer;
     display: flex;
     gap: 5px;
-    z-index: 1000;
-}
-
-.game-screen img {
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-}
-
-.icons-screen-reset i {
-    margin: 0;
-    padding: 0;
+    z-index: 50; /* Por encima del canvas pero debajo del menú */
 }
 
 .game-ejecutando h3 {
@@ -106,84 +116,139 @@ body, main {
     margin-top: .5rem;
 }
 
-/*controles*/
-.game-info {
+/* ======================================================= */
+/* Menú Superpuesto del Juego */
+/* ======================================================= */
+
+#game-menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(11, 27, 42, 0.95);
+    border-radius: 10px;
+    z-index: 100; /* Siempre por encima del canvas y los iconos */
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    justify-content: start;
-    width: 40%;
-    margin: 1.2rem;
-    flex-grow: 1;
+    gap: 2rem;
 }
 
+#game-menu.hidden {
+    display: none;
+}
+
+#game-menu h3 {
+    color: var(--color-neutral-100, #fff);
+    font-size: 2.5rem;
+    margin: 0;
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+}
+
+.difficulty-options {
+    display: flex;
+    gap: 1rem;
+}
+
+.difficulty-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border: 2px solid var(--color-neutral-400, #aaa);
+    background-color: transparent;
+    color: var(--color-neutral-400, #aaa);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.difficulty-btn:hover {
+    border-color: var(--color-accent-300, #ff6347);
+    color: var(--color-accent-300, #ff6347);
+}
+
+.difficulty-btn.selected {
+    background-color: var(--color-accent-400, #ff4500);
+    border-color: var(--color-accent-400, #ff4500);
+    color: white;
+    transform: scale(1.1);
+}
+
+.btn-jugar {
+    background-color: var(--color-accent-400, #ff4500);
+    color: var(--color-neutral-100, #fff);
+    border: none;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 1.5rem;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-jugar:hover {
+    background-color: var(--color-accent-300, #ff6347);
+    transform: scale(1.05);
+}
+
+
+/* ======================================================= */
+/* Columna de Información (Controles, Explicación, etc.) */
+/* ======================================================= */
+
 .controles,
-.explicacion {
+.explicacion,
+.personajes {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: start;
+    width: 100%;
 }
 
 .controles h3,
-h4 {
+.explicacion h3,
+.personajes h3 {
     font-size: 24px;
     font-weight: 400;
-    margin: 1rem 0 0 0;
     color: var(--color-neutral-100);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
 }
 
-.controles p {
+.controles h3:first-child {
+    margin-top: 0;
+}
+
+.controles p,
+.explicacion p {
     font-size: 16px;
     font-weight: 400;
-    margin: 0.5rem 1rem 0 1rem;
+    margin: 0.5rem 1rem;
     color: var(--color-neutral-100);
     text-align: center;
 }
 
 .controles img {
     width: 80%;
-    height: 120px;
+    max-width: 200px;
+    height: 130px;
 }
 
-.explicacion h3 {
-    font-size: 24px;
-    font-weight: 400;
-    margin: 5rem 0 0 0;
-    color: var(--color-neutral-100);
-}
-
-.explicacion p {
-    font-size: 16px;
-    font-weight: 400;
-    margin: 1.5rem 1rem 0 1rem;
-    color: var(--color-neutral-100);
-    text-align: center;
-}
-
-/* --- Estilos del Carrusel de Personajes (CORREGIDO) --- */
-.personajes {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-self: center;
-    width: 100%; /* Asegura que ocupe todo el espacio disponible */
-}
-
-.personajes h3 {
-    font-size: 24px;
-    font-weight: 400;
-    margin: 5rem 0 1rem 0; /* Ajuste de margen */
-    color: var(--color-neutral-100);
-}
+/* ======================================================= */
+/* Carrusel de Personajes */
+/* ======================================================= */
 
 .carousel-blocka {
-    position: relative; /* CRUCIAL: Establece el contexto para el posicionamiento absoluto de las flechas */
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
-    max-width: 280px; /* Un poco más de espacio para las flechas */
+    max-width: 280px;
     margin: 0 auto;
 }
 
@@ -194,16 +259,16 @@ h4 {
 
 .carousel-track {
     display: flex;
-    transition: transform 0.5s ease-in-out;
+    transition: transform .1s ease-in-out;
 }
 
 .carousel-btn {
-    position: absolute; /* CLAVE: Saca los botones del flujo normal del documento */
-    top: 50%; /* Los alinea verticalmente al centro del contenedor */
-    transform: translateY(-50%); /* Ajuste fino para un centrado vertical perfecto */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
     background-color: rgba(255, 255, 255, 0.1);
     border: none;
-    border-radius: 50%; /* Hace que los botones sean circulares */
+    border-radius: 50%;
     width: 40px;
     height: 40px;
     color: var(--color-neutral-100);
@@ -216,52 +281,35 @@ h4 {
     transition: background-color 0.3s;
 }
 
-#prev-btn {
-    left: 10px; /* Posiciona la flecha izquierda */
-}
-
-#next-btn {
-    right: 10px; /* Posiciona la flecha derecha */
-}
-
-.carousel-btn:hover {
-    background-color: rgba(0, 123, 255, 0.5);
-}
-
+#prev-btn { left: 10px; }
+#next-btn { right: 10px; }
+.carousel-btn:hover { background-color: rgba(0, 123, 255, 0.5); }
 .carousel-btn:disabled {
     background-color: rgba(50, 50, 50, 0.5);
     color: #888;
     cursor: not-allowed;
 }
 
-
-/* Estilos de los Avatares dentro del carrusel */
 .personaje-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     min-width: 150px;
-    box-sizing: border-box;
     text-align: center;
 }
 
 .personaje {
-    display: flex;
-    flex-direction: column;
-    width: 120px;
-    height: 120px;
-    border: 2px solid var(--color-neutral-100);
-    border-radius: 50%;
-    background-color: var(--color-bg-800);
+    width: 100px;
+    height: 100px;
+    border: 3px solid var(--color-neutral-100);
     cursor: pointer;
-    min-width: 65px;
-    min-height: 65px;
+    overflow: hidden;
+    transition: border-color 0.3s;
 }
 
 .personaje img {
     width: 100%;
     height: 100%;
-    border-radius: 50%;
     object-fit: cover;
 }
 
@@ -269,10 +317,8 @@ h4 {
     margin: 8px 0 0 0;
     font-size: 16px;
     color: var(--color-neutral-100);
-    text-align: center;
     font-weight: 400;
 }
-
 /*SECCION DE COMENTARIOS*/
 .ctn-comments-public {
     display: flex;
