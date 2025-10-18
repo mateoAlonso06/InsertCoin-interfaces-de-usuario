@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+    <script src="https://kit.fontawesome.com/a405ba9b1d.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/login.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+<body>
+
+    <div class="form-container">
+        <p id="ua">Unete a </p>
+        <p id="n">nosotros</p>
+        <form class="login-form" id="signup-form">
+            <label for="nombre">Nombre <span class="obligatorio">*</span></label>
+            <div class="input-group">
+                <input type="text" id="nombre" placeholder="Nombre" required>
+            </div>
+            <span class='error' id='errorNombre'></span>
+
+            <label for="apellido">Apellido <span class="obligatorio">*</span></label>
+            <div class="input-group">
+                <input type="text" id="apellido" placeholder="Apellido" required>
+            </div>
+            <span class='error' id='errorApellido'></span>
+
+            <label for="usuario">Nombre de usuario</label>
+            <div class="input-group">
+                <input type="text" id="usuario" placeholder="Nombre de usuario">
+            </div>
+            <span class='error' id='errorNickname'></span>
+
+            <label for="edad">Edad <span class="obligatorio">*</span></label>
+            <div class="input-group">
+                <input type="number" id="edad" placeholder="Edad" required>
+            </div>
+            <span class='error' id='errorEdad'></span>    
+
+            <label for="email">Email <span class="obligatorio">*</span></label>
+            <div class="input-group">
+                <input type="email" id="email" placeholder="Email" required>
+            </div>
+            <span class='error' id='errorEmail'></span>
+
+            <label for="contraseña">Contraseña <span class="obligatorio">*</span></label>
+            <div class="input-group">
+                <input type="password" id="contraseña" placeholder="Contraseña" required>
+            </div>
+            <span class='error' id='errorPassword'></span>
+
+            <label for="repetir-contraseña">Repetir contraseña<span class="obligatorio">*</span></label>
+            <div class="input-group">
+                <input type="password" id="repetir-contraseña" placeholder="Repetir contraseña" required>
+            </div>
+            <span class='error' id='errorRepetirPassword'></span>
+
+            <div class="g-recaptcha" data-sitekey="your_site_key"></div>
+            <div class="fake-captcha">
+                <img src="assets/img/Recaptcha.png" alt="Captcha" class="recaptcha">
+            </div>
+            <button type="submit" class="login-btn"><a href="index.html"></a>Registrarse</button>
+        </form>
+        <div class="register">
+            <a href="login.html" class="form-link">Ya estoy registrado</a>
+        </div>
+    </div>
+
+    <script src="scripts/forms.js"></script>
+    <script src="https://kit.fontawesome.com/a405ba9b1d.js" crossorigin="anonymous"></script>
+</body>
+</html>

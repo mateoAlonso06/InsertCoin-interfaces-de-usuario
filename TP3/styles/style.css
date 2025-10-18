@@ -1,0 +1,546 @@
+:root {
+  /* Primario */
+  --color-primary-300: #40E1FF;
+  --color-primary-400: #0BD5FF;
+  --color-primary-450: #00BFFF;
+  --color-primary-500: #09AAC9;
+  --color-primary-700: #005F80;
+
+  /* Secundario */
+  --color-secondary-300: #ED6DED;
+  --color-secondary-400: #E545E5;
+  --color-secondary-500: #BA38F5;
+  --color-secondary-600: #FF00FF;
+  --color-secondary-700: #E94560;
+
+  /* Acento */
+  --color-accent-300: #FFE54D;
+  --color-accent-400: #FFD700;
+  --color-accent-500: #CCAC00;
+
+  /* Neutros */
+  --color-neutral-100: #F5F5F5;
+  --color-neutral-200: #EEEEEE;
+  --color-neutral-300: #E0E0E0;
+  --color-neutral-400: #B3B3B3;
+  --color-neutral-500: #997F00;
+  --color-neutral-700: #424242;
+  --color-neutral-800: #212121;
+
+  /* Errores*/
+  --color-error-300: #D32F2F;
+  --color-error-400: #F44336;
+  --color-error-500: #B71C1C;
+
+
+
+  /* Background */
+  --color-bg-700: #0F0F23;
+  --color-bg-800: #1A1A2E;
+  --color-bg-900: #16213E;
+
+  /* Fuentes */
+  --font-family-primary: 'Press Start 2P', serif;
+  --font-family-secondary: 'Gothic A1', sans-serif;
+}
+
+/* General */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+  /* 62.5% de 16px = 10px */
+  scroll-behavior: smooth;
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 1.6rem;
+  font-family: var(--font-family-primary);
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  background-color: var(--color-bg-700);
+}
+
+img,
+picture,
+video,
+canvas {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+input:focus {
+  outline: none;
+}
+
+h1 {
+  font-size: 48px;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+h4 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* --- ESTILOS DEL LOADER SIMPLE --- */
+
+/* Contenedor principal del loader */
+#loader-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-bg-800);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* Contenedor del contenido */
+.loader-container {
+  text-align: center;
+  color: var(--color-neutral-100);
+  font-family: var(--font-family-primary);
+}
+
+/* Logo simple */
+.logo-loading h1 {
+  font-size: 3rem;
+  color: var(--color-secondary-300);
+  margin-bottom: 3rem;
+}
+
+.logo-loading h1 span {
+  color: var(--color-accent-400);
+}
+
+/* Spinner simple */
+.simple-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid var(--color-bg-700);
+  border-top: 4px solid var(--color-primary-400);
+  border-radius: 50%;
+  margin: 0 auto 3rem;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Contenedor de progreso */
+.progress-container {
+  margin-bottom: 2rem;
+}
+
+/* Barra de progreso simple */
+.progress-bar {
+  width: 250px;
+  height: 20px;
+  background-color: var(--color-bg-700);
+  border: 2px solid var(--color-primary-400);
+  margin: 0 auto 1rem;
+  overflow: hidden;
+}
+
+#progress-fill {
+  width: 0%;
+  height: 100%;
+  background-color: var(--color-accent-400);
+  transition: width 0.2s ease;
+}
+
+/* Texto del porcentaje */
+#progress-text {
+  font-size: 1.5rem;
+  color: var(--color-primary-300);
+  margin-bottom: 1rem;
+}
+
+/* Mensaje de carga */
+#loading-message {
+  font-size: 1.2rem;
+  color: var(--color-neutral-300);
+  letter-spacing: 2px;
+}
+
+/* -- HOME PAGE -- */
+.home-content {
+  padding: 2rem 4rem;
+  width: 100%;
+  margin: 0 auto;
+}
+
+@media(min-width: 1200px) {
+  .home-content {
+    max-width: 1600px;  
+  }
+}
+
+.page-title {
+  text-align: center;
+  margin-bottom: 4rem;
+  font-size: 2.8rem;
+  color: var(--color-primary-300);
+}
+
+/* --- BANNER PRINCIPAL --- */
+.main-banner {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  min-height: 200px;
+  background-image: url('../assets/img/banners/banner-dinorey.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+  border-radius: 12px;
+  overflow: hidden;
+  padding: 2rem;
+}
+
+@media (min-width: 1200px) {
+  .main-banner {
+    height: min(500px, 45vh);
+    min-height: 400px;
+    margin-bottom: 4rem;
+    padding: 200px;
+  }
+}
+
+/* Overlay oscuro para mejorar la legibilidad del texto */
+.main-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.banner-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 1.2rem;
+}
+
+.banner-title {
+  font-family: var(--font-family-primary);
+  font-size: 3.2rem;
+  color: var(--color-neutral-100);
+  margin: 0 0 0.8rem 0;
+  letter-spacing: 2px;
+}
+
+.banner-subtitle {
+  font-family: var(--font-family-primary);
+  font-size: 1.5rem;
+  color: var(--color-neutral-100);
+  margin: 0 0 1rem 0;
+  font-weight: 400;
+}
+
+.banner-play-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  background-color: var(--color-accent-400);
+  color: var(--color-bg-900);
+  padding: 1rem 1.5rem;
+  border-radius: 1.2rem;
+  font-family: var(--font-family-primary);
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.1s ease-out;
+  box-shadow: 0 4px 0 var(--color-accent-700);
+  margin-top: 6px;
+}
+
+.banner-play-button:hover {
+  background-color: var(--color-accent-500);
+  transform: translateY(4px);
+  box-shadow: 0 0 0 var(--color-accent-700);
+}
+
+.banner-play-button:active {
+  transform: translateY(6px);
+}
+
+.banner-bottom-text {
+  font-family: 'Rock Salt', cursive;
+  font-size: 1.7rem;
+  font-weight: bold;
+  color: var(--color-primary-300);
+  margin-top: 1.2rem;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+@media (min-width: 1200px) {
+  .banner-content {
+    padding: 2rem;
+  }
+
+  .banner-title {
+    font-size: 8rem;
+    margin: 0 0 1rem 0;
+    letter-spacing: 4px;
+  }
+
+  .banner-subtitle {
+    font-size: 3rem;
+    margin: 0 0 1.5rem 0;
+  }
+
+  .banner-play-button {
+    gap: 1rem;
+    padding: 1.5rem 2.5rem;
+    border-radius: 2rem;
+    font-size: 3rem;
+    box-shadow: 0 8px 0 var(--color-accent-700);
+    margin-top: 8px;
+  }
+
+  .banner-play-button:hover {
+    transform: translateY(8px);
+  }
+
+  .banner-play-button:active {
+    transform: translateY(10px);
+  }
+
+  .banner-bottom-text {
+    font-size: 3.5rem;
+    margin-top: 2rem;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* --- SECCIÓN DE CATEGORÍA DE JUEGOS --- */
+.game-category-section {
+  width: 100%;
+  margin: 0 auto 4rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  text-align: left;
+}
+
+.category-title {
+  font-family: var(--font-family-primary);
+  font-size: 1.7rem;
+  color: var(--color-accent-400);
+  margin: 0;
+  text-align: left;
+}
+
+.game-card {
+  flex: 0 0 280px;
+  background-color: var(--color-bg-900);
+  border: 3.5px solid var(--color-primary-400);
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all 1s ease;
+  scroll-snap-align: start;
+  text-align: center;
+  margin-right: 1.5rem;
+
+  /* Add margin for spacing between cards */
+}
+
+.cont-hover {
+  width: 100%;
+  height: 260px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cont-hover::after {
+  content: attr(data-title);
+  /* toma el valor del atributo */
+  position: absolute;
+  inset: 0;
+  /* top, right, bottom, left = 0 */
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  display: flex;
+  /* para centrar el texto */
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  color: white;
+  /* Color interior (fill) */
+
+  /* Simulates a 1px black stroke using 4 shadows */
+  text-shadow:
+    -2px -2px 0 #000,
+    /* Superior izquierda */
+    2px -2px 0 #000,
+    /* Superior derecha */
+    -2px 2px 0 #000,
+    /* Inferior izquierda */
+    2px 2px 0 #000;
+  /* Inferior derecha */
+}
+
+/* al hacer hover aparece */
+.cont-hover:hover::after {
+  opacity: 1;
+}
+
+.cont-hover:hover+.game-title {
+  /*al ser hermano, se tiene que utilizar el +*/
+  opacity: 0;
+}
+
+.game-card:hover .game-title {
+  transform: scale(1.1);
+  box-shadow: 0 12px 32px rgba(9, 170, 201, 0.45), 0 2px 8px rgba(0, 0, 0, 0.12);
+  border-color: var(--color-primary-300);
+  transition: box-shadow 0.3s, border-color 0.3s;
+}
+
+.game-card img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-bottom: 3.5px solid var(--color-primary-700);
+}
+
+.game-card .game-title {
+  font-family: var(--font-family-primary);
+  font-size: 1.4rem;
+  color: var(--color-neutral-100);
+  padding: 1.2rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-grow: 1;
+  text-align: center;
+}
+
+
+
+.game-card .play-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  width: 90%;
+  margin-bottom: 1rem;
+  gap: 0.8rem;
+  background-color: var(--color-primary-400);
+  color: var(--color-bg-900);
+  font-family: var(--font-family-primary);
+  font-size: 1.4rem;
+  padding: 1.2rem;
+  text-align: center;
+  transition: background-color 0.2s ease;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: all 0.3s ease;
+  /* Mejorar la transición base */
+}
+
+.game-card .play-button:hover {
+  /*background-color: var(--color-primary-700);*/
+  color: var(--color-bg-900);
+  animation: pulse 0.6s ease infinite alternate;
+}
+
+.game-card .play-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -120%;
+  /* Empieza completamente fuera a la izquierda */
+  width: 100%;
+  /* Ancho del brillo */
+  height: 100%;
+  background: rgba(255, 255, 255, 0.3);
+  /* Color blanco semi-transparente */
+  transform: skewX(-30deg);
+  /* Inclinar para efecto de brillo */
+  transition: transform 0.4s ease-in-out;
+  /* Transición para el deslizamiento */
+  z-index: 2;
+  /* Asegura que esté sobre el botón */
+}
+
+.game-card .play-button:hover::before {
+  /* Mover el brillo desde el -100% hasta que pase completamente, por ejemplo, 180% */
+  transform: translate(120%, 0);
+}
+
+.play-button .fa-play {
+  font-size: 1rem;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1.08);
+  }
+}
