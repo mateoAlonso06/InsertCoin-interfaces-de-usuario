@@ -10,6 +10,8 @@ let dificultadSeleccionada = 2;
 let imagenFuenteParaPiezas;
 const piezas = [];
 
+const levels = [1,2,3];
+
 const menuJuego = document.getElementById('game-menu');
 const botonesDificultad = document.querySelectorAll('.difficulty-btn');
 const botonJugar = document.getElementById('play-button');
@@ -100,7 +102,7 @@ function crearImagenFiltrada(image) {
     const bufferCanvas = document.createElement('canvas');
     const bufferCtx = bufferCanvas.getContext('2d');
     
-    const tamanoPuzzle = 375;
+    const tamanoPuzzle = 500;
     bufferCanvas.width = tamanoPuzzle;
     bufferCanvas.height = tamanoPuzzle;
 
@@ -115,8 +117,6 @@ function crearImagenFiltrada(image) {
     
     // 2. Obtiene la función de filtro de esa posición.
     const filtroAleatorio = filtrosDisponibles[indiceAleatorio];
-
-    console.log("Aplicando filtro:", filtroAleatorio.name); // Muestra en consola qué filtro se usó
     
     // 3. Ejecuta la función de filtro seleccionada, pasándole los datos de la imagen.
     filtroAleatorio(imageData);
