@@ -49,9 +49,9 @@ body, main {
     color: var(--color-neutral-100);
 }
 
-/* ======================================================= */
+
 /* Contenedor del Juego y Columnas */
-/* ======================================================= */
+
 
 .game_container {
     display: flex;
@@ -60,15 +60,15 @@ body, main {
     margin: 1rem 0;
     background-color: var(--color-bg-800);
     border-radius: 10px;
-    gap: 1.5rem; /* Espacio entre la columna del juego y la de información */
+    gap: 1.5rem; 
 }
 
 .game-ejecutando {
     display: flex;
     flex-direction: column;
     margin: 1.2rem;
-    flex: 2; /* Ocupa 3 partes del espacio flexible */
-    min-width: 0; /* Permite que el elemento se encoja si es necesario */
+    flex: 2; 
+    min-width: 0; 
 }
 
 .game-info {
@@ -82,11 +82,11 @@ body, main {
 
 .game-screen {
     width: 100%;
-    position: relative; /* Contexto para el menú y los iconos */
+    position: relative; 
     height: 575px;
     background-image: url('https://e0.pxfuel.com/wallpapers/691/991/desktop-wallpaper-background-dragon-ball-z-dragon-ball-super-scenery.jpg');
-    background-size: cover; /* Hace que la imagen cubra todo el div sin deformarse */
-    background-position: center; /* Centra la imagen */
+    background-size: cover; 
+    background-position: center; 
 }
 
 #canvas {
@@ -116,41 +116,73 @@ body, main {
     margin-top: .5rem;
 }
 
-/* ======================================================= */
-/* Menú Superpuesto del Juego */
-/* ======================================================= */
 
-#game-menu {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(11, 27, 42, 0.95);
-    border-radius: 10px;
-    z-index: 100; /* Siempre por encima del canvas y los iconos */
+/* Menú Superpuesto del Juego */
+
+
+/* --- Estilos para el Menú Principal --- */
+
+#game-menu .menu-title { 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 2rem;
+    color: var(--color-accent-400, #ff4500);
+    font-size: 3.5rem;
+    margin-bottom: 2rem;
+    font-family: 'Press Start 2P', cursive;
+    text-shadow: 3px 3px 0px rgba(0,0,0,0.4);
+
+}
+
+#game-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+.menu-btn { 
+    padding: 15px 40px;
+    font-size: 1.8rem;
+    font-family: 'Press Start 2P', cursive;
+    color: var(--color-neutral-100, #fff);
+    background-color: var(--color-primary-500, #007bff); 
+    border: 3px solid var(--color-neutral-100, #fff);
+    border-radius: 10px;
+    cursor: pointer;
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.3);
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.menu-btn:hover {
+    background-color: var(--color-accent-300, #ff6347);
+    transform: scale(1.05);
+}
+
+/* Estilo para ocultar la sección de dificultad */
+#difficulty-selection.hidden {
+    display: none;
+}
+
+/* Ajustes para la sección de dificultad cuando sea visible */
+#difficulty-selection {
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+#difficulty-selection h3 {
+     color: var(--color-neutral-100, #fff);
+     font-size: 2rem; /* Más pequeño que el título principal */
+     margin: 0;
+     font-family: 'Press Start 2P', cursive;
 }
 
 #game-menu.hidden {
     display: none;
-}
-
-#game-menu h3 {
-    color: var(--color-neutral-100, #fff);
-    font-size: 2.5rem;
-    margin: 0;
-    font-family: 'Press Start 2P', cursive;
-    text-align: center;
-}
-
-.difficulty-options {
-    display: flex;
-    gap: 1rem;
 }
 
 .difficulty-btn {
@@ -195,10 +227,184 @@ body, main {
     transform: scale(1.05);
 }
 
+/*menu por si pierde por el tiempo*/
 
-/* ======================================================= */
-/* Columna de Información (Controles, Explicación, etc.) */
-/* ======================================================= */
+.container-tiempo-terminado {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(11, 27, 42, 0.95); 
+    border-radius: 10px; 
+    z-index: 102; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem; 
+    padding: 2rem;
+    display: flex; /* Oculto por defecto */
+}
+
+.container-tiempo-terminado.hidden {
+    display: none; /* Oculto cuando tiene la clase hidden */
+}
+
+.container-tiempo-terminado h2 {
+    color: var(--color-accent-300, #ff6347); 
+    font-size: 2.8rem; 
+    margin: 0;
+    font-family: 'Press Start 2P', cursive;
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.3);
+    text-align: center;
+}
+
+.container-tiempo-terminado button {
+    padding: 12px 30px;
+    font-size: 1.5rem;
+    font-family: 'Press Start 2P', cursive;
+    color: var(--color-neutral-100, #fff);
+    background-color: var(--color-primary-500, #007bff);
+    border: 2px solid var(--color-neutral-100, #fff);
+    border-radius: 8px;
+    cursor: pointer;
+    text-shadow: 1px 1px 0px rgba(0,0,0,0.2);
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+/*cronometro*/
+#timer-container {
+    color: var(--color-neutral-100, #fff); 
+    font-size: 20px; 
+    font-family: 'Press Start 2P', cursive; 
+    margin-top: 1rem; 
+    text-align: center; 
+    width: 100%; 
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6); 
+}
+#timer {
+    color: var(--color-accent-400, #ff4500); 
+    background-color: rgba(0, 0, 0, 0.4); 
+    padding: 6px 12px; 
+    border-radius: 5px; 
+    margin-left: 0.5rem; 
+}
+
+/*boton de ayudin*/
+
+/* Estilos para el botón de Ayuda */
+.btn-ayudin {
+    background-color: #ffc107; 
+    color: #333; 
+    border: 2px solid #333;
+    border-radius: 8px;
+    padding: 8px 15px;
+    font-size: 14px;
+    font-family: 'Press Start 2P', cursive;
+    cursor: pointer;
+    margin-top: 0.8rem;
+    display: block; 
+    margin-left: auto; 
+    margin-right: auto; 
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#btn-ayuda.hidden {
+    display: none;
+}
+
+.btn-ayudin:hover {
+    background-color: #ffda6b;
+    transform: scale(1.05);
+}
+
+/* Estilo para cuando el botón está deshabilitado */
+.btn-ayudin:disabled {
+    background-color: #aaa;
+    color: #666;
+    border-color: #666;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/*menu secundario*/
+
+
+#menu-secundario {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(11, 27, 42, 0.95); 
+    border-radius: 10px; 
+    z-index: 101; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem; 
+    padding: 2rem;
+
+}
+
+/* --- Estilos para el Contenido Interno --- */
+
+#menu-secundario h3 {
+    color: var(--color-accent-300, #ff6347); 
+    font-size: 2.8rem; 
+    margin: 0;
+    font-family: 'Press Start 2P', cursive;
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.3);
+    text-align: center;
+}
+
+#menu-secundario p {
+    color: var(--color-neutral-100, #fff);
+    font-size: 1.5rem;
+    font-family: 'Press Start 2P', cursive;
+    margin: 0;
+}
+
+#menu-secundario .tiempo-level {
+    color: var(--color-accent-400, #ff4500); /* Resalta el tiempo */
+    margin-left: 0.5rem; /* Pequeño espacio */
+}
+
+
+
+#menu-secundario button {
+    padding: 12px 30px;
+    font-size: 1.5rem;
+    font-family: 'Press Start 2P', cursive;
+    color: var(--color-neutral-100, #fff);
+    background-color: var(--color-primary-500, #007bff);
+    border: 2px solid var(--color-neutral-100, #fff);
+    border-radius: 8px;
+    cursor: pointer;
+    text-shadow: 1px 1px 0px rgba(0,0,0,0.2);
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+#menu-secundario button:hover {
+    background-color: var(--color-accent-300, #ff6347);
+    transform: scale(1.05);
+}
+
+
+#btn-volver-menu {
+    background-color: var(--color-neutral-600, #6c757d); 
+}
+#btn-volver-menu:hover {
+     background-color: var(--color-neutral-500, #5a6268);
+}
+
+
+#menu-secundario.hidden {
+    display: none !important;
+}
+
 
 .controles,
 .explicacion,
@@ -607,3 +813,5 @@ textarea:focus {
     font-size: 20px;
     color: var(--color-neutral-100);
 }
+
+
