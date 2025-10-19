@@ -267,6 +267,7 @@ function verificarVictoria() {
             btnNextLevel.style.display = 'none';
             tituloVictoria.textContent = "¡Felicitaciones, has derrotado a freezer!";
         } else {
+            tituloVictoria.textContent = "¡Nivel superado!";
             btnNextLevel.style.display = 'block';
         }
     }
