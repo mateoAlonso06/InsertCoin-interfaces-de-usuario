@@ -13,14 +13,15 @@ let srcImagenActual = null;
 let hintUsadoEnNivel = false;
 
 const levels = [
-    { level: 1, dificultad: 2, tiempo: 60 }, // Nivel 1 (índice 0)
-    { level: 2, dificultad: 4, tiempo: 120 }, // Nivel 2 (índice 1)
-    { level: 3, dificultad: 6, tiempo: 300 }  // Nivel 3 (índice 2)
+    { level: 1, dificultad: 1, tiempo: 60 }, // Nivel 1 (índice 0)
+    { level: 2, dificultad: 1, tiempo: 120 }, // Nivel 2 (índice 1)
+    { level: 3, dificultad: 1, tiempo: 300 }  // Nivel 3 (índice 2)
 ];
 
 // --- Elementos del DOM ---
 const menuJuego = document.getElementById('game-menu');
 const menuSecundario = document.getElementById('menu-secundario');
+const tituloVictoria = document.getElementById('victoria');
 const btnNextLevel = document.getElementById('btn-sigLevel');
 const volverMenu = document.getElementById('btn-volver-menu');
 const btnNiveles = document.getElementById('start-game-button');
@@ -39,7 +40,6 @@ menuSecundario.classList.add('hidden');
 btnAyuda.classList.add('hidden');
 timerCont.classList.add('hidden');
 menuTiempoTerminado.classList.add('hidden');
-
 // Variables del Temporizador
 let timerInterval;
 let tiempoRestante = 0;
@@ -80,7 +80,6 @@ btnNextLevel.addEventListener('click', () => {
     if (levelActual < levels.length) {
         const siguienteImagen = obtenerNuevaImagenAleatoria(srcImagenActual);
         if (siguienteImagen) {
-            // Pasa el ÍNDICE del nuevo nivel (1 o 2)
             iniciarJuegoCompleto(siguienteImagen, levelActual); 
         } else {
             alert("Error al cargar la siguiente imagen. Volviendo al menú.");
@@ -266,6 +265,7 @@ function verificarVictoria() {
         
         if (levelActual >= levels.length - 1) {
             btnNextLevel.style.display = 'none';
+            tituloVictoria.textContent = "¡Felicitaciones, has derrotado a freezer!";
         } else {
             btnNextLevel.style.display = 'block';
         }
