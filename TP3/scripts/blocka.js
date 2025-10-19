@@ -8,13 +8,14 @@ import { iniciarSeleccionAleatoria } from './carrusel-blocka.js';
 // =======================================================
 let imagenFuenteParaPiezas;
 const piezas = [];
-let levelActual = 0; // Índice del nivel actual (0, 1, 2)
+let levelActual = 0; // Este es el ÍNDICE (0, 1, o 2) del nivel actual
 let srcImagenActual = null;
+let hintUsadoEnNivel = false;
 
 const levels = [
-    { level: 1, dificultad: 2, tiempo: 60 },
-    { level: 2, dificultad: 4, tiempo: 120 },
-    { level: 3, dificultad: 6, tiempo: 300 }
+    { level: 1, dificultad: 2, tiempo: 60 }, // Nivel 1 (índice 0)
+    { level: 2, dificultad: 2, tiempo: 120 }, // Nivel 2 (índice 1)
+    { level: 3, dificultad: 2, tiempo: 300 }  // Nivel 3 (índice 2)
 ];
 
 // --- Elementos del DOM ---
@@ -29,13 +30,13 @@ const timerDisplay = document.getElementById('timer');
 const tiempoLevelDisplay = menuSecundario.querySelector('.tiempo-level');
 const timerCont = document.getElementById('timer-container');
 const btnAyuda = document.getElementById('btn-ayuda');
-let hintUsadoEnNivel = false;
 const restartLevel = document.getElementById('restart-level');
 const menuTiempoTerminado = document.querySelector('.container-tiempo-terminado');
 const btnMenuTiempoTerminado = document.getElementById('btn-menu-tiempo-terminado');
 
-btnAyuda.classList.add('hidden');
+// Ocultar elementos al inicio
 menuSecundario.classList.add('hidden');
+btnAyuda.classList.add('hidden');
 timerCont.classList.add('hidden');
 menuTiempoTerminado.classList.add('hidden');
 
@@ -52,13 +53,10 @@ const filtrosDisponibles = [
 ];
 
 // =======================================================
-// EVENT LISTENERS
+// EVENT LISTENERS DEL MENÚ Y JUEGO
 // =======================================================
 
-restartLevel.addEventListener('click', () => {
-    iniciarJuegoCompleto(srcImagenActual, levelActual);
-});
-
+// Clic en "Iniciar Juego" (Modo Historia)
 btnNiveles.addEventListener('click', () => {
     btnNiveles.disabled = true;
     levelActual = 0; // Reinicia al primer nivel (índice 0)
@@ -68,30 +66,25 @@ btnNiveles.addEventListener('click', () => {
             return;
         }
         menuJuego.classList.add('hidden');
-        
-        // --- CORRECCIÓN 1 ---
-        // Pasa el ÍNDICE del nivel (levelActual), no la dificultad.
+        // Pasa el ÍNDICE del nivel (0)
         iniciarJuegoCompleto(imagenSeleccionada, levelActual); 
-        // --------------------
-
         btnNiveles.disabled = false;
     });
 });
 
+// Clic en "Siguiente Nivel"
 btnNextLevel.addEventListener('click', () => {
     menuSecundario.classList.add('hidden');
-    levelActual++; // Avanza al siguiente índice
+    levelActual++; // Avanza al siguiente ÍNDICE
 
     if (levelActual < levels.length) {
         const siguienteImagen = obtenerNuevaImagenAleatoria(srcImagenActual);
         if (siguienteImagen) {
-            // --- CORRECCIÓN 2 ---
-            // Pasa el ÍNDICE del nuevo nivel (levelActual), no la dificultad.
+            // Pasa el ÍNDICE del nuevo nivel (1 o 2)
             iniciarJuegoCompleto(siguienteImagen, levelActual); 
-            // --------------------
         } else {
             alert("Error al cargar la siguiente imagen. Volviendo al menú.");
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.clearRect(0, 0, canvas.width, canvas.height); 
             restaurarMenuPrincipal();
         }
     } else {
@@ -99,6 +92,7 @@ btnNextLevel.addEventListener('click', () => {
     }
 });
 
+// Clic en "Volver al Menu"
 volverMenu.addEventListener('click', () => {
     stopTimer();
     menuSecundario.classList.add('hidden');
@@ -108,11 +102,13 @@ volverMenu.addEventListener('click', () => {
     restaurarMenuPrincipal();
 });
 
+// Clics para rotar piezas
 canvas.addEventListener('click', (event) => {
     const rect = canvas.getBoundingClientRect();
     const mouseX = event.clientX - rect.left;
     const mouseY = event.clientY - rect.top;
     const piezaClickeada = piezaenPosicion(mouseX, mouseY);
+
     if (piezaClickeada && !piezaClickeada.bloqueada) {
         piezaClickeada.rotacion += Math.PI / 2;
         piezaClickeada.rotacion %= (2 * Math.PI);
@@ -127,6 +123,7 @@ canvas.addEventListener('contextmenu', (e) => {
     const mouseX = e.clientX - rect.left;
     const mouseY = e.clientY - rect.top;
     const piezaClickeada = piezaenPosicion(mouseX, mouseY);
+
     if (piezaClickeada && !piezaClickeada.bloqueada) {
         piezaClickeada.rotacion -= Math.PI / 2;
         if (piezaClickeada.rotacion < 0) {
@@ -137,9 +134,10 @@ canvas.addEventListener('contextmenu', (e) => {
     }
 });
 
+// Clic en "Ayuda"
 btnAyuda.addEventListener('click', () => {
     if (hintUsadoEnNivel) return;
-    const piezasIncorrectas = piezas.filter(p => p.rotacion > 0.01 || p.rotacion < -0.01);
+    const piezasIncorrectas = piezas.filter(p => (p.rotacion > 0.01 || p.rotacion < -0.01) && !p.bloqueada);
     if (piezasIncorrectas.length > 0) {
         const indiceAleatorio = Math.floor(Math.random() * piezasIncorrectas.length);
         const piezaParaAyudar = piezasIncorrectas[indiceAleatorio];
@@ -156,6 +154,14 @@ btnAyuda.addEventListener('click', () => {
         btnAyuda.disabled = true;
     }
 });
+
+// Clic en "Reiniciar Nivel"
+restartLevel.addEventListener('click', () => {
+    if (srcImagenActual) {
+        iniciarJuegoCompleto(srcImagenActual, levelActual);
+    }
+});
+
 
 // =======================================================
 // LÓGICA DEL TEMPORIZADOR
@@ -209,30 +215,25 @@ function restaurarMenuPrincipal() {
 // FUNCIONES DEL NÚCLEO DEL JUEGO
 // =======================================================
 
-// --- CORRECCIÓN 3 ---
-// El segundo parámetro AHORA es 'numeroDeNivel' (el índice 0, 1, o 2)
 function iniciarJuegoCompleto(srcDeImagen, numeroDeNivel) {
-    // Protección
     if (numeroDeNivel < 0 || numeroDeNivel >= levels.length) {
         console.error(`Índice de nivel inválido: ${numeroDeNivel}`);
         restaurarMenuPrincipal();
         return;
     }
 
-    // --- CORRECCIÓN 4 ---
-    // Obtiene la config usando el ÍNDICE (levelActual)
-    const configLevel = levels[numeroDeNivel]; 
+    // Obtiene la config usando el ÍNDICE (numeroDeNivel)
+    const configLevel = levels[numeroDeNivel];
     const dificultad = configLevel.dificultad;
     const tiempoLimite = configLevel.tiempo;
-    // --------------------
 
     timerCont.classList.remove('hidden');
     startTimer(tiempoLimite);
 
     hintUsadoEnNivel = false;
     btnAyuda.disabled = false;
-    piezas.forEach(p => p.bloqueada = false);
     btnAyuda.classList.remove('hidden');
+    
     srcImagenActual = srcDeImagen;
 
     const imagenJuego = new Image();
@@ -241,7 +242,7 @@ function iniciarJuegoCompleto(srcDeImagen, numeroDeNivel) {
 
     imagenJuego.onload = () => {
         imagenFuenteParaPiezas = crearImagenFiltrada(imagenJuego);
-        iniciarPiezas(imagenFuenteParaPiezas, dificultad); // Pasa la dificultad correcta
+        iniciarPiezas(imagenFuenteParaPiezas, dificultad);
         dibujarPiezas(imagenFuenteParaPiezas);
     };
     imagenJuego.onerror = () => {
@@ -311,7 +312,8 @@ function iniciarPiezas(image, dificultad) {
             piezas.push({
                 sx: col * anchoPieza, sy: fila * altoPieza, sWidth: anchoPieza, sHeight: altoPieza,
                 dx: posXInicial + col * anchoPieza, dy: posYInicial + fila * altoPieza, dWidth: anchoPieza, dHeight: altoPieza,
-                rotacion: 0
+                rotacion: 0,
+                bloqueada: false // Definir 'bloqueada' desde el inicio
             });
         }
     }
