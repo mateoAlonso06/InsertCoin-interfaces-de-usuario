@@ -14,8 +14,8 @@ let hintUsadoEnNivel = false;
 
 const levels = [
     { level: 1, dificultad: 2, tiempo: 60 }, // Nivel 1 (índice 0)
-    { level: 2, dificultad: 2, tiempo: 120 }, // Nivel 2 (índice 1)
-    { level: 3, dificultad: 2, tiempo: 300 }  // Nivel 3 (índice 2)
+    { level: 2, dificultad: 4, tiempo: 120 }, // Nivel 2 (índice 1)
+    { level: 3, dificultad: 6, tiempo: 300 }  // Nivel 3 (índice 2)
 ];
 
 // --- Elementos del DOM ---
@@ -260,7 +260,10 @@ function verificarVictoria() {
         if (tiempoLevelDisplay) {
             tiempoLevelDisplay.textContent = timerDisplay.textContent;
         }
-        menuSecundario.classList.remove('hidden');
+        setTimeout(() => {
+            menuSecundario.classList.remove('hidden');
+        }, 1000);
+        
         if (levelActual >= levels.length - 1) {
             btnNextLevel.style.display = 'none';
         } else {
