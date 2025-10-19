@@ -543,6 +543,10 @@ body, main {
     gap: 1rem;
 }
 
+.comments-section h4 {
+    color: var(--color-neutral-100);
+}
+
 .comments-list {
     display: flex;
     flex-direction: column;
@@ -681,7 +685,7 @@ textarea:focus {
 }
 
 .information-game h4 {
-    font-size: 32px;
+    font-size: 22px;
     font-weight: 200;
     color: var(--color-neutral-100);
     margin: 2rem 0 0 2rem;
@@ -754,7 +758,7 @@ textarea:focus {
     margin-bottom: 1rem;
     margin-top: -11rem;
     color: var(--color-neutral-100);
-    font-size: 30px;
+    font-size: 22px;
     font-weight: 100;
 }
 
@@ -771,6 +775,7 @@ textarea:focus {
     height: 199px;
     border-radius: 10px;
     object-fit: cover;
+    border: 5px solid var(--color-primary-450);
 }
 
 .image-wrapper {
