@@ -103,7 +103,7 @@ h2 {
 }
 
 h4 {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
 }
 
@@ -231,30 +231,196 @@ a {
 }
 
 /* --- BANNER PRINCIPAL --- */
-.main-banner {
-  position: relative;
-  width: 100%;
-  height: 300px;
-  min-height: 200px;
-  background-image: url('../assets/img/banners/banner-dinorey.jpg');
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 2rem;
-  border-radius: 12px;
-  overflow: hidden;
-  padding: 2rem;
+/* --- Banner Slider Styles --- */
+
+.banner-slider-container {
+    position: relative; /* Needed for absolute positioning of arrows and slides */
+    width: 60%;
+    height: 300px; /* Same initial height as your original banner */
+    min-height: 200px;
+    margin-bottom: 2rem; /* Spacing below the slider */
+    border-radius: 12px; /* Optional: Rounded corners for the container */
+    overflow: hidden; /* Hide parts of slides that go outside */
+    margin: 0 auto 4rem; /* Center the slider and add bottom margin */
 }
 
+.banner-slider-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.banner-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    display: flex; /* Use flex to easily center content */
+    align-items: center;
+    justify-content: center;
+    opacity: 0; /* Hidden by default */
+    transform: scale(0.8) translateX(100%); /* Start scaled down and off-screen */
+    transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out, z-index 0s linear 0s; /* Corrected transition */
+    /* z-index now changes instantly (delay 0s) instead of after 0.6s */
+    z-index: 1;
+    visibility: hidden; /* Ensure it's not interactive when hidden */
+}
+
+/* Overlay for text readability (applied to each slide) */
+.banner-slide::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Same overlay as before */
+    z-index: 1; /* Below the text content */
+}
+
+/* Ensure banner content is above the overlay */
+.banner-slide .banner-content {
+    position: relative; /* Keep original banner-content styles */
+    z-index: 2;
+    text-align: center;
+    padding: 1.2rem;
+    transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out; /* Add transition to content */
+    transform: translateY(20px); /* Slightly move content down initially */
+    opacity: 0;
+}
+
+/* --- Slide States --- */
+
+.banner-slide.active {
+    opacity: 1;
+    transform: scale(1) translateX(0);
+    z-index: 3; /* Active slide is on top */
+    visibility: visible;
+}
+.banner-slide.active .banner-content {
+    transform: translateY(0); /* Bring content into view */
+    opacity: 1;
+}
+
+
+.banner-slide.prev {
+    opacity: 1; /* Make previous slide visible */
+    transform: scale(0.9) translateX(-15%); /* Move slightly left and scale down */
+    z-index: 2; /* Below active */
+    visibility: visible;
+}
+/* Optional: Fade out content on side slides */
+.banner-slide.prev .banner-content, 
+.banner-slide.next .banner-content {
+   opacity: 0.6; 
+   transform: scale(0.9);
+}
+
+.banner-slide.next {
+    opacity: 1; /* Make next slide visible */
+    transform: scale(0.9) translateX(15%); /* Move slightly right and scale down */
+    z-index: 2; /* Below active */
+    visibility: visible;
+}
+
+/* Slides further away (hidden) */
+.banner-slide:not(.active):not(.prev):not(.next) {
+    opacity: 0;
+    transform: scale(0.8) translateX(50%); /* Example position */
+    z-index: 1;
+    visibility: hidden;
+}
+/* Specific style for slides becoming hidden from prev */
+.banner-slide.hide-prev {
+    transform: scale(0.8) translateX(-50%);
+    opacity: 0;
+    visibility: hidden;
+}
+/* Specific style for slides becoming hidden from next */
+.banner-slide.hide-next {
+     transform: scale(0.8) translateX(50%);
+     opacity: 0;
+     visibility: hidden;
+}
+
+
+/* --- Arrow Styles --- */
+
+.slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 1rem 1.2rem; /* Adjust padding */
+    cursor: pointer;
+    z-index: 4; /* Above all slides */
+    border-radius: 50%; /* Make them round */
+    font-size: 1.5rem; /* Adjust icon size */
+    transition: background-color 0.3s ease;
+    width: 40px; /* Explicit width */
+    height: 40px; /* Explicit height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slider-arrow:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.prev-arrow {
+    left: 1rem;
+}
+
+.next-arrow {
+    right: 1rem;
+}
+
+/* --- Responsive Adjustments --- */
 @media (min-width: 1200px) {
-  .main-banner {
-    height: min(500px, 45vh);
-    min-height: 400px;
-    margin-bottom: 4rem;
-    padding: 200px;
-  }
+    .banner-slider-container {
+        height: min(500px, 45vh); /* Same desktop height as original */
+        min-height: 400px;
+        margin-bottom: 4rem;
+    }
+
+    /* Keep original desktop styles for content inside the active slide */
+     .banner-slide.active .banner-content {
+        padding: 2rem;
+     }
+    .banner-slide.active .banner-title {
+        font-size: 6rem; margin: 0 0 1rem 0; letter-spacing: 2px;
+    }
+    .banner-slide.active .banner-subtitle {
+        font-size: 3rem; margin: 0 0 1.5rem 0;
+    }
+    .banner-slide.active .banner-play-button {
+        gap: 1rem; padding: 1.5rem 2.5rem; border-radius: 2rem; font-size: 3rem; box-shadow: 0 8px 0 var(--color-accent-700); margin-top: 8px;
+    }
+     .banner-slide.active .banner-play-button:hover { transform: translateY(8px); }
+     .banner-slide.active .banner-play-button:active { transform: translateY(10px); }
+    .banner-slide.active .banner-bottom-text {
+        font-size: 3.5rem; margin-top: 2rem; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Adjust side slide positions for desktop */
+    .banner-slide.prev { transform: scale(0.85) translateX(-20%); }
+    .banner-slide.next { transform: scale(0.85) translateX(20%); }
+
+    /* Adjust arrow size and position */
+    .slider-arrow {
+        padding: 1.5rem 1.8rem;
+        font-size: 2rem;
+        width: 50px;
+        height: 50px;
+    }
+    .prev-arrow { left: 2rem; }
+    .next-arrow { right: 2rem; }
 }
 
 /* Overlay oscuro para mejorar la legibilidad del texto */
@@ -387,7 +553,8 @@ a {
 }
 
 .game-card {
-  flex: 0 0 280px;
+  flex: 0 0 240px;
+  height: 280px;
   background-color: var(--color-bg-900);
   border: 3.5px solid var(--color-primary-400);
   border-radius: 10px;
@@ -459,14 +626,14 @@ a {
 
 .game-card img {
   width: 100%;
-  height: 260px;
+  height: 100%;
   object-fit: cover;
   border-bottom: 3.5px solid var(--color-primary-700);
 }
 
 .game-card .game-title {
   font-family: var(--font-family-primary);
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   color: var(--color-neutral-100);
   padding: 1.2rem;
   white-space: nowrap;

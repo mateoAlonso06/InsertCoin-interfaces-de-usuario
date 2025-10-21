@@ -127,22 +127,31 @@
         <section class="game_container">
         <div class="game-ejecutando">
             <div class="game-screen">
-              <div id="game-menu">
-                <h3>Elige la dificultad</h3>
-                <div class="difficulty-options">
-                    <button class="difficulty-btn selected" data-difficulty="4">Fácil (4x4)</button>
-                    <button class="difficulty-btn" data-difficulty="6">Normal (6x6)</button>
-                    <button class="difficulty-btn" data-difficulty="8">Difícil (8x8)</button>
-                </div>
-                <button id="play-button" class="btn-jugar">Jugar</button>
+              <div id="timer-container">
+                  Tiempo: <span id="timer">00:00</span>
               </div>
-                <div class="icons-screen-reset">
-                    <i class="fa-solid fa-arrows-rotate"></i>
-                    <i class="fa-solid fa-expand"></i>
-                </div>
-                <canvas id="canvas" width="850" height="575" style=" display: flex;">
+              <button id="btn-ayuda" class="btn-ayudin">Ayudín (-5s)</button>
+              <div class="container-tiempo-terminado">
+                  <h2>Se acabó el tiempo</h2>
+                  <button id="btn-menu-tiempo-terminado">Menu</button>
+              </div>
+              <div id="game-menu">
+                <h3 class="menu-title">BLOCKA BALL Z <span><img src="assets/img/blocka/esferaCuatro.png" style="width:120px; height: 120px;" alt=""></span></h3>
 
-                </canvas>
+                <button id="start-game-button" class="menu-btn">Iniciar Juego</button>
+                
+              </div>
+              <div id="menu-secundario">
+                <h3 id="victoria">Nivel superado</h3>
+                <p>Tiempo restante:<span class="tiempo-level">10:05</Tiempo:span></p>
+                  <button id="btn-sigLevel">Siguiente nivel</button>
+                  <button id="btn-volver-menu">Menu</button>
+              </div>
+  <div class="icons-screen-reset">
+      <i id="restart-level" class="fa-solid fa-arrows-rotate "></i>
+      <i class="fa-solid fa-expand"></i>
+  </div>
+<canvas id="canvas" width="850" height="575"></canvas>
             </div>
             <h3>Blocka - Dragon ball z</h3>
         </div>
@@ -166,24 +175,36 @@
                   <div class="carousel-window">
                       <div class="carousel-track">
                           <div class="personaje-container">
-                              <div class="personaje"><img src="assets/img/peg-solitaire-utils/avatares-pegsolitaire/gabu.svg" alt=""></div>
-                              <h4>Gabu</h4>
+                              <div class="personaje"><img src="assets/img/blocka/gokuNormal.jpg" alt=""></div>
+                              <h4>Goku</h4>
                           </div>
                           <div class="personaje-container">
-                              <div class="personaje"><img src="assets/img/peg-solitaire-utils/avatares-pegsolitaire/ace.jpeg" alt=""></div>
-                              <h4>Ace</h4>
+                              <div class="personaje"><img src="assets/img/blocka/gokussj.jpg" alt=""></div>
+                              <h4>Goku ssj</h4>
                           </div>
                           <div class="personaje-container">
-                              <div class="personaje"><img src="assets/img/sponsors/logo-nvidia.svg" alt=""></div>
-                              <h4>Paris</h4>
+                              <div class="personaje"><img src="assets/img/blocka/gokussj2.jpg" alt=""></div>
+                              <h4>Goku ssj2</h4>
                           </div>
                           <div class="personaje-container">
-                              <div class="personaje"><img src="assets/img/peg-solitaire-utils/avatares-pegsolitaire/gabu.svg" alt=""></div>
-                              <h4>Otro 1</h4>
+                              <div class="personaje"><img src="assets/img/blocka/gokussj3.jpg" alt=""></div>
+                              <h4>Goku ssj3</h4>
+                          </div>
+                          <div class="personaje-container">
+                              <div class="personaje"><img src="assets/img/blocka/gokussjDios.jpg" alt=""></div>
+                              <h4>Goku fase dios</h4>
                           </div>
                           <div class="personaje-container">
                               <div class="personaje"><img src="assets/img/blocka/GokuSsjblue.webp" alt=""></div>
-                              <h4>Gooku</h4>
+                              <h4>Goku ssj blue</h4>
+                          </div>
+                          <div class="personaje-container">
+                              <div class="personaje"><img src="assets/img/blocka/gokuOmen.jpg" alt=""></div>
+                              <h4>Goku omen</h4>
+                          </div>
+                          <div class="personaje-container">
+                              <div class="personaje"><img src="assets/img/blocka/gokumngcompleto.jpg" alt=""></div>
+                              <h4>Goku ultra instinto</h4>
                           </div>
                       </div>
                   </div>
@@ -199,11 +220,10 @@
         <article class="information-game">
              <h4>Acerca del juego</h4>
              <div class="details">
-                <p>Prepárate para revivir la emoción de Dino Rey en una experiencia distinta: el clásico Peg Solitaire reinventado con tus dinosaurios favoritos. Cada ficha representa a un dino listo para la batalla, y tu misión es guiarlo en una prueba de inteligencia y estrategia.</p>
-                <p>El funcionamiento es sencillo pero desafiante: selecciona un dinosaurio, hazlo saltar sobre otro adyacente y elimina al que quedó en medio. Con cada movimiento el tablero se vacía, y poco a poco solo los más fuertes permanecen. Tu objetivo final es lograr que quede un único dinosaurio en pie, de preferencia en el centro, y así proclamarlo como el verdadero Rey del Tablero.</p>
-                <p>Este juego no solo pondrá a prueba tu lógica, sino también tu paciencia y capacidad de anticipación. Cada decisión cuenta, cada salto puede marcar la diferencia entre la victoria perfecta o quedarte atrapado con varios dinos en el tablero.
-                   ¿Tendrás la estrategia suficiente para superar el reto y coronar a tu dinosaurio chomo el último sobreviviente?</p>
-                <p><span><i class="fa-solid fa-link"></i><a href="#"></span>Conoce mas sobre el mundo de DinoRey</a></p>   
+                <p>¡El planeta Namekusei está en peligro! El tirano Freezer ha llegado y su inmenso poder ha fracturado la realidad, descomponiendo momentos clave de la batalla en caóticos rompecabezas llamados "Blockas". Cada Blocka es una imagen crucial de la lucha, dividida en cuatro partes y rotada, esperando ser rearmada.</p>
+                <p>Tu misión, como un Guerrero Z, es enfocar tu ki y manipular estas piezas. El funcionamiento es un desafío a tu percepción: selecciona cada parte de la imagen y hazla girar con los clics de tu ratón (izquierdo y derecho) hasta que recupere su posición original. Con cada pieza que acomodes, la verdadera escena de la batalla comenzará a revelarse.</p>
+                <p>Este juego pondrá a prueba tu ingenio y velocidad. Deberás completar cada Blocka antes de que el temporizador llegue a cero. Solo restaurando todas las imágenes, uniendo las cuatro partes de cada una, podrás revivir los momentos que llevarán a la derrota de Freezer y salvarás al planeta Namekusei de una destrucción segura.</p>
+                <p><span><i class="fa-solid fa-link"></i><a href="#"></span>Conoce mas sobre el mundo de Dragon Ball Z</a></p>   
                 <div class="share-container">
                     <p>No te olvides de compartir nuestro juego!</p>
                     <div class="share-icons">
@@ -218,13 +238,13 @@
         <aside class="multimedia">
             <h4>Multimedia</h4>
             <div class="images-multimedia">
-                <img src="assets/img/peg-solitaire-utils/rex-multimedia.svg" alt="">
+                <img src="assets/img/blocka/gokussj2.jpg" alt="">
                 <div class="image-wrapper">
-                    <img src="assets/img/peg-solitaire-utils/card-video-multimedia.svg" alt="">
+                    <img src="assets/img/blocka/gokuvsfreezer.jpg" alt="">
                     <i class="fa-solid fa-circle-play"></i>
                 </div>
-                <img src="assets/img/peg-solitaire-utils/rex-vs-gabu.svg" alt="">
-                <img src="assets/img/peg-solitaire-utils/gabu-grande.svg" alt="">    
+                <img src="assets/img/blocka/freezerOtros.webp" alt="">
+                <img src="assets/img/blocka/personajesSaga.webp" alt="">    
             </div>
         </aside>
     </section>
@@ -427,131 +447,200 @@
     <!-------------------------------------footer--------------------------------------->
 
     <footer class="site-footer">
-      <div class="footer-container">
+    <div class="footer-container">
         <div class="footer-top">
-          <div class="footer-col-main">
-            <div class="footer-logo">
-              <a href="#" class="logo-text"
-                >Insert<span class="logo-text-accent">Coin</span></a
-              >
-              <img
-                src="assets/icons/logo-insertcoin.svg"
-                alt="Logo InsertCoin"
-              />
+            <div class="footer-col-main">
+                <div class="footer-logo">
+                <a href="#" class="logo-text"
+                    >Insert<span class="logo-text-accent">Coin</span></a
+                >
+                <img
+                    src="assets/icons/logo-insertcoin.svg"
+                    alt="Logo InsertCoin"
+                />
+                </div>
+                <div class="footer-social">
+                <a href="#" aria-label="Facebook"
+                    ><i class="fab fa-facebook-f"></i
+                ></a>
+                <a href="#" aria-label="Twitter"
+                    ><i class="fab fa-twitter"></i
+                ></a>
+                <a href="#" aria-label="YouTube"
+                    ><i class="fab fa-youtube"></i
+                ></a>
+                <a href="#" aria-label="Instagram"
+                    ><i class="fab fa-instagram"></i
+                ></a>
+                </div>
+                <form class="footer-newsletter">
+                <label for="email">Recibir novedades</label>
+                <input type="email" id="email" placeholder="email@ejemplo.com" />
+                <button type="submit">Suscribite</button>
+                </form>
             </div>
-            <div class="footer-social">
-              <a href="#" aria-label="Facebook"
-                ><i class="fab fa-facebook-f"></i
-              ></a>
-              <a href="#" aria-label="Twitter"
-                ><i class="fab fa-twitter"></i
-              ></a>
-              <a href="#" aria-label="YouTube"
-                ><i class="fab fa-youtube"></i
-              ></a>
-              <a href="#" aria-label="Instagram"
-                ><i class="fab fa-instagram"></i
-              ></a>
+            <div class="footer-links-grid">
+                <div class="footer-col-links">
+                <h3>Sobre nosotros</h3>
+                <ul>
+                    <li><a href="#">Historia</a></li>
+                    <li><a href="#">Equipo</a></li>
+                    <li><a href="#">Prensa</a></li>
+                    <li><a href="#">Trabaja aquí</a></li>
+                </ul>
+                </div>
+                <div class="footer-col-links">
+                <h3>Categorías</h3>
+                <ul>
+                    <li><a href="#">Arcade</a></li>
+                    <li><a href="#">Shooters</a></li>
+                    <li><a href="#">Puzzle</a></li>
+                    <li><a href="#">Carreras</a></li>
+                    <li><a href="#">Aventuras</a></li>
+                    <li><a href="#">Recomendados</a></li>
+                </ul>
+                </div>
+                <div class="footer-col-links">
+                <h3>Comunidad</h3>
+                <ul>
+                    <li><a href="#">Foro de jugadores</a></li>
+                    <li><a href="#">Ranking de puntuaciones</a></li>
+                    <li><a href="#">Sugerencias</a></li>
+                </ul>
+                </div>
+                <div class="footer-col-links">
+                <h3>Soporte</h3>
+                <ul>
+                    <li><a href="#">Centro de ayuda</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Reportar problemas</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+                </div>
+                <div class="footer-col-links">
+                <h3>Legal y políticas</h3>
+                <ul>
+                    <li><a href="#">Condiciones de uso</a></li>
+                    <li><a href="#">Política de Cookies</a></li>
+                    <li><a href="#">Políticas de privacidad</a></li>
+                    <li><a href="#">Políticas de reembolso</a></li>
+                    <li><a href="#">Términos de servicios</a></li>
+                </ul>
+                </div>
+                <div class="footer-col-links">
+                <h3>Promociones y ofertas</h3>
+                <ul>
+                    <li><a href="#">Ofertas del día</a></li>
+                    <li><a href="#">Cupones y descuentos</a></li>
+                    <li><a href="#">Sorteos y concursos</a></li>
+                    <li><a href="#">Packs de juegos</a></li>
+                </ul>
+                </div>
             </div>
-            <form class="footer-newsletter">
-              <label for="email">Recibir novedades</label>
-              <input type="email" id="email" placeholder="email@ejemplo.com" />
-              <button type="submit">Suscribite</button>
-            </form>
-          </div>
-          <div class="footer-links-grid">
-            <div class="footer-col-links">
-              <h3>Sobre nosotros</h3>
-              <ul>
-                <li><a href="#">Historia</a></li>
-                <li><a href="#">Equipo</a></li>
-                <li><a href="#">Prensa</a></li>
-                <li><a href="#">Trabaja aquí</a></li>
-              </ul>
-            </div>
-            <div class="footer-col-links">
-              <h3>Categorías</h3>
-              <ul>
-                <li><a href="#">Arcade</a></li>
-                <li><a href="#">Shooters</a></li>
-                <li><a href="#">Puzzle</a></li>
-                <li><a href="#">Carreras</a></li>
-                <li><a href="#">Aventuras</a></li>
-                <li><a href="#">Recomendados</a></li>
-              </ul>
-            </div>
-            <div class="footer-col-links">
-              <h3>Comunidad</h3>
-              <ul>
-                <li><a href="#">Foro de jugadores</a></li>
-                <li><a href="#">Ranking de puntuaciones</a></li>
-                <li><a href="#">Sugerencias</a></li>
-              </ul>
-            </div>
-            <div class="footer-col-links">
-              <h3>Soporte</h3>
-              <ul>
-                <li><a href="#">Centro de ayuda</a></li>
-                <li><a href="#">FAQs</a></li>
-                <li><a href="#">Reportar problemas</a></li>
-                <li><a href="#">Contacto</a></li>
-              </ul>
-            </div>
-            <div class="footer-col-links">
-              <h3>Legal y políticas</h3>
-              <ul>
-                <li><a href="#">Condiciones de uso</a></li>
-                <li><a href="#">Política de Cookies</a></li>
-                <li><a href="#">Políticas de privacidad</a></li>
-                <li><a href="#">Políticas de reembolso</a></li>
-                <li><a href="#">Términos de servicios</a></li>
-              </ul>
-            </div>
-            <div class="footer-col-links">
-              <h3>Promociones y ofertas</h3>
-              <ul>
-                <li><a href="#">Ofertas del día</a></li>
-                <li><a href="#">Cupones y descuentos</a></li>
-                <li><a href="#">Sorteos y concursos</a></li>
-                <li><a href="#">Packs de juegos</a></li>
-              </ul>
-            </div>
-          </div>
         </div>
 
+        <div class="container-footer-secundario">
+            
             <div class="footer-sponsors">
                 <h2>Patrocinadores</h2>
                 <div class="sponsors-logos">
-<div class="sponsors-logos">
-            <div class="sponsors-row">
-              <img src="assets/img/sponsors/logo-ea.svg" alt="EA" />
-              <img src="assets/img/sponsors/logo-intel.svg" alt="Intel" />
-              <img src="assets/img/sponsors/logo-microsoft.svg" alt="Microsoft" />
-              <img src="assets/img/sponsors/logo-naughty-dog.svg" alt="Naughty Dog" />
-              <img src="assets/img/sponsors/logo-nintendo.svg" alt="Nintendo" />
-              <img src="assets/img/sponsors/logo-nvidia.svg" alt="Nvidia" />
-            </div>
-            <div class="sponsors-row">
-              <img src="assets/img/sponsors/logo-playstation.svg" alt="PlayStation" />
-              <img src="assets/img/sponsors/logo-rockstar.svg" alt="Rockstar" />
-              <img src="assets/img/sponsors/logo-sega.svg" alt="Sega" />
-              <img src="assets/img/sponsors/logo-xbox.svg" alt="Xbox" />
-            </div>
-          </div>
+                    <div class="sponsors-row">
+                        <img src="assets/img/sponsors/logo-ea.svg" alt="EA" />
+                        <img src="assets/img/sponsors/logo-intel.svg" alt="Intel" />
+                        <img src="assets/img/sponsors/logo-microsoft.svg" alt="Microsoft" />
+                        <img src="assets/img/sponsors/logo-naughty-dog.svg" alt="Naughty Dog" />
+                        <img src="assets/img/sponsors/logo-nintendo.svg" alt="Nintendo" />
+                        <img src="assets/img/sponsors/logo-nvidia.svg" alt="Nvidia" />
+                    </div>
+                    <div class="sponsors-row">
+                        <img src="assets/img/sponsors/logo-playstation.svg" alt="PlayStation" />
+                        <img src="assets/img/sponsors/logo-rockstar.svg" alt="Rockstar" />
+                        <img src="assets/img/sponsors/logo-sega.svg" alt="Sega" />
+                        <img src="assets/img/sponsors/logo-xbox.svg" alt="Xbox" />
+                    </div>
                 </div>
+            </div> <div class="ranking-jugadores">
+                <h2>Ranking de jugadores</h2>
+                <ol class="ranking-list">
+                    <li>
+                        <span class="rank">1.</span>
+                        <span class="name">GamerPro</span>
+                        <span class="score">15000 pts</span>
+                    </li>
+                    <li>
+                        <span class="rank">2.</span>
+                        <span class="name">PixelMaster</span>
+                        <span class="score">14000 pts</span>
+                    </li>
+                    <li>
+                        <span class="rank">3.</span>
+                        <span class="name">RetroRuler</span>
+                        <span class="score">13000 pts</span>
+                    </li>
+                    <li>
+                        <span class="rank">4.</span>
+                        <span class="name">ArcadeAce</span>
+                        <span class="score">12000 pts</span>
+                    </li>
+                    <li>
+                        <span class="rank">5.</span>
+                        <span class="name">JoystickJunkie</span>
+                        <span class="score">11000 pts</span>
+                    </li>
+                </ol>
             </div>
 
-        <div class="footer-bottom">
-          <p>2025 Copyright InsertCoin Inc. Todos los derechos reservados</p>
-          <p>
-            Esta página está protegida por reCAPTCHA y contempla las
-            <a href="#">Condiciones de Servicio</a> y la
-            <a href="#">Política de Privacidad</a> de Google y las
-            <a href="#">Condiciones de Servicio</a> de YouTube.
-          </p>
+            <div class="container-noticias">
+    <h2>Noticias semanales</h2>
+    <div class="noticias-list">
+        <article class="noticia-item">
+            <img class="news-image" src="assets/img/noticias/noticiaRetro2.png" alt="Noticia 1"> 
+            <div class="news-text-content">
+                <h3>Nuevos lanzamientos de juegos retro</h3>
+                <p>
+                Descubre los últimos títulos que han llegado a nuestra
+                plataforma esta semana.
+                </p>
+            </div>
+        </article>
+        <article class="noticia-item">
+            <img class="news-image" src="assets/img/noticias/entrevista.jpg" alt="Noticia 2"> 
+            <div class="news-text-content">
+                <h3>Entrevista con un desarrollador de juegos clásico</h3>
+                <p>
+                Hablamos con Jane Doe sobre su experiencia creando juegos
+                retro.
+                </p>
+            </div>
+        </article>
+        <article class="noticia-item">
+             <img class="news-image" src="assets/img/noticias/consejoNoticia.png" alt="Noticia 3"> 
+            <div class="news-text-content">
+                <h3>Consejos para mejorar tus habilidades en juegos arcade</h3>
+                <p>
+                Aprende estrategias y trucos para dominar tus juegos
+                favoritos.
+                </p>
+            </div>
+        </article>
+    </div>
+</div>
+            </div>
+
+        </div> 
+
+        </div> <div class="footer-bottom">
+            <p>2025 Copyright InsertCoin Inc. Todos los derechos reservados</p>
+            <p>
+                Esta página está protegida por reCAPTCHA y contempla las
+                <a href="#">Condiciones de Servicio</a> y la
+                <a href="#">Política de Privacidad</a> de Google y las
+                <a href="#">Condiciones de Servicio</a> de YouTube.
+            </p>
         </div>
-      </div>
-    </footer>
+
+    </div>
+</footer>
 
 
     <script src="scripts/script.js"></script>
