@@ -216,17 +216,37 @@
     </nav>
 
     <main class="home-content">
-      <section class="main-banner">
-        <div class="banner-content">
-          <h1 class="banner-title">Dinorey</h1>
-          <p class="banner-subtitle">Jugá a este nuevo juego</p>
-          <a href="game.html" class="banner-play-button">
-            <span>Jugar</span>
-            <i class="fas fa-play-circle"></i>
-          </a>
-          <p class="banner-bottom-text">Peg Solitaire</p>
+      <section class="banner-slider-container">
+    <div class="banner-slider-wrapper">
+
+        <div class="banner-slide next" style="background-image: url('https://i.pinimg.com/736x/df/59/fe/df59fe8f10295eeb2e235d5894f8905d.jpg');"> 
+            <div class="banner-content">
+                <h2 class="banner-title">Dragon Ball Z</h2> 
+                <p class="banner-subtitle">Ayuda a salvar al planeta Namek</p>
+                <a href="game.html" class="banner-play-button"> <span>Jugar</span>
+                    <i class="fas fa-play-circle"></i>
+                </a>
+                <p class="banner-bottom-text">Blocka Ball Z</p>
+            </div>
         </div>
-      </section>
+        <div class="banner-slide active" style="background-image: url('/TP3/assets/img/banners/banner-dinorey.jpg');">
+            <div class="banner-content">
+                <h2 class="banner-title">Dinorey</h2>
+                <p class="banner-subtitle">Jugá a este nuevo juego</p>
+                <a href="game.html" class="banner-play-button">
+                    <span>Jugar</span>
+                    <i class="fas fa-play-circle"></i>
+                </a>
+                <p class="banner-bottom-text">Peg Solitaire</p>
+            </div>
+        </div>
+        
+        </div>
+
+    <button class="slider-arrow prev-arrow"><i class="fas fa-chevron-left"></i></button>
+    <button class="slider-arrow next-arrow"><i class="fas fa-chevron-right"></i></button>
+
+</section>
 
       <section class="recommended-games">
         <h3>Jugado recientemente</h3>
@@ -972,6 +992,7 @@
     <script src="scripts/navbar.js"></script>
     <script src="scripts/carrusel.js"></script>
     <script src="scripts/loading.js"></script>
+    <script src="scripts/slider.js"></script>
     <script
       src="https://kit.fontawesome.com/a405ba9b1d.js"
       crossorigin="anonymous"
