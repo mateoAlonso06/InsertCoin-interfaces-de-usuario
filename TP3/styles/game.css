@@ -80,11 +80,20 @@ body, main {
     min-width: 0;
 }
 
-.game-screen {
+#blocka-body .game-screen {
     width: 100%;
     position: relative; 
     height: 575px;
     background-image: url('https://e0.pxfuel.com/wallpapers/691/991/desktop-wallpaper-background-dragon-ball-z-dragon-ball-super-scenery.jpg');
+    background-size: cover; 
+    background-position: center; 
+}
+
+#peg-solitaire-body .game-screen {
+    width: 100%;
+    position: relative; 
+    height: 575px;
+    background-image: url('../assets/img/peg-solitaire-utils/Pegsolitarie.svg');
     background-size: cover; 
     background-position: center; 
 }
