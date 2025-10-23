@@ -527,7 +527,6 @@ a {
 }
 
 .game-card .play-button:hover::before {
-  /* Mover el brillo desde el -100% hasta que pase completamente, por ejemplo, 180% */
   transform: translate(120%, 0);
 }
 

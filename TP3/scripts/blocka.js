@@ -13,7 +13,8 @@ let juegoActivo =false;
 const levels = [
     { level: 1, dificultad: 2, tiempo: 60 },
     { level: 2, dificultad: 4, tiempo: 120 },
-    { level: 3, dificultad: 6, tiempo: 300 }
+    { level: 3, dificultad: 6, tiempo: 200 },
+    { level: 4, dificultad: 8, tiempo: 300 }
 ];
 
 // --- Elementos del DOM ---

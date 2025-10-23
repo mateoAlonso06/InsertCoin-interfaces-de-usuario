@@ -7,7 +7,7 @@ carruseles.forEach(carrusel => {
   const flechaIzquierda = carrusel.querySelector('.left-arrow');
   const flechaDerecha = carrusel.querySelector('.right-arrow');
 
-  // ✅ Mostrar todas las cards al cargar (sin animar aún)
+  //Mostrar todas las cards al cargar (sin animar aún)
   games.forEach(game => {
     game.style.opacity = '1';
     game.style.transform = 'translateY(0)';
@@ -26,12 +26,12 @@ carruseles.forEach(carrusel => {
 
   // --- Movimiento y animación mientras se desliza ---
   flechaDerecha.addEventListener('click', () => {
-    fila.scrollLeft += fila.offsetWidth;
+    fila.scrollLeft += fila.offsetWidth; //Mueve la fila hacia la derecha tanto como el ancho del layout del elemento.
     animarGames(); // activa animación solo para este carrusel
   });
 
   flechaIzquierda.addEventListener('click', () => {
-    fila.scrollLeft -= fila.offsetWidth;
+    fila.scrollLeft -= fila.offsetWidth; //Mueve la fila hacia la derecha tanto como el ancho del layout del elemento.
     animarGames(); // activa animación solo para este carrusel
   });
 });
