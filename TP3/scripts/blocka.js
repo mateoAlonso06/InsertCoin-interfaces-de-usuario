@@ -261,6 +261,7 @@ function verificarVictoria() {
             tiempoLevelDisplay.textContent = timerDisplay.textContent;
         }
         
+        piezas.forEach(p => p.bloqueada = false);
         dibujarPiezas(imagenOriginalParaPiezas); 
         
         setTimeout(() => {

@@ -584,14 +584,16 @@ body, main {
 .ctn-comments-public {
     display: flex;
     flex-direction: row;
-    width: 98%;
-    margin: 0rem 1rem 1rem 1rem;
+    width: 100%; 
+    margin: 1rem 0; 
+    gap: 1.5rem; 
 }
 
 .comments-section {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    width: 70%;
+    flex-shrink: 0; 
     padding: 1rem;
     gap: 1rem;
 }
@@ -603,7 +605,7 @@ body, main {
 .comments-list {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    
     width: 100%;
 }
 
@@ -637,7 +639,7 @@ body, main {
     color: var(--color-neutral-100);
     margin: 0;
     font-size: 0.9rem;
-    font-family: var(--font-family-secondary);
+    
 }
 
 .user-avatar img {
@@ -687,6 +689,9 @@ textarea:focus {
 .comment-done {
     height: 12.31rem;
     border-radius: 10px;
+    font-family: var(--font-family-secondary);
+    font-weight: bold;
+    font-size: 16px;
 }
 
 .comment-done p {
@@ -700,10 +705,11 @@ textarea:focus {
     flex-direction: column;
     align-items: center;
     justify-content: start;
-    margin: 7.8rem 0 0 1rem;
+    margin: 7.8rem 0 0 0; 
     gap: 4rem;
     width: 30%;
-    flex-grow: 1;
+    flex-shrink: 0;
+    flex-grow: 0; 
 }
 
 .publicidad img:first-child {
