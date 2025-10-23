@@ -62,8 +62,10 @@ btnNiveles.addEventListener('click', () => {
             btnNiveles.disabled = false;
             return;
         }
-        menuJuego.classList.add('hidden');
-        iniciarJuegoCompleto(imagenSeleccionada, levelActual);
+        setTimeout(() => {
+            iniciarJuegoCompleto(imagenSeleccionada, levelActual);
+            menuJuego.classList.add('hidden');
+        }, 1500);
         btnNiveles.disabled = false;
     });
 });

@@ -139,33 +139,7 @@
                 <h3 class="menu-title">BLOCKA BALL Z <span><img src="assets/img/blocka/esferaCuatro.png" style="width:120px; height: 120px;" alt=""></span></h3>
 
                 <button id="start-game-button" class="menu-btn">Iniciar Juego</button>
-                
-              </div>
-              <div id="menu-secundario">
-                <h3 id="victoria">Nivel superado</h3>
-                <p>Tiempo restante:<span class="tiempo-level">10:05</Tiempo:span></p>
-                  <button id="btn-sigLevel">Siguiente nivel</button>
-                  <button id="btn-volver-menu">Menu</button>
-              </div>
-  <div class="icons-screen-reset">
-      <i id="restart-level" class="fa-solid fa-arrows-rotate "></i>
-      <i class="fa-solid fa-expand"></i>
-  </div>
-<canvas id="canvas" width="850" height="575"></canvas>
-            </div>
-            <h3>Blocka - Dragon ball z</h3>
-        </div>
-        <div class="game-info">
-            <div class="controles">
-                <h3>Controles</h3>
-                <img src="assets/img/blocka/ChatGPT Image Oct 12, 2025, 05_04_52 PM.png" alt="">
-                <p>Haz click para rotar las piezas.</p>
-            </div>
-            <div class="explicacion">
-                <h3>Como ganar</h3>
-                <p>completa la imagen antes de que se acabe el tiempo.</p>
-            </div>
-            <div class="personajes">
+                <div class="personajes menu-personajes-blocka">
               <h3>Blockas</h3>
               <div class="carousel-blocka">
                   <button id="prev-btn" class="carousel-btn">
@@ -208,12 +182,83 @@
                           </div>
                       </div>
                   </div>
-          
                   <button id="next-btn" class="carousel-btn">
                       <i class="fa-solid fa-chevron-right"></i>
                   </button>
               </div>
           </div>
+              </div>
+              <div id="menu-secundario">
+                <h3 id="victoria">Nivel superado</h3>
+                <p>Tiempo restante:<span class="tiempo-level">10:05</Tiempo:span></p>
+                  <button id="btn-sigLevel">Siguiente nivel</button>
+                  <button id="btn-volver-menu">Menu</button>
+              </div>
+  <div class="icons-screen-reset">
+      <i id="restart-level" class="fa-solid fa-arrows-rotate "></i>
+      <i class="fa-solid fa-expand"></i>
+  </div>
+<canvas id="canvas" width="850" height="575"></canvas>
+            </div>
+            <h3>Blocka - Dragon ball z</h3>
+        </div>
+        <div class="game-info">
+            <div class="controles">
+                <h3>Controles</h3>
+                <img src="assets/img/blocka/ChatGPT Image Oct 12, 2025, 05_04_52 PM.png" alt="">
+                <p>Haz click para rotar las piezas.</p>
+            </div>
+            <div class="explicacion">
+                <h3>Como ganar</h3>
+                <p>completa la imagen antes de que se acabe el tiempo.</p>
+            </div>
+             <div class="personajes menu-personajes-blocka" id="blocka-carrusel-detalle">
+              <h3>Blockas</h3>
+              <div class="carousel-blocka">
+                  <button id="info-prev-btn" class="carousel-btn">
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+          
+                  <div class="carousel-window">
+                      <div class="carousel-track" id="info-track">
+                          <div class="personaje-container">
+                              <div class="personaje"><img src="assets/img/blocka/gokuNormal.jpg" alt=""></div>
+                              <h4>Goku</h4>
+                          </div>
+                          <div class="personaje-container">
+                              <div class="personaje"><img src="assets/img/blocka/gokussj.jpg" alt=""></div>
+                              <h4>Goku ssj</h4>
+                          </div>
+                          <div class="personaje-container">
+                              <div class="personaje"><img src="assets/img/blocka/gokussj2.jpg" alt=""></div>
+                              <h4>Goku ssj2</h4>
+                          </div>
+                          <div class="personaje-container">
+                              <div class="personaje"><img src="assets/img/blocka/gokussj3.jpg" alt=""></div>
+                              <h4>Goku ssj3</h4>
+                          </div>
+                          <div class="personaje-container">
+                              <div class="personaje"><img src="assets/img/blocka/gokussjDios.jpg" alt=""></div>
+                              <h4>Goku fase dios</h4>
+                          </div>
+                          <div class="personaje-container">
+                              <div class="personaje"><img src="assets/img/blocka/GokuSsjblue.webp" alt=""></div>
+                              <h4>Goku ssj blue</h4>
+                          </div>
+                          <div class="personaje-container">
+                              <div class="personaje"><img src="assets/img/blocka/gokuOmen.jpg" alt=""></div>
+                              <h4>Goku omen</h4>
+                          </div>
+                          <div class="personaje-container">
+                              <div class="personaje"><img src="assets/img/blocka/gokumngcompleto.jpg" alt=""></div>
+                              <h4>Goku ultra instinto</h4>
+                          </div>
+                      </div>
+                  </div>
+                  <button id="info-next-btn" class="carousel-btn">
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+              </div>
         </div>
     </section>
     <section class="container-info-multimedia">
@@ -682,6 +727,7 @@
     <script src="scripts/navbar.js"></script>
     <script src="scripts/carrusel.js"></script>
     <script src="scripts/carrusel-blocka.js" type="module"></script>
+    <script src="scripts/blockas-info.js" type="module"></script>
     <script src="scripts/blocka.js" type="module"></script>
     <script src="https://kit.fontawesome.com/a405ba9b1d.js" crossorigin="anonymous"></script>
 </body>

@@ -151,8 +151,14 @@ body, main {
     justify-content: center;
     align-items: center;
     margin: auto;
-    margin-top: 150px;
+    margin-top: 50px;
 }
+
+#game-menu h3 {
+    color: var(--color-neutral-800, #fff);
+}
+
+
 
 .menu-btn { 
     padding: 15px 40px;
@@ -503,6 +509,18 @@ body, main {
 /* Carrusel de Personajes */
 /* ======================================================= */
 
+ #blocka-carrusel-detalle .carousel-blocka{
+    background-color: transparent;
+}
+
+#info-prev-btn {
+    left: 10px; /* Posiciona el botón 'anterior' a la izquierda */
+}
+
+#info-next-btn {
+    right: 10px; /* Posiciona el botón 'siguiente' a la derecha */
+}
+
 .carousel-blocka {
     position: relative;
     display: flex;
@@ -511,11 +529,14 @@ body, main {
     width: 100%;
     max-width: 280px;
     margin: 0 auto;
+    background-color:#33333396;
 }
+
 
 .carousel-window {
     width: 150px;
     overflow: hidden;
+    margin: auto;
 }
 
 .carousel-track {
@@ -557,7 +578,9 @@ body, main {
     align-items: center;
     min-width: 150px;
     text-align: center;
+    margin: auto;
 }
+
 
 .personaje {
     width: 100px;
