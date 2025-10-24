@@ -381,18 +381,18 @@ h1 span {
 }
 
 .footer-links-grid {
-        flex: 1 1 auto; 
-        display: flex;
-        flex-direction: row; 
-        flex-wrap: nowrap; 
-        justify-content: space-between; 
-        gap: 2rem; 
-        margin-top: 0;
-        align-items: flex-start; 
-        
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;   
+    justify-content: flex-start;
+    gap: 2rem;  
+    margin-top: 0;
+    align-items: center;
+    width: 100%;
     }
 
-    .footer-col-links {
+ .footer-col-links {
         flex: 1 1 0; 
         min-width: 120px; 
         white-space: normal;
