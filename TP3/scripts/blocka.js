@@ -1,27 +1,26 @@
-// En tu archivo: scripts/blocka-game.js
-
 // Importa la función de animación desde el script del carrusel.
 import { iniciarSeleccionAleatoria } from './carrusel-blocka.js';
 
-// =======================================================
-// SETUP INICIAL Y ESTADO DEL JUEGO
-// =======================================================
-let imagenFuenteParaPiezas;
+let imagenFuenteParaPiezas; 
+let imagenOriginalParaPiezas; 
 const piezas = [];
-let levelActual = 0; // Este es el ÍNDICE (0, 1, o 2) del nivel actual
+let levelActual = 0; 
 let srcImagenActual = null;
 let hintUsadoEnNivel = false;
+let juegoActivo =false;
+
 
 const levels = [
-    { level: 1, dificultad: 1, tiempo: 60 }, // Nivel 1 (índice 0)
-    { level: 2, dificultad: 1, tiempo: 120 }, // Nivel 2 (índice 1)
-    { level: 3, dificultad: 1, tiempo: 300 }  // Nivel 3 (índice 2)
+    { level: 1, dificultad: 2, tiempo: 60 },
+    { level: 2, dificultad: 4, tiempo: 120 },
+    { level: 3, dificultad: 6, tiempo: 200 },
+    { level: 4, dificultad: 8, tiempo: 300 }
 ];
 
 // --- Elementos del DOM ---
 const menuJuego = document.getElementById('game-menu');
 const menuSecundario = document.getElementById('menu-secundario');
-const tituloVictoria = document.getElementById('victoria');
+const tituloVictoria = menuSecundario.querySelector('h3'); // 
 const btnNextLevel = document.getElementById('btn-sigLevel');
 const volverMenu = document.getElementById('btn-volver-menu');
 const btnNiveles = document.getElementById('start-game-button');
@@ -40,6 +39,7 @@ menuSecundario.classList.add('hidden');
 btnAyuda.classList.add('hidden');
 timerCont.classList.add('hidden');
 menuTiempoTerminado.classList.add('hidden');
+
 // Variables del Temporizador
 let timerInterval;
 let tiempoRestante = 0;
@@ -52,22 +52,21 @@ const filtrosDisponibles = [
     aplicarFiltroBrilloSesenta
 ];
 
-// =======================================================
-// EVENT LISTENERS DEL MENÚ Y JUEGO
-// =======================================================
 
-// Clic en "Iniciar Juego" (Modo Historia)
+// EVENT LISTENERS DEL MENÚ Y JUEGO
+
 btnNiveles.addEventListener('click', () => {
     btnNiveles.disabled = true;
-    levelActual = 0; // Reinicia al primer nivel (índice 0)
+    levelActual = 0;
     iniciarSeleccionAleatoria((imagenSeleccionada) => {
         if (!imagenSeleccionada) {
             btnNiveles.disabled = false;
             return;
         }
-        menuJuego.classList.add('hidden');
-        // Pasa el ÍNDICE del nivel (0)
-        iniciarJuegoCompleto(imagenSeleccionada, levelActual); 
+        setTimeout(() => {
+            iniciarJuegoCompleto(imagenSeleccionada, levelActual);
+            menuJuego.classList.add('hidden');
+        }, 1500);
         btnNiveles.disabled = false;
     });
 });
@@ -75,15 +74,13 @@ btnNiveles.addEventListener('click', () => {
 // Clic en "Siguiente Nivel"
 btnNextLevel.addEventListener('click', () => {
     menuSecundario.classList.add('hidden');
-    levelActual++; // Avanza al siguiente ÍNDICE
-
+    levelActual++;
     if (levelActual < levels.length) {
         const siguienteImagen = obtenerNuevaImagenAleatoria(srcImagenActual);
         if (siguienteImagen) {
-            iniciarJuegoCompleto(siguienteImagen, levelActual); 
+            iniciarJuegoCompleto(siguienteImagen, levelActual);
         } else {
-            alert("Error al cargar la siguiente imagen. Volviendo al menú.");
-            ctx.clearRect(0, 0, canvas.width, canvas.height); 
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
             restaurarMenuPrincipal();
         }
     } else {
@@ -103,11 +100,11 @@ volverMenu.addEventListener('click', () => {
 
 // Clics para rotar piezas
 canvas.addEventListener('click', (event) => {
+    if (!juegoActivo) return;
     const rect = canvas.getBoundingClientRect();
     const mouseX = event.clientX - rect.left;
     const mouseY = event.clientY - rect.top;
     const piezaClickeada = piezaenPosicion(mouseX, mouseY);
-
     if (piezaClickeada && !piezaClickeada.bloqueada) {
         piezaClickeada.rotacion += Math.PI / 2;
         piezaClickeada.rotacion %= (2 * Math.PI);
@@ -117,12 +114,12 @@ canvas.addEventListener('click', (event) => {
 });
 
 canvas.addEventListener('contextmenu', (e) => {
+    if (!juegoActivo) return;
     e.preventDefault();
     const rect = canvas.getBoundingClientRect();
     const mouseX = e.clientX - rect.left;
     const mouseY = e.clientY - rect.top;
     const piezaClickeada = piezaenPosicion(mouseX, mouseY);
-
     if (piezaClickeada && !piezaClickeada.bloqueada) {
         piezaClickeada.rotacion -= Math.PI / 2;
         if (piezaClickeada.rotacion < 0) {
@@ -133,7 +130,7 @@ canvas.addEventListener('contextmenu', (e) => {
     }
 });
 
-// Clic en "Ayuda"
+// Ayuda
 btnAyuda.addEventListener('click', () => {
     if (hintUsadoEnNivel) return;
     const piezasIncorrectas = piezas.filter(p => (p.rotacion > 0.01 || p.rotacion < -0.01) && !p.bloqueada);
@@ -154,7 +151,7 @@ btnAyuda.addEventListener('click', () => {
     }
 });
 
-// Clic en "Reiniciar Nivel"
+// Clic en Reiniciar Nivel
 restartLevel.addEventListener('click', () => {
     if (srcImagenActual) {
         iniciarJuegoCompleto(srcImagenActual, levelActual);
@@ -162,9 +159,8 @@ restartLevel.addEventListener('click', () => {
 });
 
 
-// =======================================================
 // LÓGICA DEL TEMPORIZADOR
-// =======================================================
+
 function startTimer(limiteSegundos) {
     tiempoRestante = limiteSegundos;
     stopTimer();
@@ -208,11 +204,13 @@ function restaurarMenuPrincipal() {
     btnAyuda.classList.add('hidden');
     timerCont.classList.add('hidden');
     stopTimer();
+    
+    if(tituloVictoria) tituloVictoria.textContent = "Nivel superado";
 }
 
-// =======================================================
+
 // FUNCIONES DEL NÚCLEO DEL JUEGO
-// =======================================================
+
 
 function iniciarJuegoCompleto(srcDeImagen, numeroDeNivel) {
     if (numeroDeNivel < 0 || numeroDeNivel >= levels.length) {
@@ -221,7 +219,6 @@ function iniciarJuegoCompleto(srcDeImagen, numeroDeNivel) {
         return;
     }
 
-    // Obtiene la config usando el ÍNDICE (numeroDeNivel)
     const configLevel = levels[numeroDeNivel];
     const dificultad = configLevel.dificultad;
     const tiempoLimite = configLevel.tiempo;
@@ -240,13 +237,16 @@ function iniciarJuegoCompleto(srcDeImagen, numeroDeNivel) {
     imagenJuego.src = srcDeImagen;
 
     imagenJuego.onload = () => {
+
         imagenFuenteParaPiezas = crearImagenFiltrada(imagenJuego);
+        imagenOriginalParaPiezas = crearImagenOriginal(imagenJuego); 
+
         iniciarPiezas(imagenFuenteParaPiezas, dificultad);
-        dibujarPiezas(imagenFuenteParaPiezas);
+        dibujarPiezas(imagenFuenteParaPiezas); 
+        juegoActivo = true;
     };
     imagenJuego.onerror = () => {
         stopTimer();
-        alert(`Error al cargar la imagen: ${srcDeImagen}.`);
         restaurarMenuPrincipal();
     };
 }
@@ -254,28 +254,34 @@ function iniciarJuegoCompleto(srcDeImagen, numeroDeNivel) {
 function verificarVictoria() {
     if (piezas.length === 0) return;
     const ganado = piezas.every(p => p.rotacion < 0.01 && p.rotacion > -0.01);
+
     if (ganado) {
+        juegoActivo = false;
         stopTimer();
         if (tiempoLevelDisplay) {
             tiempoLevelDisplay.textContent = timerDisplay.textContent;
         }
-        setTimeout(() => {
-            menuSecundario.classList.remove('hidden');
-        }, 1000);
         
-        if (levelActual >= levels.length - 1) {
-            btnNextLevel.style.display = 'none';
-            tituloVictoria.textContent = "¡Felicitaciones, has derrotado a freezer!";
-        } else {
-            tituloVictoria.textContent = "¡Nivel superado!";
-            btnNextLevel.style.display = 'block';
-        }
+        piezas.forEach(p => p.bloqueada = false);
+        dibujarPiezas(imagenOriginalParaPiezas); 
+        
+        setTimeout(() => {
+            
+            if (levelActual >= levels.length - 1) {
+                btnNextLevel.style.display = 'none';
+                if(tituloVictoria) tituloVictoria.textContent = "¡Felicitaciones, has derrotado a Freezer!";
+            } else {
+                btnNextLevel.style.display = 'block';
+                if(tituloVictoria) tituloVictoria.textContent = "Nivel superado";
+            }
+            menuSecundario.classList.remove('hidden');
+        }, 2000); 
     }
 }
 
 function obtenerNuevaImagenAleatoria(srcAExcluir) {
     const todasLasImagenes = Array.from(document.querySelectorAll('.carousel-track .personaje img'));
-    if (todasLasImagenes.length === 0) { console.error("No images found in carousel."); return null; }
+    if (todasLasImagenes.length === 0) { return null; }
     const imagenesDisponibles = todasLasImagenes.filter(img => img.src !== srcAExcluir);
     if (imagenesDisponibles.length > 0) {
         return imagenesDisponibles[Math.floor(Math.random() * imagenesDisponibles.length)].src;
@@ -284,22 +290,40 @@ function obtenerNuevaImagenAleatoria(srcAExcluir) {
     }
 }
 
+
 function crearImagenFiltrada(image) {
     const bufferCanvas = document.createElement('canvas');
     const bufferCtx = bufferCanvas.getContext('2d');
+    
     const tamanoPuzzle = 400;
-    bufferCanvas.width = tamanoPuzzle; bufferCanvas.height = tamanoPuzzle;
+    bufferCanvas.width = tamanoPuzzle;
+    bufferCanvas.height = tamanoPuzzle;
+
     bufferCtx.drawImage(image, 0, 0, tamanoPuzzle, tamanoPuzzle);
+    
     try {
         const imageData = bufferCtx.getImageData(0, 0, tamanoPuzzle, tamanoPuzzle);
         const indiceAleatorio = Math.floor(Math.random() * filtrosDisponibles.length);
         const filtroAleatorio = filtrosDisponibles[indiceAleatorio];
         if (filtroAleatorio) {
-            console.log("Aplicando filtro:", filtroAleatorio.name);
             filtroAleatorio(imageData);
             bufferCtx.putImageData(imageData, 0, 0);
         }
-    } catch (e) { console.error("Error applying filter (CORS?):", e); }
+    } catch (e) { console.error("Error aplicando el filtro", e); }
+    
+    return bufferCanvas;
+}
+
+function crearImagenOriginal(image) {
+    const bufferCanvas = document.createElement('canvas');
+    const bufferCtx = bufferCanvas.getContext('2d');
+    
+    const tamanoPuzzle = 400;
+    bufferCanvas.width = tamanoPuzzle;
+    bufferCanvas.height = tamanoPuzzle;
+
+    bufferCtx.drawImage(image, 0, 0, tamanoPuzzle, tamanoPuzzle);
+    
     return bufferCanvas;
 }
 
@@ -317,7 +341,7 @@ function iniciarPiezas(image, dificultad) {
                 sx: col * anchoPieza, sy: fila * altoPieza, sWidth: anchoPieza, sHeight: altoPieza,
                 dx: posXInicial + col * anchoPieza, dy: posYInicial + fila * altoPieza, dWidth: anchoPieza, dHeight: altoPieza,
                 rotacion: 0,
-                bloqueada: false // Definir 'bloqueada' desde el inicio
+                bloqueada: false 
             });
         }
     }
@@ -332,7 +356,7 @@ function iniciarPiezas(image, dificultad) {
 
 function dibujarPiezas(image) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    if (!image) { console.error("No image source provided to drawPieces"); return; }
+    if (!image) { return; }
     for (const pieza of piezas) {
         const centroX = pieza.dx + pieza.dWidth / 2, centroY = pieza.dy + pieza.dHeight / 2;
         ctx.save();
@@ -347,7 +371,7 @@ function dibujarPiezas(image) {
         }
         try {
             ctx.drawImage(image, pieza.sx, pieza.sy, pieza.sWidth, pieza.sHeight, -pieza.dWidth / 2, -pieza.dHeight / 2, pieza.dWidth, pieza.dHeight);
-        } catch (e) { console.error("Error drawing piece:", e); ctx.fillStyle = 'red'; ctx.fillRect(-pieza.dWidth / 2, -pieza.dHeight / 2, pieza.dWidth, pieza.dHeight); }
+        } catch (e) { console.error("error dibujando la pieza:", e); ctx.fillStyle = 'red'; ctx.fillRect(-pieza.dWidth / 2, -pieza.dHeight / 2, pieza.dWidth, pieza.dHeight); }
         ctx.lineWidth = 2;
         ctx.strokeRect(-pieza.dWidth / 2, -pieza.dHeight / 2, pieza.dWidth, pieza.dHeight);
         ctx.restore();
@@ -367,9 +391,9 @@ function esPosicionValida(pieza, mouseX, mouseY) {
            mouseY >= pieza.dy && mouseY <= pieza.dy + pieza.dHeight;
 }
 
-// =======================================================
+
 // FILTROS
-// =======================================================
+
 function aplicarFiltroGris(imageData) {
     const data = imageData.data;
     for (let i = 0; i < data.length; i += 4) {

@@ -2,16 +2,14 @@
 
 export let personajeSeleccionadoSrc = null;
 
-// Referencias a los elementos del carrusel
+//  elementos del carrusel
 const track = document.querySelector('.carousel-track');
 const slides = Array.from(track.children);
 const prevButton = document.getElementById('prev-btn');
 const nextButton = document.getElementById('next-btn');
 let currentIndex = 0;
 
-/**
- * Función central que actualiza la vista del carrusel y la selección.
- */
+
 function updateCarouselView() {
     if (slides.length === 0) return;
     
@@ -52,17 +50,12 @@ prevButton.addEventListener('click', () => {
 // Inicializa la vista del carrusel al cargar la página
 document.addEventListener('DOMContentLoaded', updateCarouselView);
 
-
-// =======================================================
-// NUEVA FUNCIÓN DE ANIMACIÓN (MUCHO MÁS SIMPLE)
-// =======================================================
-
 /**
  * Inicia una animación de ruleta y llama a una función callback cuando termina.
  */
 export function iniciarSeleccionAleatoria(onCompleteCallback) {
-    const duracionTotal = 2500; // 2.5 segundos de animación
-    const intervalo = 100;    // Cambia de imagen cada 100ms
+    const duracionTotal = 2500; 
+    const intervalo = 100;    
     
     let tiempoTranscurrido = 0;
 

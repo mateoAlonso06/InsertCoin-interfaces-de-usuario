@@ -38,8 +38,8 @@
 .recommended-games .carousel-container {
     width: 100%;
     padding: 20px 0;
-    overflow: hidden;
-    scroll-behavior: smooth;
+    overflow: hidden; /*Oculta las cards*/
+    scroll-behavior: smooth; 
     position: relative; 
 }
 
