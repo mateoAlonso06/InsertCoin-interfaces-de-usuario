@@ -1,14 +1,12 @@
-/* ======================================================= */
-/* Reset Básico y Layout Principal */
-/* ======================================================= */
+
 
 *, *::before, *::after {
-    box-sizing: border-box; /* Manejo predecible del tamaño de los elementos */
+    box-sizing: border-box; 
 }
 
 body, main {
     max-width: 100%;
-    overflow-x: hidden; /* Evita la barra de scroll horizontal */
+    overflow-x: hidden; 
 }
 
 .main-game {
@@ -16,7 +14,7 @@ body, main {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    padding: 0 1.5rem; /* Espacio lateral para todo el contenido */
+    padding: 0 1.5rem; 
 }
 
 .breadcrumb {
@@ -76,7 +74,7 @@ body, main {
     flex-direction: column;
     align-items: center;
     margin: 1.2rem;
-    flex: 1; /* Ocupa 1 parte del espacio flexible */
+    flex: 1; 
     min-width: 0;
 }
 
@@ -115,7 +113,7 @@ body, main {
     cursor: pointer;
     display: flex;
     gap: 5px;
-    z-index: 50; /* Por encima del canvas pero debajo del menú */
+    z-index: 50; 
 }
 
 
@@ -261,11 +259,11 @@ body, main {
     align-items: center;
     gap: 1.5rem; 
     padding: 2rem;
-    display: flex; /* Oculto por defecto */
+    display: flex; 
 }
 
 .container-tiempo-terminado.hidden {
-    display: none; /* Oculto cuando tiene la clase hidden */
+    display: none; 
 }
 
 .container-tiempo-terminado h2 {
@@ -385,8 +383,8 @@ body, main {
 }
 
 #menu-secundario .tiempo-level {
-    color: var(--color-accent-400, #ff4500); /* Resalta el tiempo */
-    margin-left: 0.5rem; /* Pequeño espacio */
+    color: var(--color-accent-400, #ff4500); 
+    margin-left: 0.5rem; 
 }
 
 
@@ -505,20 +503,20 @@ body, main {
     font-weight: 400;
 }
 
-/* ======================================================= */
+
 /* Carrusel de Personajes */
-/* ======================================================= */
+
 
  #blocka-carrusel-detalle .carousel-blocka{
     background-color: transparent;
 }
 
 #info-prev-btn {
-    left: 10px; /* Posiciona el botón 'anterior' a la izquierda */
+    left: 10px; 
 }
 
 #info-next-btn {
-    right: 10px; /* Posiciona el botón 'siguiente' a la derecha */
+    right: 10px; 
 }
 
 .carousel-blocka {

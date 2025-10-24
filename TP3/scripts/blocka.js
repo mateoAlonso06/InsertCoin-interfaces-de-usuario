@@ -80,7 +80,6 @@ btnNextLevel.addEventListener('click', () => {
         if (siguienteImagen) {
             iniciarJuegoCompleto(siguienteImagen, levelActual);
         } else {
-            alert("Error al cargar la siguiente imagen. Volviendo al menú.");
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             restaurarMenuPrincipal();
         }
@@ -248,7 +247,6 @@ function iniciarJuegoCompleto(srcDeImagen, numeroDeNivel) {
     };
     imagenJuego.onerror = () => {
         stopTimer();
-        alert(`Error al cargar la imagen: ${srcDeImagen}.`);
         restaurarMenuPrincipal();
     };
 }
@@ -283,7 +281,7 @@ function verificarVictoria() {
 
 function obtenerNuevaImagenAleatoria(srcAExcluir) {
     const todasLasImagenes = Array.from(document.querySelectorAll('.carousel-track .personaje img'));
-    if (todasLasImagenes.length === 0) { console.error("No images found in carousel."); return null; }
+    if (todasLasImagenes.length === 0) { return null; }
     const imagenesDisponibles = todasLasImagenes.filter(img => img.src !== srcAExcluir);
     if (imagenesDisponibles.length > 0) {
         return imagenesDisponibles[Math.floor(Math.random() * imagenesDisponibles.length)].src;
@@ -308,11 +306,10 @@ function crearImagenFiltrada(image) {
         const indiceAleatorio = Math.floor(Math.random() * filtrosDisponibles.length);
         const filtroAleatorio = filtrosDisponibles[indiceAleatorio];
         if (filtroAleatorio) {
-            console.log("Aplicando filtro:", filtroAleatorio.name);
             filtroAleatorio(imageData);
             bufferCtx.putImageData(imageData, 0, 0);
         }
-    } catch (e) { console.error("Error applying filter (CORS?):", e); }
+    } catch (e) { console.error("Error aplicando el filtro", e); }
     
     return bufferCanvas;
 }
@@ -359,7 +356,7 @@ function iniciarPiezas(image, dificultad) {
 
 function dibujarPiezas(image) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    if (!image) { console.error("No image source provided to drawPieces"); return; }
+    if (!image) { return; }
     for (const pieza of piezas) {
         const centroX = pieza.dx + pieza.dWidth / 2, centroY = pieza.dy + pieza.dHeight / 2;
         ctx.save();
@@ -374,7 +371,7 @@ function dibujarPiezas(image) {
         }
         try {
             ctx.drawImage(image, pieza.sx, pieza.sy, pieza.sWidth, pieza.sHeight, -pieza.dWidth / 2, -pieza.dHeight / 2, pieza.dWidth, pieza.dHeight);
-        } catch (e) { console.error("Error drawing piece:", e); ctx.fillStyle = 'red'; ctx.fillRect(-pieza.dWidth / 2, -pieza.dHeight / 2, pieza.dWidth, pieza.dHeight); }
+        } catch (e) { console.error("error dibujando la pieza:", e); ctx.fillStyle = 'red'; ctx.fillRect(-pieza.dWidth / 2, -pieza.dHeight / 2, pieza.dWidth, pieza.dHeight); }
         ctx.lineWidth = 2;
         ctx.strokeRect(-pieza.dWidth / 2, -pieza.dHeight / 2, pieza.dWidth, pieza.dHeight);
         ctx.restore();
