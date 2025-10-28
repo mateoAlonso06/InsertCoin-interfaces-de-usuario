@@ -1,0 +1,907 @@
+/* ======================================================= */
+/* Reset Básico y Layout Principal */
+/* ======================================================= */
+
+*, *::before, *::after {
+    box-sizing: border-box; /* Manejo predecible del tamaño de los elementos */
+}
+
+body, main {
+    max-width: 100%;
+    overflow-x: hidden; /* Evita la barra de scroll horizontal */
+}
+
+.main-game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 0 1.5rem; /* Espacio lateral para todo el contenido */
+}
+
+.breadcrumb {
+    width: 100%;
+    height: 36px;
+    margin: 0.5rem 0;
+}
+
+.breadcrumb ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.breadcrumb li {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    color: var(--color-neutral-400);
+}
+
+.breadcrumb li:hover {
+    color: var(--color-accent-300);
+}
+
+.breadcrumb li:not(:last-child)::after {
+    content: ">";
+    margin: 0 8px;
+    color: var(--color-neutral-100);
+}
+
+
+/* Contenedor del Juego y Columnas */
+
+
+.game_container {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+    margin: 0.2rem 0; /*Distancia entre el breadcam y el game-container, evita scroll, facilita para TPE4.*/
+    background-color: var(--color-bg-800);
+    border-radius: 10px;
+    gap: 1.5rem; 
+}
+
+.game-ejecutando {
+    display: flex;
+    flex-direction: column;
+    margin: 1.2rem;
+    flex: 2; 
+    min-width: 0; 
+}
+
+.game-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1.2rem;
+    flex: 1; /* Ocupa 1 parte del espacio flexible */
+    min-width: 0;
+}
+
+#blocka-body .game-screen {
+    width: 100%;
+    position: relative; 
+    height: 575px;
+    background-image: url('https://e0.pxfuel.com/wallpapers/691/991/desktop-wallpaper-background-dragon-ball-z-dragon-ball-super-scenery.jpg');
+    background-size: cover; 
+    background-position: center; 
+}
+
+#peg-solitaire-body .game-screen {
+    width: 100%;
+    position: relative; 
+    height: 575px;
+    background-image: url('../assets/img/peg-solitaire-utils/Pegsolitarie.svg');
+    background-size: cover; 
+    background-position: center; 
+}
+
+#canvas {
+    display: block; 
+    margin-left: auto; 
+    margin-right: auto; 
+    border-radius: 10px; 
+    background-color: transparent; 
+    
+}
+
+.icons-screen-reset {
+    position: absolute;
+    bottom: .5rem;
+    right: .5rem;
+    color: var(--color-neutral-100);
+    cursor: pointer;
+    display: flex;
+    gap: 5px;
+    z-index: 50; /* Por encima del canvas pero debajo del menú */
+}
+
+
+.game-ejecutando h3 {
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--color-neutral-100);
+    margin-top: .5rem;
+}
+
+
+/* Menú Superpuesto del Juego */
+
+
+/* --- Estilos para el Menú Principal --- */
+
+#game-menu .menu-title { 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-accent-400, #ff4500);
+    font-size: 3.5rem;
+    margin-bottom: 2rem;
+    font-family: 'Press Start 2P', cursive;
+    text-shadow: 3px 3px 0px rgba(0,0,0,0.4);
+
+}
+
+#game-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    margin-top: 50px;
+}
+
+#game-menu h3 {
+    color: var(--color-neutral-800, #fff);
+}
+
+
+
+.menu-btn { 
+    padding: 15px 40px;
+    font-size: 1.8rem;
+    font-family: 'Press Start 2P', cursive;
+    color: var(--color-neutral-100, #fff);
+    background-color: var(--color-primary-500, #007bff); 
+    border: 3px solid var(--color-neutral-100, #fff);
+    border-radius: 10px;
+    cursor: pointer;
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.3);
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.menu-btn:hover {
+    background-color: var(--color-accent-300, #ff6347);
+    transform: scale(1.05);
+}
+
+/* Estilo para ocultar la sección de dificultad */
+#difficulty-selection.hidden {
+    display: none;
+}
+
+/* Ajustes para la sección de dificultad cuando sea visible */
+#difficulty-selection {
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+#difficulty-selection h3 {
+     color: var(--color-neutral-100, #fff);
+     font-size: 2rem; /* Más pequeño que el título principal */
+     margin: 0;
+     font-family: 'Press Start 2P', cursive;
+}
+
+#game-menu.hidden {
+    display: none;
+}
+
+.difficulty-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border: 2px solid var(--color-neutral-400, #aaa);
+    background-color: transparent;
+    color: var(--color-neutral-400, #aaa);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.difficulty-btn:hover {
+    border-color: var(--color-accent-300, #ff6347);
+    color: var(--color-accent-300, #ff6347);
+}
+
+.difficulty-btn.selected {
+    background-color: var(--color-accent-400, #ff4500);
+    border-color: var(--color-accent-400, #ff4500);
+    color: white;
+    transform: scale(1.1);
+}
+
+.btn-jugar {
+    background-color: var(--color-accent-400, #ff4500);
+    color: var(--color-neutral-100, #fff);
+    border: none;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 1.5rem;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-jugar:hover {
+    background-color: var(--color-accent-300, #ff6347);
+    transform: scale(1.05);
+}
+
+/*menu por si pierde por el tiempo*/
+
+.container-tiempo-terminado {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(11, 27, 42, 0.95); 
+    border-radius: 10px; 
+    z-index: 102; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem; 
+    padding: 2rem;
+    display: flex; /* Oculto por defecto */
+}
+
+.container-tiempo-terminado.hidden {
+    display: none; /* Oculto cuando tiene la clase hidden */
+}
+
+.container-tiempo-terminado h2 {
+    color: var(--color-accent-300, #ff6347); 
+    font-size: 2.8rem; 
+    margin: 0;
+    font-family: 'Press Start 2P', cursive;
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.3);
+    text-align: center;
+}
+
+.container-tiempo-terminado button {
+    padding: 12px 30px;
+    font-size: 1.5rem;
+    font-family: 'Press Start 2P', cursive;
+    color: var(--color-neutral-100, #fff);
+    background-color: var(--color-primary-500, #007bff);
+    border: 2px solid var(--color-neutral-100, #fff);
+    border-radius: 8px;
+    cursor: pointer;
+    text-shadow: 1px 1px 0px rgba(0,0,0,0.2);
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+/*cronometro*/
+#timer-container {
+    color: var(--color-neutral-100, #fff); 
+    font-size: 20px; 
+    font-family: 'Press Start 2P', cursive; 
+    margin-top: 1rem; 
+    text-align: center; 
+    width: 100%; 
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6); 
+}
+#timer {
+    color: var(--color-accent-400, #ff4500); 
+    background-color: rgba(0, 0, 0, 0.4); 
+    padding: 6px 12px; 
+    border-radius: 5px; 
+    margin-left: 0.5rem; 
+}
+
+/*boton de ayudin*/
+
+/* Estilos para el botón de Ayuda */
+.btn-ayudin {
+    background-color: #ffc107; 
+    color: #333; 
+    border: 2px solid #333;
+    border-radius: 8px;
+    padding: 8px 15px;
+    font-size: 14px;
+    font-family: 'Press Start 2P', cursive;
+    cursor: pointer;
+    margin-top: 0.8rem;
+    display: block; 
+    margin-left: auto; 
+    margin-right: auto; 
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#btn-ayuda.hidden {
+    display: none;
+}
+
+.btn-ayudin:hover {
+    background-color: #ffda6b;
+    transform: scale(1.05);
+}
+
+/* Estilo para cuando el botón está deshabilitado */
+.btn-ayudin:disabled {
+    background-color: #aaa;
+    color: #666;
+    border-color: #666;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/*menu secundario*/
+
+
+#menu-secundario {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(11, 27, 42, 0.95); 
+    border-radius: 10px; 
+    z-index: 101; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem; 
+    padding: 2rem;
+
+}
+
+/* --- Estilos para el Contenido Interno --- */
+
+#menu-secundario h3 {
+    color: var(--color-accent-300, #ff6347); 
+    font-size: 2.8rem; 
+    margin: 0;
+    font-family: 'Press Start 2P', cursive;
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.3);
+    text-align: center;
+}
+
+#menu-secundario p {
+    color: var(--color-neutral-100, #fff);
+    font-size: 1.5rem;
+    font-family: 'Press Start 2P', cursive;
+    margin: 0;
+}
+
+#menu-secundario .tiempo-level {
+    color: var(--color-accent-400, #ff4500); /* Resalta el tiempo */
+    margin-left: 0.5rem; /* Pequeño espacio */
+}
+
+
+
+#menu-secundario button {
+    padding: 12px 30px;
+    font-size: 1.5rem;
+    font-family: 'Press Start 2P', cursive;
+    color: var(--color-neutral-100, #fff);
+    background-color: var(--color-primary-500, #007bff);
+    border: 2px solid var(--color-neutral-100, #fff);
+    border-radius: 8px;
+    cursor: pointer;
+    text-shadow: 1px 1px 0px rgba(0,0,0,0.2);
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+#menu-secundario button:hover {
+    background-color: var(--color-accent-300, #ff6347);
+    transform: scale(1.05);
+}
+
+
+#btn-volver-menu {
+    background-color: var(--color-neutral-600, #6c757d); 
+}
+#btn-volver-menu:hover {
+     background-color: var(--color-neutral-500, #5a6268);
+}
+
+
+#menu-secundario.hidden {
+    display: none !important;
+}
+
+
+.controles,
+.explicacion,
+.personajes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.controles h3,
+.explicacion h3,
+.personajes h3 {
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--color-neutral-100);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.controles h3:first-child {
+    margin-top: 0;
+}
+
+.controles p,
+.explicacion p {
+    font-size: 16px;
+    font-weight: 400;
+    margin: 0.5rem 1rem;
+    color: var(--color-neutral-100);
+    text-align: center;
+}
+
+.controles img {
+    width: 80%;
+    max-width: 200px;
+    height: 130px;
+}
+
+.avatares {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5rem;
+    margin: 1.8rem 0 0 0;
+}
+
+
+.personaje-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+}
+
+.personaje{
+    display: flex;
+    flex-direction: column;
+    width: 120px;
+    height: 120px;
+    border: 2px solid var(--color-neutral-100);
+    border-radius: 50%;
+    background-color: var(--color-bg-800);
+    cursor: pointer;
+    min-width: 65px;
+    min-height: 65px;
+}
+
+.personaje img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.personaje-container h4 {
+    margin: 8px 0 0 0;
+    font-size: 16px;
+    color: var(--color-neutral-100);
+    text-align: center;
+    font-weight: 400;
+}
+
+/* ======================================================= */
+/* Carrusel de Personajes */
+/* ======================================================= */
+
+ #blocka-carrusel-detalle .carousel-blocka{
+    background-color: transparent;
+}
+
+#info-prev-btn {
+    left: 10px; /* Posiciona el botón 'anterior' a la izquierda */
+}
+
+#info-next-btn {
+    right: 10px; /* Posiciona el botón 'siguiente' a la derecha */
+}
+
+.carousel-blocka {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+    background-color:#33333396;
+}
+
+
+.carousel-window {
+    width: 150px;
+    overflow: hidden;
+    margin: auto;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform .1s ease-in-out;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    color: var(--color-neutral-100);
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+}
+
+#prev-btn { left: 10px; }
+#next-btn { right: 10px; }
+.carousel-btn:hover { background-color: rgba(0, 123, 255, 0.5); }
+.carousel-btn:disabled {
+    background-color: rgba(50, 50, 50, 0.5);
+    color: #888;
+    cursor: not-allowed;
+}
+
+.personaje-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 150px;
+    text-align: center;
+    margin: auto;
+}
+
+
+.personaje {
+    width: 100px;
+    height: 100px;
+    border: 3px solid var(--color-neutral-100);
+    cursor: pointer;
+    overflow: hidden;
+    transition: border-color 0.3s;
+}
+
+.personaje img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.personaje-container h4 {
+    margin: 8px 0 0 0;
+    font-size: 16px;
+    color: var(--color-neutral-100);
+    font-weight: 400;
+}
+/*SECCION DE COMENTARIOS*/
+.ctn-comments-public {
+    display: flex;
+    flex-direction: row;
+    width: 100%; 
+    margin: 1rem 0; 
+    gap: 1.5rem; 
+}
+
+.comments-section {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    flex-shrink: 0; 
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.comments-section h4 {
+    color: var(--color-neutral-100);
+}
+
+.comments-list {
+    display: flex;
+    flex-direction: column;
+    
+    width: 100%;
+}
+
+.comments-list ul li {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    width: 100%;
+}
+
+.user-comment {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+    gap: 1rem;
+    width: 100%;
+    padding: 1rem;
+}
+
+.user-avatar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 90px;
+    gap: 0.5rem;
+}
+
+.user-avatar p {
+    color: var(--color-neutral-100);
+    margin: 0;
+    font-size: 0.9rem;
+    
+}
+
+.user-avatar img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.composer {
+    position: relative;
+    background: var(--color-neutral-100);
+    border: 2px solid;
+    border-radius: 10px;
+    flex: 1;
+}
+
+textarea {
+    width: 100%;
+    height: 120px;
+    resize: none;
+    border-radius: 10px;
+    border: none;
+    padding: 1rem;
+}
+
+textarea:focus {
+    outline: none;
+}
+
+.ctn-btn-publicar {
+    display: flex;
+    justify-content: flex-end;
+    border-top: 4px solid var(--color-neutral-700);
+}
+
+.btn-publicar {
+    background-color: var(--color-primary-500);
+    color: var(--color-neutral-100);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 0.5rem 1rem 0.5rem 0;
+}
+
+.comment-done {
+    height: 12.31rem;
+    border-radius: 10px;
+    font-family: var(--font-family-secondary);
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.comment-done p {
+    margin-left: 10px;
+    margin-top: 2px;
+}
+
+/*publicidad*/
+.publicidad {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    margin: 7.8rem 0 0 0; 
+    gap: 4rem;
+    width: 30%;
+    flex-shrink: 0;
+    flex-grow: 0; 
+}
+
+.publicidad img:first-child {
+    width: 100%;
+    height: 700px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+/*parte de sobre el juego y multimedia*/
+.container-info-multimedia {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: start;
+    width: 98%;
+    margin: 1rem 1rem 1rem 1rem;
+    padding: 0;
+    gap: 1rem;
+    border-radius: 10px;
+}
+
+.information-game {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    width: 55%;
+    height: 629px;
+    flex-grow: 3;
+    background-color: var(--color-bg-800);
+    border-radius: 10px;
+}
+
+.information-game h4 {
+    font-size: 22px;
+    font-weight: 200;
+    color: var(--color-neutral-100);
+    margin: 2rem 0 0 2rem;
+}
+
+.details {
+    font-size: 16px;
+    font-weight: bold;
+    font-family: Montserrat;
+    color: var(--color-neutral-100);
+    margin: 1rem 2rem 0 2rem;
+    text-align: start;
+    line-height: 1.5;
+}
+
+.details p {
+    margin-bottom: 2rem;
+}
+
+.details p a:last-child {
+    border-bottom: 1px solid var(--color-accent-400);
+    color: var(--color-accent-400);
+}
+
+.share-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 1.2rem 0 0 0;
+}
+
+.share-container p {
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--color-neutral-100);
+}
+
+.share-icons {
+    display: flex;
+    justify-content: center;
+    width: 85%;
+    gap: 2rem;
+    margin-top: 1rem;
+    border-top: 5px solid var(--color-neutral-100);
+}
+
+.share-icons a {
+    color: var(--color-neutral-100);
+    font-size: 5rem;
+}
+
+/*multimedia*/
+.multimedia {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+    height: 629px;
+    flex-grow: 1;
+    background-color: var(--color-bg-800);
+    border-radius: 10px;
+}
+
+.multimedia h4 {
+    align-self: flex-start;
+    margin-left: 10px;
+    margin-bottom: 1rem;
+    margin-top: -11rem;
+    color: var(--color-neutral-100);
+    font-size: 22px;
+    font-weight: 100;
+}
+
+.images-multimedia {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    place-items: center;
+    margin: 10px;
+}
+
+.multimedia img {
+    width: 309px;
+    height: 199px;
+    border-radius: 10px;
+    object-fit: cover;
+    border: 5px solid var(--color-primary-450);
+}
+
+.image-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.image-wrapper img {
+    display: block;
+    border-radius: 10px;
+    width: 309px;
+    height: 199px;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+.image-wrapper i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 6rem;
+    color: var(--color-accent-400);
+    cursor: pointer;
+}
+
+.image-wrapper i:hover {
+    color: var(--color-accent-300);
+}
+
+/* modificacion minima del carrusel por especificidad para adaptarlo al game.html */
+.main-game .recommended-games {
+    width: 98%;
+    margin: auto;
+    margin: 5rem auto;
+    padding: 0;
+}
+
+.main-game .recommended-games .title-carousel-games {
+    text-align: left;
+    margin-left: 1rem;
+    font-size: 20px;
+    color: var(--color-neutral-100);
+}
+
+
