@@ -197,7 +197,7 @@ function gameOverPorTiempo() {
     btnMenuTiempoTerminado.addEventListener('click', () => {
         restaurarMenuPrincipal();
         menuTiempoTerminado.classList.add('hidden');
-    }, { once: true });
+    }, { once: true }); //Elimina los eventos que le quedan cargados.
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
@@ -340,7 +340,9 @@ function iniciarPiezas(image, dificultad) {
     const posYInicial = margenSuperiorDeseado;
     for (let fila = 0; fila < dificultad; fila++) {
         for (let col = 0; col < dificultad; col++) {
-            piezas.push({
+            piezas.push({ //Coordenadas donde se corta la pieza de la imagen -> De donde hasta donde.
+                //Sx: Donde va a cortar la imagen
+                //dx: Donde va a dibujar la pieza en el canvas
                 sx: col * anchoPieza, sy: fila * altoPieza, sWidth: anchoPieza, sHeight: altoPieza,
                 dx: posXInicial + col * anchoPieza, dy: posYInicial + fila * altoPieza, dWidth: anchoPieza, dHeight: altoPieza,
                 rotacion: 0,
