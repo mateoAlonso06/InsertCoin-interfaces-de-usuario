@@ -132,12 +132,37 @@
                     <i class="fa-solid fa-expand"></i>
                 </div>
                 <canvas id="canvas-peg"></canvas>
-                <div id="fin-juego-menu" class="oculto">
-            <h2 id="fin-juego-titulo"></h2>
-            <p id="fin-juego-mensaje"></p>
-            <!-- (Más tarde añadiremos un botón de reiniciar aquí) -->
-            <!-- <button id="boton-reiniciar">Jugar de Nuevo</button> -->
+                <div id="timer-display">Tiempo: 02:00</div>
+                <div class="menu-principal-peg">
+                    <div class="personajes">
+                <h3>Selecciona un personaje</h3>
+                <div class="avatares">
+                    <div class="personaje-container" data-tipo="gabu">
+                        <div class="personaje"><img src="assets/img/peg-solitaire-utils/avatares-pegsolitaire/gabu.svg" alt=""></div>
+                        <h4>Gabu</h4>
+                    </div>
+                    <div class="personaje-container" data-tipo="ace">
+                        <div class="personaje"><img src="assets/img/peg-solitaire-utils/avatares-pegsolitaire/ace.jpeg" alt=""></div>
+                        <h4>Ace</h4>
+                    </div>
+                    <div class="personaje-container" data-tipo="paris">
+                        <div class="personaje"><img src="assets/img/peg-solitaire-utils/avatares-pegsolitaire/paris.jpeg" alt=""></div>
+                        <h4>Paris</h4>
+                    </div>
+                </div>
+                    <button id="play-peg">Jugar</button>
+                </div>
+                <!-- ¡AQUÍ ESTÁ EL ARREGLO! -->
         </div>
+        <div id="fin-juego-menu" class="oculto">
+                    <h2 id="fin-juego-titulo"></h2>
+                    <p id="fin-juego-mensaje"></p>
+                    <!-- Nuevo contenedor para los botones -->
+                    <div class="fin-juego-botones">
+                        <button id="button-reiniciar-peg">Jugar de Nuevo</button> 
+                        <button id="button-volver-menu">Volver al Menú</button> 
+                    </div>
+                </div>
             </div>
             <h3>Peg solitaire - Dino rey</h3>
         </div>
@@ -166,220 +191,221 @@
                         <div class="personaje"><img src="assets/img/peg-solitaire-utils/avatares-pegsolitaire/paris.jpeg" alt=""></div>
                         <h4>Paris</h4>
                     </div>
-            </div>
-        </div>
-    </section>
-    <section class="container-info-multimedia">
-        <article class="information-game">
-             <h4>Acerca del juego</h4>
-             <div class="details">
-                <p>Prepárate para revivir la emoción de Dino Rey en una experiencia distinta: el clásico Peg Solitaire reinventado con tus dinosaurios favoritos. Cada ficha representa a un dino listo para la batalla, y tu misión es guiarlo en una prueba de inteligencia y estrategia.</p>
-                <p>El funcionamiento es sencillo pero desafiante: selecciona un dinosaurio, hazlo saltar sobre otro adyacente y elimina al que quedó en medio. Con cada movimiento el tablero se vacía, y poco a poco solo los más fuertes permanecen. Tu objetivo final es lograr que quede un único dinosaurio en pie, de preferencia en el centro, y así proclamarlo como el verdadero Rey del Tablero.</p>
-                <p>Este juego no solo pondrá a prueba tu lógica, sino también tu paciencia y capacidad de anticipación. Cada decisión cuenta, cada salto puede marcar la diferencia entre la victoria perfecta o quedarte atrapado con varios dinos en el tablero.
-                   ¿Tendrás la estrategia suficiente para superar el reto y coronar a tu dinosaurio chomo el último sobreviviente?</p>
-                <p><span><i class="fa-solid fa-link"></i><a href="#"></span>Conoce mas sobre el mundo de DinoRey</a></p>   
-                <div class="share-container">
-                    <p>No te olvides de compartir nuestro juego!</p>
-                    <div class="share-icons">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                        <a href="#" aria-label="Reddit"><i class="fab fa-reddit-alien"></i></a>
-                    </div>
                 </div>
-             </div>   
-        </article>
-        <aside class="multimedia">
-            <h4>Multimedia</h4>
-            <div class="images-multimedia">
-                <img src="assets/img/peg-solitaire-utils/rex-multimedia.svg" alt="">
-                <div class="image-wrapper">
-                    <img src="assets/img/peg-solitaire-utils/card-video-multimedia.svg" alt="">
-                    <i class="fa-solid fa-circle-play"></i>
-                </div>
-                <img src="assets/img/peg-solitaire-utils/rex-vs-gabu.svg" alt="">
-                <img src="assets/img/peg-solitaire-utils/gabu-grande.svg" alt="">    
             </div>
-        </aside>
-    </section>
-    <section class="recommended-games">
-      <h3 class="title-carousel-games">Juegos relacionados</h3>  
-
-      <div class="principal-container">
-        <button role="button" id="left-arrow" class="left-arrow"><i class="fas fa-angle-left"></i></button>
-        <div class="carousel-container">
-          <div class="carousel">
-             <div class="game-card">
-              <div class="cont-hover" data-title="Ajedrez">
-                <img src="assets/cards/minijuegos-ajedrez.png" alt="Ajedrez" />
-              </div>
-              <h3 class="game-title">Ajedrez</h3>
-              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
-            </div>
-            <div class="game-card">
-              <div class="cont-hover" data-title="Tetris">
-                <img src="assets/cards/card-tetris.png" alt="Tetris" />
-              </div>
-              <h3 class="game-title">Tetris</h3>
-              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
-            </div>
-            <div class="game-card">
-              <div class="cont-hover" data-title="Batalla naval">
-                <img src="assets/cards/batallaNaval.png" alt="Batalla naval" />
-              </div>
-              <h3 class="game-title">Batalla naval</h3>
-              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
-            </div>
-            <div class="game-card">
-              <div class="cont-hover" data-title="4 en raya">
-                <img src="assets/cards/4enraya.png" alt="4 en raya" />
-              </div>
-              <h3 class="game-title">4 en raya</h3>
-              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
-            </div>
-            <div class="game-card">
-              <div class="cont-hover" data-title="TA TE TI">
-                <img src="assets/cards/tateti.png" alt="TA TE TI" />
-              </div>
-              <h3 class="game-title">TA TE TI</h3>
-              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
-            </div>
-            <div class="game-card">
-              <div class="cont-hover" data-title="Rompecabezas de 15">
-                <img src="assets/cards/Rompe15.png" alt="Rompecabezas de 15" />
-              </div>
-              <h3 class="game-title">Rompecabezas de 15</h3>
-              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
-            </div>
-            <div class="game-card">
-              <div class="cont-hover" data-title="dominó">
-                <img src="assets/cards/domino.png" alt="dominó" />
-              </div>
-              <h3 class="game-title">dominó</h3>
-              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
-            </div>
-            <div class="game-card">
-              <div class="cont-hover" data-title="Solitario">
-                <img src="assets/cards/solitario.png" alt="Solitario" />
-              </div>
-              <h3 class="game-title">Solitario</h3>
-              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
-            </div>
-            <div class="game-card">
-              <div class="cont-hover" data-title="Sudoku">
-                <img src="assets/cards/ultimate-sudoku.png" alt="Sudoku" />
-              </div>
-              <h3 class="game-title">Sudoku</h3>
-              <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
-            </div>
-          </div>
-        </div>
-        <button role="button" id="right-arrow" class="right-arrow"><i class="fas fa-angle-right"></i></button>
-      </div>
-    </section> 
-
-    
-    <section class="ctn-comments-public">
-        <section class="comments-section">
-            <h4>Comentarios</h4>
-                <div class="user-comment">
-                    <div class="user-avatar">
-                        <img src="assets/img/avatares-comunidadf/goku-river.jpg" alt="User Avatar">
-                        <p class="user-name">jijiji</p>
-                    </div>
-
-                    <div class="composer">
-                        <textarea name="comment" id="comment" cols="30" rows="10" placeholder="Deja tu comentario..."></textarea>
-                        <div class="ctn-btn-publicar">
-                            <button class="btn-publicar" type="button">Publicar</button>
+        </section>
+        <section class="container-info-multimedia">
+            <article class="information-game">
+                 <h4>Acerca del juego</h4>
+                 <div class="details">
+                    <p>Prepárate para revivir la emoción de Dino Rey en una experiencia distinta: el clásico Peg Solitaire reinventado con tus dinosaurios favoritos. Cada ficha representa a un dino listo para la batalla, y tu misión es guiarlo en una prueba de inteligencia y estrategia.</p>
+                    <p>El funcionamiento es sencillo pero desafiante: selecciona un dinosaurio, hazlo saltar sobre otro adyacente y elimina al que quedó en medio. Con cada movimiento el tablero se vacía, y poco a poco solo los más fuertes permanecen. Tu objetivo final es lograr que quede un único dinosaurio en pie, de preferencia en el centro, y así proclamarlo como el verdadero Rey del Tablero.</p>
+                    <p>Este juego no solo pondrá a prueba tu lógica, sino también tu paciencia y capacidad de anticipación. Cada decisión cuenta, cada salto puede marcar la diferencia entre la victoria perfecta o quedarte atrapado con varios dinos en el tablero.
+                        ¿Tendrás la estrategia suficiente para superar el reto y coronar a tu dinosaurio chomo el último sobreviviente?</p>
+                    <p><span><i class="fa-solid fa-link"></i><a href="#"></span>Conoce mas sobre el mundo de DinoRey</a></p>  
+                    <div class="share-container">
+                        <p>No te olvides de compartir nuestro juego!</p>
+                        <div class="share-icons">
+                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                            <a href="#" aria-label="Reddit"><i class="fab fa-reddit-alien"></i></a>
                         </div>
                     </div>
+                 </div>   
+            </article>
+            <aside class="multimedia">
+                <h4>Multimedia</h4>
+                <div class="images-multimedia">
+                    <img src="assets/img/peg-solitaire-utils/rex-multimedia.svg" alt="">
+                    <div class="image-wrapper">
+                        <img src="assets/img/peg-solitaire-utils/card-video-multimedia.svg" alt="">
+                        <i class="fa-solid fa-circle-play"></i>
+                    </div>
+                    <img src="assets/img/peg-solitaire-utils/rex-vs-gabu.svg" alt="">
+                    <img src="assets/img/peg-solitaire-utils/gabu-grande.svg" alt="">    
                 </div>
+            </aside>
+        </section>
+        <section class="recommended-games">
+          <h3 class="title-carousel-games">Juegos relacionados</h3>   
 
-                <div class="comments-list">
-                    <ul>
-                        <li>
-                            <div class="user-comment">
-                                <div class="user-avatar">
-                                    <img src="assets/img/avatares-comunidadf/billrizer.jpeg" alt="User Avatar">
-                                    <p class="user-name">bill rizer</p>
-                                </div>
-                            <div class="user-name"></div>
-                            <div class="composer">
-                                <div class="comment-done">
-                                    <p>Gran juego, me da muchos recuerdos de mi infancia!!!</p>
-                                </div>
-                            </div>
-                        </li>      
-                        <li>
-                            <div class="user-comment">
-                                <div class="user-avatar">
-                                    <img src="assets/img/avatares-comunidadf/scorpion.jpg" alt="User Avatar">
-                                    <p class="user-name">scorpion</p>
-                                </div>
-                            <div class="user-name"></div>
-                            <div class="composer">
-                                <div class="comment-done">
-                                    <p>Nada mejor que tomar unos mates mientras vicio a este juegazo</p>
-                            </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="user-comment">
-                                <div class="user-avatar">
-                                    <img src="assets/img/avatares-comunidadf/luigi.jpeg" alt="User Avatar">
-                                    <p class="user-name">mario verde</p>
-                                </div>
-                            <div class="user-name"></div>
-                            <div class="composer">
-                                <div class="comment-done">
-                                    <p>Mi hermano es crack en este!!</p>
-                            </div>
-                        </li>      
-                        <li>
-                            <div class="user-comment">
-                                <div class="user-avatar">
-                                    <img src="assets/img/avatares-comunidadf/agarrini.png" alt="User Avatar">
-                                    <p class="user-name">Agarrini La</p>
-                                    <p class="user-name">Palini</p>
+          <div class="principal-container">
+            <button role="button" id="left-arrow" class="left-arrow"><i class="fas fa-angle-left"></i></button>
+            <div class="carousel-container">
+              <div class="carousel">
+                 <div class="game-card">
+                  <div class="cont-hover" data-title="Ajedrez">
+                    <img src="assets/cards/minijuegos-ajedrez.png" alt="Ajedrez" />
+                  </div>
+                  <h3 class="game-title">Ajedrez</h3>
+                  <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+                </div>
+                <div class="game-card">
+                  <div class="cont-hover" data-title="Tetris">
+                    <img src="assets/cards/card-tetris.png" alt="Tetris" />
+                  </div>
+                  <h3 class="game-title">Tetris</h3>
+                  <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+                </div>
+                <div class="game-card">
+                  <div class="cont-hover" data-title="Batalla naval">
+                    <img src="assets/cards/batallaNaval.png" alt="Batalla naval" />
+                  </div>
+                  <h3 class="game-title">Batalla naval</h3>
+                  <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+                </div>
+                <div class="game-card">
+                  <div class="cont-hover" data-title="4 en raya">
+                    <img src="assets/cards/4enraya.png" alt="4 en raya" />
+                  </div>
+                  <h3 class="game-title">4 en raya</h3>
+                  <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+                </div>
+                <div class="game-card">
+                  <div class="cont-hover" data-title="TA TE TI">
+                    <img src="assets/cards/tateti.png" alt="TA TE TI" />
+                  </div>
+                  <h3 class="game-title">TA TE TI</h3>
+                  <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+                </div>
+                <div class="game-card">
+                  <div class="cont-hover" data-title="Rompecabezas de 15">
+                    <img src="assets/cards/Rompe15.png" alt="Rompecabezas de 15" />
+                  </div>
+                  <h3 class="game-title">Rompecabezas de 15</h3>
+                  <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+                </div>
+                <div class="game-card">
+                  <div class="cont-hover" data-title="dominó">
+                    <img src="assets/cards/domino.png" alt="dominó" />
+                  </div>
+                  <h3 class="game-title">dominó</h3>
+                  <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+                </div>
+                <div class="game-card">
+                  <div class="cont-hover" data-title="Solitario">
+                    <img src="assets/cards/solitario.png" alt="Solitario" />
+                  </div>
+                  <h3 class="game-title">Solitario</h3>
+                  <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+                </div>
+                <div class="game-card">
+                  <div class="cont-hover" data-title="Sudoku">
+                    <img src="assets/cards/ultimate-sudoku.png" alt="Sudoku" />
+                  </div>
+                  <h3 class="game-title">Sudoku</h3>
+                  <a href="#" class="play-button"><i class="fas fa-play"></i> Jugar</a>
+                </div>
+              </div>
+            </div>
+            <button role="button" id="right-arrow" class="right-arrow"><i class="fas fa-angle-right"></i></button>
+          </div>
+        </section> 
 
+        
+        <section class="ctn-comments-public">
+            <section class="comments-section">
+                <h4>Comentarios</h4>
+                    <div class="user-comment">
+                        <div class="user-avatar">
+                            <img src="assets/img/avatares-comunidadf/goku-river.jpg" alt="User Avatar">
+                            <p class="user-name">jijiji</p>
+                        </div>
 
-                                </div>
-                            <div class="user-name"></div>
-                            <div class="composer">
-                                <div class="comment-done">
-                                    <p> No me gusto para nada pero la tematica de Dino Rey es muy buena, fue una de las series favoritas de mi infancia</p>
+                        <div class="composer">
+                            <textarea name="comment" id="comment" cols="30" rows="10" placeholder="Deja tu comentario..."></textarea>
+                            <div class="ctn-btn-publicar">
+                                <button class="btn-publicar" type="button">Publicar</button>
                             </div>
-                        </li>
-                        <li>
-                            <div class="user-comment">
-                                <div class="user-avatar">
-                                    <img src="assets/img/avatares-comunidadf/dkong.jpeg" alt="User Avatar">
-                                    <p class="user-name">D.Kong</p>
-                                </div>
-                            <div class="user-name"></div>
-                            <div class="composer">
-                                <div class="comment-done">
-                                    <p>Borren</p>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="user-comment">
-                                <div class="user-avatar">
-                                    <img src="assets/img/avatares-comunidadf/abueloBen.png" alt="User Avatar">
-                                    <p class="user-name">Abuelo Max</p>
-                                </div>
+                        </div>
+                    </div>
+
+                    <div class="comments-list">
+                        <ul>
+                            <li>
+                                <div class="user-comment">
+                                    <div class="user-avatar">
+                                        <img src="assets/img/avatares-comunidadf/billrizer.jpeg" alt="User Avatar">
+                                        <p class="user-name">bill rizer</p>
+                                    </div>
                                 <div class="user-name"></div>
                                 <div class="composer">
                                     <div class="comment-done">
-                                        <p>A mi nieto Ben le encanta este juego. Saludos</p>
+                                        <p>Gran juego, me da muchos recuerdos de mi infancia!!!</p>
                                     </div>
                                 </div>
-                            </div>
-                        </li>
-                    </ul>                
-                </div>
-    </section>  
+                            </li>     
+                            <li>
+                                <div class="user-comment">
+                                    <div class="user-avatar">
+                                        <img src="assets/img/avatares-comunidadf/scorpion.jpg" alt="User Avatar">
+                                        <p class="user-name">scorpion</p>
+                                    </div>
+                                <div class="user-name"></div>
+                                <div class="composer">
+                                    <div class="comment-done">
+                                        <p>Nada mejor que tomar unos mates mientras vicio a este juegazo</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="user-comment">
+                                    <div class="user-avatar">
+                                        <img src="assets/img/avatares-comunidadf/luigi.jpeg" alt="User Avatar">
+                                        <p class="user-name">mario verde</p>
+                                    </div>
+                                <div class="user-name"></div>
+                                <div class="composer">
+                                    <div class="comment-done">
+                                        <p>Mi hermano es crack en este!!</p>
+                                    </div>
+                            </li>     
+                            <li>
+                                <div class="user-comment">
+                                    <div class="user-avatar">
+                                        <img src="assets/img/avatares-comunidadf/agarrini.png" alt="User Avatar">
+                                        <p class="user-name">Agarrini La</p>
+                                        <p class="user-name">Palini</p>
+
+
+                                    </div>
+                                <div class="user-name"></div>
+                                <div class="composer">
+                                    <div class_name="comment-done">
+                                        <p> No me gusto para nada pero la tematica de Dino Rey es muy buena, fue una de las series favoritas de mi infancia</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="user-comment">
+                                    <div class="user-avatar">
+                                        <img src="assets/img/avatares-comunidadf/dkong.jpeg" alt="User Avatar">
+                                        <p class="user-name">D.Kong</p>
+                                    </div>
+                                <div class="user-name"></div>
+                                <div class="composer">
+                                    <div class="comment-done">
+                                        <p>Borren</p>
+                                    </div>
+                            </li>
+                            <li>
+                                <div class="user-comment">
+                                    <div class="user-avatar">
+                                        <img src="assets/img/avatares-comunidadf/abueloBen.png" alt="User Avatar">
+                                        <p class="user-name">Abuelo Max</p>
+                                    </div>
+                                    <div class="user-name"></div>
+                                    <div class="composer">
+                                        <div class="comment-done">
+                                            <p>A mi nieto Ben le encanta este juego. Saludos</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>             
+                    </div>
+            </section>   
     <aside class="publicidad">
         <img src="assets/img/advertising/Publicidad grande.png" alt="Publicidad">
         <img src="assets/img/advertising/Publicidad chica.png" alt="Publicidad">
@@ -460,7 +486,7 @@
                     <li><a href="#">Plataformas</a></li>   
                     <li><a href="#">Estrategia</a></li>    
                     <li><a href="#">Lucha</a></li>         
-                    <li><a href="#">Juegos Indie</a></li>  
+                    <li><a href="#">Juegos Indie</a></li>   
                     <li><a href="#">Recomendados</a></li>
                 </ul>
                 </div>
@@ -609,7 +635,7 @@
                 <p>
                 Aprende estrategias y trucos para dominar tus juegos
                 favoritos.
-                </p>
+                </ar>
             </div>
         </article>
     </div>
