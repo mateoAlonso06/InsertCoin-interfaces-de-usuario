@@ -6,12 +6,10 @@ import { Tablero } from './Tablero.js';
  */
 export class Model {
     constructor() {
-        // No creamos el tablero aquí.
-        // Esperamos a que el Controller nos diga qué personaje usar.
         this.tablero = null; 
         
         // Lógica del Timer
-        this.tiempoRestante = 200; // 2 minutos
+        this.tiempoRestante = 200; // 200 segundos
         this.ultimoTiempo = 0;
         this.timerActivo = false;
     }
@@ -53,12 +51,22 @@ export class Model {
         return this.tablero.verificarEstadoJuego();
     }
 
+    // --- ¡NUEVO MÉTODO PASSTHROUGH PARA HINTS! ---
+    /**
+     * Le pide al tablero los movimientos válidos para una ficha.
+     * @param {Ficha} ficha 
+     * @returns {Array<{fila: number, col: number}>}
+     */
+    getMovimientosValidosPara(ficha) {
+        return this.tablero.getMovimientosValidosPara(ficha);
+    }
+
     // --- Métodos del Timer ---
 
     iniciarTimer() {
-        this.tiempoRestante = 200; // Resetea a 2 minutos
+        this.tiempoRestante = 200;
         this.timerActivo = true;
-        this.ultimoTiempo = 0; // Se seteará en el primer frame del gameLoop
+        this.ultimoTiempo = 0;
     }
 
     detenerTimer() {
@@ -73,20 +81,16 @@ export class Model {
     actualizarTimer(tiempoActual) {
         if (!this.timerActivo) return Math.floor(this.tiempoRestante);
 
-        // Inicializamos el 'ultimoTiempo' en el primer frame
         if (this.ultimoTiempo === 0) {
             this.ultimoTiempo = tiempoActual;
             return Math.floor(this.tiempoRestante);
         }
 
-        // Calculamos el tiempo que pasó (delta time)
         const delta = (tiempoActual - this.ultimoTiempo) / 1000; // en segundos
 
-        // Solo restamos 1 segundo cuando 'delta' acumula 1s
-        // Usamos >= 1 para ser seguros
         if (delta >= 1) {
-            this.tiempoRestante -= Math.floor(delta); // Resta los segundos que pasaron
-            this.ultimoTiempo = tiempoActual; // Reseteamos el contador
+            this.tiempoRestante -= Math.floor(delta);
+            this.ultimoTiempo = tiempoActual;
             
             if (this.tiempoRestante < 0) {
                 this.tiempoRestante = 0;

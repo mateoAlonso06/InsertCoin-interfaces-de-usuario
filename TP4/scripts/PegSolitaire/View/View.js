@@ -21,23 +21,17 @@ export class View {
         this.botonesPersonaje = document.querySelectorAll('.personaje-container');
         this.botonJugar = document.getElementById('play-peg');
         
-        // --- Elementos HTML del Menú de Fin de Juego (¡ACTUALIZADOS!) ---
+        // --- Elementos HTML del Menú de Fin de Juego ---
         this.menuFinJuego = document.getElementById('fin-juego-menu');
         this.tituloFinJuego = document.getElementById('fin-juego-titulo');
-        this.mensajeFinJuego = document.getElementById('fin-juego-mensaje');
-        // ¡CAMBIO! Buscamos los dos botones nuevos
         this.botonReiniciar = document.getElementById('button-reiniciar-peg'); 
         this.botonVolverMenu = document.getElementById('button-volver-menu'); 
-
+        this.mensajeFinJuego = document.getElementById('fin-juego-mensaje');
         this.timerDisplay = document.getElementById('timer-display');
         
         // --- Comprobaciones de seguridad ---
-        // (Actualizada para los nuevos botones)
         if (!this.canvas || !this.menuPrincipal || !this.botonJugar || !this.menuFinJuego || !this.botonReiniciar || !this.botonVolverMenu) {
             console.error("Vista Error: No se encontraron uno o más elementos HTML esenciales (canvas, menús o botones).");
-            // Mostramos qué falta:
-            if (!this.botonReiniciar) console.error("Falta: #button-reiniciar-peg");
-            if (!this.botonVolverMenu) console.error("Falta: #button-volver-menu");
             return;
         }
 
@@ -51,21 +45,17 @@ export class View {
 
     // --- Métodos de Menú ---
 
-    /**
-     * Muestra el menú de selección de personaje.
-     * @returns {Promise<string>} Una promesa que se resuelve con el 'tipo' de personaje elegido.
-     */
     mostrarMenuPrincipal() {
         return new Promise((resolve) => {
             console.log("Vista: Mostrando menú principal...");
             this.menuPrincipal.classList.remove('oculto');
-            this.canvas.classList.add('oculto'); // Ocultamos el juego
+            this.canvas.classList.add('oculto'); 
             this.timerDisplay.classList.add('oculto');
-            this.menuFinJuego.classList.add('oculto'); // Nos aseguramos que el menú final esté oculto
+            this.menuFinJuego.classList.add('oculto'); 
 
             let personajeSeleccionado = 'gabu'; // Default
 
-            // 1. Lógica de selección de personaje
+            // Lógica de selección de personaje
             this.botonesPersonaje.forEach(boton => {
                 const clickHandler = () => {
                     this.botonesPersonaje.forEach(b => b.classList.remove('selected'));
@@ -76,14 +66,13 @@ export class View {
                 boton.addEventListener('click', clickHandler);
             });
 
-            // 2. Lógica del botón "Jugar"
+            // Lógica del botón "Jugar"
             const jugarClickHandler = () => {
                 console.log("Vista: Botón 'Jugar' presionado.");
                 this.ocultarMenuPrincipal();
                 this.mostrarJuego();
-                resolve(personajeSeleccionado); // Devolvemos el personaje
+                resolve(personajeSeleccionado);
             };
-            // Usamos { once: true } para que el listener se borre solo
             this.botonJugar.addEventListener('click', jugarClickHandler, { once: true }); 
         });
     }
@@ -147,9 +136,14 @@ export class View {
         });
     }
 
-    // --- Métodos de Dibujado (con Clipping Circular) ---
+    // --- Métodos de Dibujado (¡ACTUALIZADOS!) ---
 
-    render(modeloDeTablero) {
+    /**
+     * Dibuja el tablero Y LOS HINTS.
+     * @param {Array<Array<Ficha|null>>} modeloDeTablero
+     * @param {Array<{fila: number, col: number}>} hints - ¡NUEVO!
+     */
+    render(modeloDeTablero, hints) {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         
         for (let fila = 0; fila < 7; fila++) {
@@ -177,18 +171,21 @@ export class View {
                             this.ALTO_FICHA
                         );
                         this.ctx.restore();
-                    } else {
-                        // Fallback (círculo rojo de error)
-                        this.ctx.beginPath();
-                        this.ctx.arc(x, y, 28, 0, Math.PI * 2);
-                        this.ctx.fillStyle = 'red';
-                        this.ctx.fill();
                     }
                 }
             }
         }
+
+        // --- ¡NUEVO! ---
+        // Dibujamos los hints ENCIMA del tablero
+        if (hints && hints.length > 0) {
+            this.dibujarHints(hints);
+        }
     }
 
+    /**
+     * Dibuja la ficha que está siendo arrastrada.
+     */
     dibujarFichaFlotante(mouseX, mouseY, ficha) {
         const img = this.imagenes[ficha.tipo];
         const x = mouseX;
@@ -210,7 +207,7 @@ export class View {
             );
             this.ctx.restore();
         } else {
-            // Fallback (círculo)
+            // Fallback
             this.ctx.beginPath();
             this.ctx.arc(x, y, 28, 0, Math.PI * 2);
             this.ctx.fillStyle = 'green';
@@ -219,6 +216,43 @@ export class View {
             this.ctx.globalAlpha = 1.0;
         }
     }
+
+     // --- ¡NUEVA FUNCIÓN DE HINTS DE FLECHA ANIMADOS! ---
+    /**
+     * Dibuja los hints (flechas rebotantes) en las celdas de destino.
+     * @param {Array<{fila: number, col: number}>} hints 
+     */
+    dibujarHints(hints) {
+        // Calculamos un "rebote" vertical usando una onda sinusoidal.
+        // Date.now() / 150 controla la velocidad del rebote.
+        // Math.sin(...) va de -1 a 1.
+        // Lo multiplicamos por 5 para que rebote 5px hacia arriba.
+        const yOffset = -5 + (Math.sin(Date.now() / 150) * 5); // Rango [-10, 0]
+
+        for (const hint of hints) {
+            const x = this.OFFSET_X + (hint.col * this.TAMANO_CELDA);
+            const y = this.OFFSET_Y + (hint.fila * this.TAMANO_CELDA);
+            
+            // Dibujamos una flecha en la celda (x, y) con el rebote (yOffset)
+            // La flecha se dibuja "encima" de la celda
+            this._dibujarFlecha(x, y + yOffset - 25); // -25px para que esté arriba del hueco
+        }
+    }
+
+    /**
+     * Helper: Dibuja una flecha simple apuntando hacia abajo.
+     */
+    _dibujarFlecha(x, y) {
+        const size = 10; // Tamaño de la flecha
+        this.ctx.fillStyle = 'rgba(255, 215, 0, 0.9)'; // Color dorado
+        this.ctx.beginPath();
+        this.ctx.moveTo(x, y); // Punta de abajo
+        this.ctx.lineTo(x - size, y - size); // Esquina sup-izq
+        this.ctx.lineTo(x + size, y - size); // Esquina sup-der
+        this.ctx.closePath();
+        this.ctx.fill();
+    }
+
 
     // --- Métodos de UI y Traducción ---
 
@@ -251,29 +285,7 @@ export class View {
             this.mensajeFinJuego.textContent = 'No quedan más movimientos.';
         }
         
-        // Mostramos el menú
         this.menuFinJuego.classList.remove('oculto');
-    }
-
-    // --- Nuevos Métodos para la Lógica del Juego ---
-
-    /**
-     * Verifica si el juego ha terminado, ya sea por victoria o derrota.
-     */
-    verificarFinDeJuego() {
-        // Lógica simplificada para determinar el fin del juego
-        const hayMovimientosDisponibles = this.modelo.hayMovimientosDisponibles();
-        const hayUnaSolaFicha = this.modelo.contarFichas() === 1;
-
-        if (hayUnaSolaFicha) {
-            console.log("Vista: ¡Victoria detectada!");
-            this.mostrarMensajeFinDeJuego('VICTORIA');
-        } else if (!hayMovimientosDisponibles) {
-            console.log("Vista: Derrota detectada (sin movimientos disponibles).");
-            this.mostrarMensajeFinDeJuego('DERROTA');
-        } else {
-            console.log("Vista: El juego continúa...");
-        }
     }
 }
 

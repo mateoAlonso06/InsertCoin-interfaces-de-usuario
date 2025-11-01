@@ -40,9 +40,11 @@ export class Tablero {
                 if (estadoInicial[f][c] === 1) {
                     // ¡USA EL PERSONAJE ELEGIDO!
                     fila.push(new Ficha(personajeElegido, f, c));
-                } else {
+                } else if (estadoInicial[f][c] === 0) {
                     // Es 0 (hueco) o -1 (inválido), ambos son 'null' en nuestra grilla
                     fila.push(null); 
+                }else{
+                    fila.push(-1)
                 }
             }
             grilla.push(fila);
@@ -200,6 +202,42 @@ export class Tablero {
 
         return false; // Esta ficha no tiene movimientos
     }
+
+
+    // --- ¡NUEVA FUNCIÓN PARA LOS HINTS! ---
+    /**
+     * Devuelve un array de destinos válidos para una ficha.
+     * @param {Ficha} ficha - La ficha que se está arrastrando.
+     * @returns {Array<{fila: number, col: number}>} - Un array de objetos {fila, col}
+     */
+    getMovimientosValidosPara(ficha) {
+        const movimientos = [];
+        const { fila, col } = ficha;
+        
+        // Direcciones: [fila_destino, col_destino, fila_media, col_media]
+        const posiblesSaltos = [
+            [fila - 2, col, fila - 1, col], // Arriba
+            [fila + 2, col, fila + 1, col], // Abajo
+            [fila, col - 2, fila, col - 1], // Izquierda
+            [fila, col + 2, fila, col + 1]  // Derecha
+        ];
+
+        for (const [df, dc, mf, mc] of posiblesSaltos) {
+            // 1. ¿Están el destino y la celda media DENTRO del tablero?
+            if (!this._esCeldaValida(df, dc) || !this._esCeldaValida(mf, mc)) {
+                continue;
+            }
+            
+            // 2. ¿Está el destino VACÍO y la celda media OCUPADA?
+            if (this.contenido[df][dc] === null && this.contenido[mf][mc] !== null) {
+                // ¡Válido! Añadimos el destino al array.
+                movimientos.push({ fila: df, col: dc });
+            }
+        }
+        
+        return movimientos; // Devolvemos el array (puede estar vacío)
+    }
+
 
     /**
      * Helper: Verifica si una celda está dentro de los límites 7x7.
