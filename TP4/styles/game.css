@@ -915,6 +915,7 @@ textarea:focus {
 }
 
 
+
 #canvas-peg {
     /* Se posiciona de forma absoluta SOBRE el .game-screen */
     position: absolute;
@@ -1128,4 +1129,5 @@ textarea:focus {
 .oculto {
     display: none !important; /* Usamos !important para asegurarnos de que gane */
 }
+
 

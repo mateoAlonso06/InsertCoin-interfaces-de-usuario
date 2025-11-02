@@ -108,7 +108,7 @@ class Controller {
         this.estadoJuego = 'JUGANDO';
         this.fichaSeleccionada = null;
         this.hintsMovimiento = [];
-        
+        this.juegoTerminado = false;
         // Llama a iniciarJuego() de nuevo, lo que mostrará el menú principal
         // y reseteará 'juegoTerminado' a false cuando comience
         this.iniciarJuego();
