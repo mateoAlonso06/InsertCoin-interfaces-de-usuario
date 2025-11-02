@@ -9,7 +9,7 @@ export class Model {
         this.tablero = null; 
         
         // Lógica del Timer
-        this.tiempoRestante = 200; // 200 segundos
+        this.tiempoRestante = 500; // 200 segundos
         this.ultimoTiempo = 0;
         this.timerActivo = false;
     }
@@ -64,7 +64,7 @@ export class Model {
     // --- Métodos del Timer ---
 
     iniciarTimer() {
-        this.tiempoRestante = 200;
+        this.tiempoRestante = 500;
         this.timerActivo = true;
         this.ultimoTiempo = 0;
     }

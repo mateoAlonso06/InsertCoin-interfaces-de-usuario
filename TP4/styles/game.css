@@ -477,7 +477,6 @@ body, main {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 5rem;
     margin: 1.8rem 0 0 0;
 }
 
@@ -975,6 +974,22 @@ textarea:focus {
     margin: 0;
 }
 
+.fin-juego-botones button {
+    background-color: #ff4500;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    margin: 10px;
+    font-size: 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.fin-juego-botones button:hover {
+    background-color: #ff6347;
+}
+
 #fin-juego-mensaje {
     font-size: 24px;
     margin-top: 10px;
@@ -983,20 +998,23 @@ textarea:focus {
 .menu-principal-peg {
     /* 1. Superposición */
     position: absolute;
-    top: 0;
-    left: 0; /* <-- FALTABA ESTO */
-    width: 100%; /* <-- CAMBIADO DE 50% a 100% */
-    height: 100%; /* <-- CAMBIADO DE 50% a 100% */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centra el menú */
+    width: 600px;         
+    max-width: 90vw;      
+    height: 300px;         
+    z-index: 100;
     z-index: 100; /* Asegura que esté por encima del canvas */
-
-    /* 2. Fondo y Centrado */
-    background-color: rgba(224, 154, 14, 0.95); /* Fondo oscuro (casi opaco) */
+    background-color: rgb(224, 154, 14); /* Fondo oscuro (casi opaco) */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 2rem; /* Espacio entre el título, los avatares y el botón */
-    
+    border: 2px solid #333;
+    gap: 2rem; 
+    border-radius: 10px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
     /* Por defecto está visible, luego lo ocultaremos con JS */
 }
 
