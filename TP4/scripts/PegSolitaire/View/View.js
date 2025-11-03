@@ -28,6 +28,7 @@ export class View {
         this.botonVolverMenu = document.getElementById('button-volver-menu'); 
         this.mensajeFinJuego = document.getElementById('fin-juego-mensaje');
         this.timerDisplay = document.getElementById('timer-display');
+        this.resetAll = document.getElementById('reset-tablero');
         
         // --- Comprobaciones de seguridad ---
         if (!this.canvas || !this.menuPrincipal || !this.botonJugar || !this.menuFinJuego || !this.botonReiniciar || !this.botonVolverMenu) {
@@ -287,5 +288,9 @@ export class View {
         
         this.menuFinJuego.classList.remove('oculto');
     }
+
+    
+    
+
 }
 
