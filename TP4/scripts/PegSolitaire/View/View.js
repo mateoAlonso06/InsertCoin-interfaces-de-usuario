@@ -36,8 +36,9 @@ export class View {
         this.imagenes = {};
     }
 
-    // --- Métodos de Menú ---
-
+    // metodo del menu principal
+    //devuelve una promesa en la cual le dice al controller, esperame hasta que el usuario eleija un personaje
+    //"yo te prometo que voy a devolver algo"
     mostrarMenuPrincipal() {
         return new Promise((resolve) => {
             console.log("Vista: Mostrando menú principal...");
@@ -53,13 +54,15 @@ export class View {
                 const clickHandler = () => {
                     this.botonesPersonaje.forEach(b => b.classList.remove('selected'));
                     boton.classList.add('selected');
+                    //con el dataset obetenemos el valor del atriubuto en el html
                     personajeSeleccionado = boton.dataset.tipo;
-                    console.log(`Vista: Personaje seleccionado: ${personajeSeleccionado}`);
                 };
                 boton.addEventListener('click', clickHandler);
             });
 
-            // Lógica del botón "Jugar"
+            // una vez seleccionado el persoaje, al hacer click en jugar terminados devolviendo la promesa
+            //el once:true lo que hace es limpiar el event listener despues de la primera vez que se hace click
+            //esto puede evitar bugs si el menu se utiliza mucho
             const jugarClickHandler = () => {
                 console.log("Vista: Botón 'Jugar' presionado.");
                 this.ocultarMenuPrincipal();
@@ -79,7 +82,7 @@ export class View {
         if (this.timerDisplay) this.timerDisplay.classList.remove('oculto');
     }
 
-    // --- Métodos del Timer ---
+    //metodo para el timer
     
     actualizarTimer(tiempoTotalSegundos) {
         const minutos = Math.floor(tiempoTotalSegundos / 60);
@@ -102,25 +105,22 @@ export class View {
 
         const promesasDeImagenes = [];
         const claves = Object.keys(rutas);
-        console.log("Vista: Iniciando carga de imágenes...");
-
+        //recorremos las rutas y a medidad que se van cargando indiividualmente las imagenes, las vamos guardando
         for (const clave of claves) {
             const ruta = rutas[clave];
-            const promesa = this._cargarUnaImagen(ruta);
+            const promesa = this.cargarUnaImagen(ruta);
             promesasDeImagenes.push(promesa);
             
             promesa.then(img => {
-                console.log(`Vista: Imagen '${clave}' cargada.`);
                 this.imagenes[clave] = img;
             }).catch(err => {
                 console.error(`Vista: Error cargando '${clave}' desde ${ruta}`, err);
             });
         }
         await Promise.all(promesasDeImagenes);
-        console.log("Vista: ¡Todas las imágenes fueron cargadas!");
     }
 
-    _cargarUnaImagen(src) {
+    cargarUnaImagen(src) {
         return new Promise((resolve, reject) => {
             const img = new Image();
             img.onload = () => resolve(img);
@@ -144,6 +144,7 @@ export class View {
                 if (pieza !== null && !pieza.estaSiendoArrastrada) { 
                     //dibujamos las piezas en los lugares que deben de ir
                     const img = this.imagenes[pieza.tipo];
+                    //traduccion a pixeles
                     const x = this.OFFSET_X + (col * this.TAMANO_CELDA);
                     const y = this.OFFSET_Y + (fila * this.TAMANO_CELDA);
                     
@@ -161,6 +162,7 @@ export class View {
                             this.ANCHO_FICHA, 
                             this.ALTO_FICHA
                         );
+                        //sin esto, se dibujarian todas encima de todas
                         this.ctx.restore();
                     }
                 }
@@ -217,7 +219,7 @@ export class View {
         // Date.now() / 150 controla la velocidad del rebote.
         // Math.sin(...) va de -1 a 1.
         // Lo multiplicamos por 5 para que rebote 5px hacia arriba.
-        const yOffset = -5 + (Math.sin(Date.now() / 150) * 5); // Rango [-10, 0]
+        const yOffset = -5 + (Math.sin(Date.now() / 150) * 5); 
 
         for (const hint of hints) {
             const x = this.OFFSET_X + (hint.col * this.TAMANO_CELDA);
@@ -225,13 +227,12 @@ export class View {
             
             // Dibujamos una flecha en la celda (x, y) con el rebote (yOffset)
             // La flecha se dibuja encima de la celda
-            this._dibujarFlecha(x, y + yOffset - 25); // -25px para que esté arriba del hueco
+            this._dibujarFlecha(x, y + yOffset - 25); // -25px para que este arriba de la celda
         }
     }
 
-    /**
-     * Helper: Dibuja una flecha simple apuntando hacia abajo.
-     */
+    //Dibuja una flecha simple apuntando hacia abajo.
+     
     _dibujarFlecha(x, y) {
         const size = 10; // Tamaño de la flecha
         this.ctx.fillStyle = 'rgba(255, 215, 0, 0.9)'; // Color dorado
@@ -244,22 +245,31 @@ export class View {
     }
 
 
-    // --- Métodos de UI y Traducción ---
-
+    // metodo que traduce de pixel a celda
+    //
     traducirPixelACelda(pixelX, pixelY) {
+        /*//pixelx =distintancia en pixeles desde la esquina izq superior del canvas
+        //this.offsetx es el "espacio vacío" (el margen) que medimos desde el borde izquierdo (X=0)
+        //hasta el centro de la primera columna (columna 0).
+        -en la resta se obtiene la distancia relativa del click
+        -dividimos por el tamaño de la celda para obtener la columna
+        -redondeamos para obtener la columna más cercana
+        */
         const col = Math.round((pixelX - this.OFFSET_X) / this.TAMANO_CELDA);
+        //pixelY =distintancia en pixeles desde la esquina izq superior del canvas
+        //aplica la misma logica que para al columna
         const fila = Math.round((pixelY - this.OFFSET_Y) / this.TAMANO_CELDA);
+
+        //verificamos que el click sea dentro de los limites del tablero
+        //si da mayor a 6, quiere decir que estamos fuera de los limites del mismo
         const filaValida = Math.max(0, Math.min(fila, 6));
         const colValida = Math.max(0, Math.min(col, 6));
+        //devolvemos las coordenadas para que el controller se la pase al model
         return { fila: filaValida, col: colValida };
     }
 
     mostrarMensajeFinDeJuego(estado) {
-        // Comprobación de seguridad
-        if (!this.menuFinJuego || !this.tituloFinJuego || !this.mensajeFinJuego) {
-            console.error("Vista Error: No se pueden mostrar los elementos del menú de fin de juego porque no se encontraron en el constructor.");
-            return;
-        }
+        
 
         if (estado === 'VICTORIA') {
             this.tituloFinJuego.textContent = '¡VICTORIA!';

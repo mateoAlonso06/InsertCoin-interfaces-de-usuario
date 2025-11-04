@@ -1,9 +1,6 @@
 import { Ficha } from './Ficha.js';
 
-/**
- * El Tablero.
- * Gestiona la grilla 2D, la lógica de movimientos y el estado de victoria.
- */
+
 export class Tablero {
 
     constructor(personajeElegido) {
@@ -12,11 +9,7 @@ export class Tablero {
         this.columnas = this.contenido[0].length;
     }
 
-    /**
-     * (Re)Crea la grilla 7x7 inicial.
-     * @param {string} personajeElegido - 'gabu', 'ace', o 'paris'
-     * @returns {Array<Array<Ficha|null|undefined>>}
-     */
+    
     crearTableroInicial(personajeElegido) {
         const grilla = [];
         // Estado estándar del tablero
@@ -46,7 +39,7 @@ export class Tablero {
             }
             grilla.push(fila);
         }
-        // Actualizamos el contenido de la instancia actual si ya existía
+        
         this.contenido = grilla; 
         return grilla;
     }
@@ -56,31 +49,27 @@ export class Tablero {
     }
 
     getFichaEn(fila, col) {
-        // Verificación de límites
+        
         if (!this._esCeldaValida(fila, col)) {
             return null;
         }
         return this.contenido[fila][col];
     }
     
-    /**
-     * Lógica principal del movimiento.
-     * @returns {boolean} - true si el movimiento fue exitoso, false si no.
-     */
+    
     intentarMover(ficha, filaDestino, colDestino) {
         
-        // 1. Validar que el destino esté DENTRO del tablero
+        //  validar que el destino esté dentro del tablero
         if (!this._esCeldaValida(filaDestino, colDestino)) {
-            return false; // Fuera del tablero
+            return false; 
         }
         
-        // 2. Validar que la celda de destino esté VACÍA (null)
-        // (No 'undefined', que es una esquina inválida)
+        //  validar que la celda de destino esté vacia (null)
         if (this.contenido[filaDestino][colDestino] !== null) {
-            return false; // Destino ocupado o inválido
+            return false; 
         }
 
-        // 3. Validar que sea un salto de 2 espacios (horizontal o vertical)
+        //  validar que sea un salto de 2 espacios (horizontal o vertical)
         const filaOrigen = ficha.fila;
         const colOrigen = ficha.col;
         
@@ -91,45 +80,41 @@ export class Tablero {
         const esSaltoVertical = (diffFila === 2 && diffCol === 0);
 
         if (!esSaltoHorizontal && !esSaltoVertical) {
-            return false; // No es un salto de 2 espacios
+            return false; 
         }
 
-        // 4. Encontrar la ficha "comida" (la del medio)
+        //  encontrar la ficha que fue comida
         const filaMedia = (filaOrigen + filaDestino) / 2;
         const colMedia = (colOrigen + colDestino) / 2;
 
-        // 5. Validar que la celda del medio SÍ tenga una ficha (sea instancia de Ficha)
+        //  validar que la celda del medio si tenga una ficha (sea instancia de Ficha)
         if (!(this.contenido[filaMedia][colMedia] instanceof Ficha)) {
-            return false; // Saltaste sobre un hueco o zona inválida
+            return false; 
         }
 
-        // --- ¡MOVIMIENTO VÁLIDO! ---
-        
-        // 1. Vaciar la celda de la ficha comida
+        //movimientos calidos
+        // vaciar la celda de la ficha comida
         this.contenido[filaMedia][colMedia] = null;
         
-        // 2. Vaciar la celda de origen
+        //  vaciar la celda de origen
         this.contenido[filaOrigen][colOrigen] = null;
         
-        // 3. Poner la ficha en el destino
+        //  poner la ficha en el destino
         ficha.fila = filaDestino; // Actualizamos la pos interna de la ficha
         ficha.col = colDestino;
         this.contenido[filaDestino][colDestino] = ficha;
 
-        return true; // ¡Éxito!
+        return true; 
     }
 
-    /**
-     * Verifica si el juego terminó (Victoria o Derrota).
-     * @returns {string} 'JUGANDO', 'VICTORIA', o 'DERROTA'
-     */
+    
     verificarEstadoJuego() {
-        // 1. Revisar si quedan movimientos posibles
+        // revisar si quedan movimientos posibles
         if (this._hayMovimientosPosibles()) {
             return 'JUGANDO';
         }
 
-        // 2. Si no hay movimientos, contar fichas restantes
+        //  si no hay movimientos, contar fichas restantes
         let contadorFichas = 0;
         let ultimaFicha = null;
 
@@ -137,8 +122,6 @@ export class Tablero {
             for (let c = 0; c < this.columnas; c++) {
                 const pieza = this.contenido[f][c];
                 
-                // --- ¡AQUÍ ESTÁ EL ARREGLO! ---
-                // Solo contamos si es una Ficha (no null o undefined)
                 if (pieza instanceof Ficha) {
                     contadorFichas++;
                     ultimaFicha = pieza;
@@ -146,17 +129,15 @@ export class Tablero {
             }
         }
 
-        // 3. Comprobar Victoria (1 ficha Y en el centro)
+        // comprobar Victoria (1 ficha Y en el centro)
         if (contadorFichas === 1 && ultimaFicha.fila === 3 && ultimaFicha.col === 3) {
             return 'VICTORIA';
         } else {
-            return 'DERROTA'; // No hay movimientos y no ganaste
+            return 'DERROTA'; 
         }
     }
 
-    /**
-     * Helper: Revisa todo el tablero buscando al menos 1 movimiento válido.
-     */
+    
     _hayMovimientosPosibles() {
         for (let f = 0; f < this.filas; f++) {
             for (let c = 0; c < this.columnas; c++) {
@@ -170,17 +151,17 @@ export class Tablero {
                 }
             }
         }
-        return false; // No se encontró ningún movimiento
+        return false; 
     }
 
     /**
-     * Helper: Revisa si UNA ficha específica tiene movimientos.
-     * ¡VERSIÓN CORREGIDA Y MÁS SIMPLE!
+     * revisa si UNA ficha específica tiene movimientos.
+     
      */
     _puedeMover(ficha) {
         const { fila, col } = ficha;
         
-        // Direcciones: [fila_destino, col_destino, fila_media, col_media]
+        // direcciones: [fila_destino, col_destino, fila_media, col_media]
         const posiblesSaltos = [
             [fila - 2, col, fila - 1, col], // Arriba
             [fila + 2, col, fila + 1, col], // Abajo
@@ -189,14 +170,12 @@ export class Tablero {
         ];
 
         for (const [df, dc, mf, mc] of posiblesSaltos) {
-            // 1. ¿Están el destino y la celda media DENTRO del tablero?
             if (!this._esCeldaValida(df, dc) || !this._esCeldaValida(mf, mc)) {
                 continue; // Este salto se va del tablero
             }
             
-            // 2. ¿Está el destino VACÍO (null) y la celda media OCUPADA (Ficha)?
             if (this.contenido[df][dc] === null && this.contenido[mf][mc] instanceof Ficha) {
-                return true; // ¡Se encontró un movimiento válido!
+                return true; // Se encontró un movimiento válido
             }
         }
 
@@ -204,17 +183,15 @@ export class Tablero {
     }
 
     /**
-     * Helper: Verifica si una celda está dentro de los límites 7x7.
+     *  verifica si una celda está dentro de los límites 7x7.
      */
     _esCeldaValida(fila, col) {
         return fila >= 0 && fila < this.filas && col >= 0 && col < this.columnas;
     }
     
-    // --- ¡NUEVA FUNCIÓN PARA LOS HINTS! ---
+    
     /**
-     * Devuelve un array de destinos válidos para una ficha.
-     * @param {Ficha} ficha - La ficha que se está arrastrando.
-     * @returns {Array<{fila: number, col: number}>} - Un array de objetos {fila, col}
+     * devuelve un array de destinos válidos para una ficha.
      */
     getMovimientosValidosPara(ficha) {
         const movimientos = [];
@@ -232,13 +209,13 @@ export class Tablero {
                 continue;
             }
             
-            // Misma lógica que _puedeMover
+            
             if (this.contenido[df][dc] === null && this.contenido[mf][mc] instanceof Ficha) {
                 movimientos.push({ fila: df, col: dc });
             }
         }
         
-        return movimientos; // Devolvemos el array (puede estar vacío)
+        return movimientos; 
     }
 }
 

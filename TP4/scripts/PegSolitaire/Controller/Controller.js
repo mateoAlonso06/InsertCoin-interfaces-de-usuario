@@ -1,10 +1,6 @@
 import { Model } from '../Model/Model.js';
 import { View } from '../View/View.js';
 
-/**
- * El Controlador.
- * Conecta los eventos del usuario con el Modelo y la Vista.
- */
 class Controller {
     constructor() {
         // Propiedades que se inicializarán en iniciarJuego()
@@ -17,7 +13,7 @@ class Controller {
         this.fichaSeleccionada = null;
         this.offsetXFicha = 0;
         this.offsetYFicha = 0;
-        this.hintsMovimiento = []; // Array para los hints
+        this.hintsMovimiento = []; 
 
         // Estado del Juego
         this.juegoTerminado = false;
@@ -26,37 +22,34 @@ class Controller {
         // Guardamos el personaje elegido para reiniciar
         this.personajeElegido = 'gabu'; // Default
 
-        // ID del frame para cancelarlo
         this.idFrameLoop = null;
     }
 
     /**
-     * El punto de entrada principal. Se llama cuando el DOM está listo.
+     * se vaa iniciar el juego en el momento que el usuario haya seleccionado el personaje
+     * y hecho click en jugar
      */
     async iniciarJuego() {
-        console.log("Controlador: DOM listo.");
-
+    
         this.modelo = new Model();
         this.vista = new View();
 
         try {
-            // --- ¡LÓGICA DEL MENÚ PRINCIPAL! ---
-            // 1. Mostramos el menú y esperamos la selección.
+            // logica del menu principal
+            // se muestra el menu y esperamos la seleccion del personajee
             this.personajeElegido = await this.vista.mostrarMenuPrincipal();
             
-            // 2. Una vez que el usuario elige y presiona "Jugar", cargamos los recursos.
-            console.log("Controlador: Iniciando carga de recursos...");
+            //  despues de elegir y clickear en jugar, se cargan los recursos para el juego
             await this.vista.cargarRecursos();
-            console.log("Controlador: ¡Recursos cargados!");
 
-            // 3. Creamos el tablero PASÁNDOLE el personaje
+            //  se crea el tablero en el modelo
             this.modelo.crearTablero(this.personajeElegido);
 
-            // 4. Guardamos referencias
+            //  Guardamos referencias
             this.canvas = this.vista.canvas;
             this.ctx = this.vista.ctx;
 
-            // 5. Bindeamos 'this' (¡MUY IMPORTANTE!)
+            // se bindean los los metodos para poder mantener el contexto del controller
             this.handleMouseDown = this.handleMouseDown.bind(this);
             this.handleMouseMove = this.handleMouseMove.bind(this);
             this.handleMouseUp = this.handleMouseUp.bind(this);
@@ -64,31 +57,25 @@ class Controller {
             this.reiniciarJuego = this.reiniciarJuego.bind(this); 
             this.volverAlMenu = this.volverAlMenu.bind(this);
 
-            // 6. Añadimos listeners
-            console.log("Controlador: Añadiendo listener 'mousedown'...");
             this.canvas.addEventListener('mousedown', this.handleMouseDown);
             
-            // Listeners para los botones del menú de fin de juego
+            // listeners para los botones del menú de fin de juego
             this.vista.botonReiniciar.addEventListener('click', this.reiniciarJuego);
             this.vista.botonVolverMenu.addEventListener('click', this.volverAlMenu);
 
-            // --- ¡AQUÍ ESTÁ TU BOTÓN DE RESET! ---
-            // Listener para el botón de reset IN-GAME
+            // listener para el botón de reset 
             if (this.vista.resetAll) {
                 this.vista.resetAll.addEventListener('click', this.reiniciarJuego);
-            } else {
-                console.warn("Controlador: No se encontró el botón de reset 'reset-tablero' en la Vista.");
-            }
+            } 
             
-            // 7. Iniciamos el Timer
             this.modelo.iniciarTimer(); 
             this.vista.actualizarTimer(this.modelo.tiempoRestante); 
             
-            // 8. ¡Iniciamos el Game Loop!
+            //se inicia el loop del juego 
             this.idFrameLoop = requestAnimationFrame(this.gameLoop);
 
         } catch (error) {
-            console.error("Controlador: Error fatal al cargar recursos. El juego no puede iniciar.", error);
+            console.error("controlador: el juego no puede iniciar.", error);
         }
     }
 
@@ -96,79 +83,77 @@ class Controller {
      * Reinicia solo el estado del juego.
      */
     reiniciarJuego() {
-        console.log("Controlador: Reiniciando el juego...");
-        
-        // Detenemos el loop anterior (si había uno)
+        // paramos el loop
         if (this.idFrameLoop) {
             cancelAnimationFrame(this.idFrameLoop);
             this.idFrameLoop = null;
         }
 
-        // 1. Resetea el modelo (con el mismo personaje)
+        //  resetea el modelo (con el mismo personaje)
         this.modelo.reiniciar(this.personajeElegido);
         
-        // 2. Resetea el estado del controlador
+        //  resetea el estado del controlador
         this.juegoTerminado = false;
         this.estadoJuego = 'JUGANDO';
         this.fichaSeleccionada = null;
-        this.hintsMovimiento = []; // Limpia los hints
+        this.hintsMovimiento = []; 
         
-        // 3. Reinicia el timer
+        //  reinicia el timer
         this.modelo.iniciarTimer();
         this.vista.actualizarTimer(this.modelo.tiempoRestante);
         
-        // 4. Oculta el menú de fin de juego (si estaba visible)
+        //  oculta el menú de fin de juego (si estaba visible)
         this.vista.menuFinJuego.classList.add('oculto');
         
-        // 5. Reinicia el game loop
+        //  reinicia el game loop
         this.idFrameLoop = requestAnimationFrame(this.gameLoop); 
     }
 
     /**
-     * Vuelve al menú principal.
+     * vuelve al menú principal.
      */
     volverAlMenu() {
-        console.log("Controlador: Volviendo al menú principal...");
-        
-        // Detenemos el gameLoop actual (¡IMPORTANTE!)
+        // paramos el gameLoop actual 
         if (this.idFrameLoop) {
             cancelAnimationFrame(this.idFrameLoop);
             this.idFrameLoop = null;
         }
         
-        // Oculta el menú de fin de juego
+        // oculta el menú de fin de juego
         this.vista.menuFinJuego.classList.add('oculto');
         
-        // Reseteamos estados
+        // reseteamos estados
         this.juegoTerminado = false;
         this.estadoJuego = 'JUGANDO';
         this.fichaSeleccionada = null;
         this.hintsMovimiento = [];
         
-        // Llama a iniciarJuego() de nuevo, lo que mostrará el menú principal
+        // se vuelve a mostrar el menu principal
         this.iniciarJuego();
     }
 
 
     /**
-     * Se ejecuta al hacer clic.
+     * se ejecuta al hacer clic.
      */
     handleMouseDown(e) {
+        //e es el evento que entre tanta info que trae, tiene el offsetX y offsetY
         if (this.fichaSeleccionada || this.juegoTerminado) return; 
 
-        // 1. Traducir píxeles a celda
+        //  traducir píxeles a celda
+        //obtenemos las coordenadas logicas del click
         const { fila, col } = this.vista.traducirPixelACelda(e.offsetX, e.offsetY);
         
-        // 2. Pedir la ficha al modelo
+        //  pedir la ficha al modelo
         const ficha = this.modelo.getFichaEn(fila, col);
         
-        // 3. Si hay ficha, ¡la "levantamos"!
-        // Usamos 'instanceof Ficha' por seguridad
+        // si hay ficha, la seleccionamos para poder arrastrarla
+        // nos aseguramos que lo que agarramos sea una ficha y no un espacio vacio(null 0 o -1)
         if (ficha && typeof ficha.estaSiendoArrastrada !== 'undefined') {
             this.fichaSeleccionada = ficha;
             ficha.estaSiendoArrastrada = true;
             
-            // --- ¡Pedimos los hints! ---
+            //pedimos los movimientos posibles para la ficha seleccioanda
             this.hintsMovimiento = this.modelo.getMovimientosValidosPara(ficha);
             
             // Calculamos el offset del clic DENTRO de la ficha
@@ -177,90 +162,90 @@ class Controller {
             this.offsetXFicha = e.offsetX - xFicha;
             this.offsetYFicha = e.offsetY - yFicha;
 
-            // Actualizamos la pos flotante inicial
+            /*
+            usamos el ffset que calculamos para asi tener de referencia el centro y que la ficha
+            flotando, se dibuje en referencia a eso y noen referencia al mouse*/ 
             this.fichaSeleccionada.xFlotante = e.offsetX - this.offsetXFicha;
             this.fichaSeleccionada.yFlotante = e.offsetY - this.offsetYFicha;
 
-            // Añadimos los listeners para mover y soltar
+            // se agregan los nuevos eventos que vamos a necesitar escuchar
+            //mientras arrastramos la ficha
             this.canvas.addEventListener('mousemove', this.handleMouseMove);
             this.canvas.addEventListener('mouseup', this.handleMouseUp);
             this.canvas.addEventListener('mouseleave', this.handleMouseUp);
         }
     }
 
-    /**
-     * Se ejecuta al mover el mouse (solo si se está arrastrando).
-     */
+    
     handleMouseMove(e) {
         if (!this.fichaSeleccionada) return;
 
-        // Actualizamos la posición "flotante" de la ficha
+        // vamos actualizando la pos de la ficha mientras esta esta flotando
         this.fichaSeleccionada.xFlotante = e.offsetX - this.offsetXFicha;
         this.fichaSeleccionada.yFlotante = e.offsetY - this.offsetYFicha;
     }
 
     
     /**
-     * Se ejecuta al soltar el clic.
+     * se ejecuta al soltar el clic.
      */
     handleMouseUp(e) {
         if (!this.fichaSeleccionada) return;
 
-        // 1. Traducir píxeles a celda de destino
+        //  traducir píxeles a celda de destino
         const { fila, col } = this.vista.traducirPixelACelda(
             this.fichaSeleccionada.xFlotante, 
             this.fichaSeleccionada.yFlotante
         );
 
-        // 2. Intentar mover la ficha en el modelo
+        //nos dice si el movimiento es exitoso o no
         const exito = this.modelo.intentarMover(this.fichaSeleccionada, fila, col);
         
-        // 3. "Soltamos" la ficha (pase lo que pase)
+        // uan vez soltamos, reiniciamos el estadode arrastre
+        //y si el movimiento fue exitoso, el modelo se actualiza y por lo tanto el a vista tambien o viceversa
         this.fichaSeleccionada.estaSiendoArrastrada = false;
         this.fichaSeleccionada = null; // Dejamos de arrastrar
         this.hintsMovimiento = []; // Limpiamos los hints
 
-        // 4. Limpiamos los listeners
+        // limpiamos los listeners
         this.canvas.removeEventListener('mousemove', this.handleMouseMove);
         this.canvas.removeEventListener('mouseup', this.handleMouseUp);
         this.canvas.removeEventListener('mouseleave', this.handleMouseUp);
 
-        // 5. Si el movimiento fue exitoso, chequear si el juego terminó.
+        //  si el movimiento fue exitoso, chequear si el juego terminó.
         if (exito) {
             this.verificarFinDeJuego();
         }
     }
 
     /**
-     * Llama al modelo para ver si el juego terminó.
+     * llama al modelo para ver si el juego termino
      */
     verificarFinDeJuego() {
         const estado = this.modelo.verificarEstadoJuego(); 
 
         if (estado === 'JUGANDO') {
-            return; // El juego sigue
+            return;
         }
 
-        // ¡El juego terminó!
         this.juegoTerminado = true;
-        this.estadoJuego = estado; // Guardamos 'VICTORIA' o 'DERROTA'
-        this.modelo.detenerTimer(); // Detenemos el timer
+        this.estadoJuego = estado; 
+        this.modelo.detenerTimer(); 
     }
 
     /**
-     * El bucle principal del juego (se llama 60 veces por seg).
-     * @param {number} tiempoActual - El timestamp de requestAnimationFrame
+     * el bucle principal del juego (se llama 60 veces por seg).
      */
     gameLoop(tiempoActual) {
-        // --- ACTUALIZAR EL TIMER ---
+        //tiempoActual es el timestamp que nos da requestAnimationFrame
         if (!this.juegoTerminado) {
-            // 1. Actualizamos la lógica del timer en el Modelo
+            //  actualizamos la lógica del timer en el Modelo
             const tiempoRestante = this.modelo.actualizarTimer(tiempoActual);
 
-            // 2. Actualizamos la Vista (HTML) con el nuevo tiempo
+            // actualizamos la Vista  con el nuevo tiempo
             this.vista.actualizarTimer(tiempoRestante);
 
-            // 3. Verificamos si se acabó el tiempo
+            //  verificamos si se acabó el tiempo
             if (tiempoRestante <= 0) {
                 this.juegoTerminado = true;
                 this.estadoJuego = 'DERROTA_TIEMPO'; 
@@ -268,12 +253,10 @@ class Controller {
             }
         }
 
-        // --- LÓGICA DE DIBUJADO ---
-        
-        // 1. Limpiamos y dibujamos el estado del tablero (Vista)
-        this.vista.render(this.modelo.getTablero(), this.hintsMovimiento); // <-- Pasamos los hints
+        //  limpiamos y dibujamos el estado del tablero
+        this.vista.render(this.modelo.getTablero(), this.hintsMovimiento); 
 
-        // 2. Dibujamos la ficha "flotante" ENCIMA de todo
+        //  dibujamos la ficha "flotante" ENCIMA de todo
         if (this.fichaSeleccionada) {
             this.vista.dibujarFichaFlotante(
                 this.fichaSeleccionada.xFlotante, 
@@ -282,31 +265,28 @@ class Controller {
             );
         }
 
-        // 3. Si el juego terminó, mostramos el mensaje final
+        //si termino el juego, mostrarmos el menu de fin del juego con sus mensajes dependiendo del estado
         if (this.juegoTerminado) {
             this.vista.mostrarMensajeFinDeJuego(this.estadoJuego);
         }
 
-        // 4. Pedimos al navegador que nos llame de nuevo
+        // pedimos al navegador que nos llame de nuevo
         if (!this.juegoTerminado) {
             this.idFrameLoop = requestAnimationFrame(this.gameLoop);
         } else {
-            this.idFrameLoop = null; // El juego terminó, no hay loop
+            this.idFrameLoop = null;
         }
     }
 }
 
-// --- PUNTO DE ENTRADA ---
+
 document.addEventListener('DOMContentLoaded', () => {
-    // Importamos Ficha aquí solo para la comprobación de seguridad
-    // (Asegura que los imports funcionen antes de arrancar)
+    
     import('../Model/Ficha.js').then(({ Ficha }) => {
-        // Adjuntamos Ficha al scope global
-        // para que 'instanceof Ficha' funcione en la Vista.
         window.Ficha = Ficha; 
 
         const controlador = new Controller();
-        controlador.iniciarJuego(); // Este es el arranque
+        controlador.iniciarJuego(); 
     }).catch(err => {
         console.error("Error crítico al cargar Ficha.js. El juego no puede arrancar.", err);
     });

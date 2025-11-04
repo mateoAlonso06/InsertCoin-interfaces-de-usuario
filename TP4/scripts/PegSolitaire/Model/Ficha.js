@@ -8,9 +8,9 @@ export class Ficha {
         this.fila = fila;
         this.col = col;
         
-        // Estado para el Drag and Drop
+        // estado para el Drag and Drop
         this.estaSiendoArrastrada = false;
-        this.xFlotante = 0; // Coordenada X (píxeles) donde se dibuja al flotar
-        this.yFlotante = 0; // Coordenada Y (píxeles) donde se dibuja al flotar
+        this.xFlotante = 0; // coordenada X (píxeles) donde se dibuja al flotar
+        this.yFlotante = 0; // coordenada Y (píxeles) donde se dibuja al flotar
     }
 }
