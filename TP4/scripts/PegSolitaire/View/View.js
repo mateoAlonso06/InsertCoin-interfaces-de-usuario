@@ -1,27 +1,25 @@
-/**
- * Representa la parte visual del juego en el Canvas.
- * Carga imágenes, las dibuja, y actualiza el HTML.
- */
+
 export class View {
     
-    // Tus constantes de calibración
+    // se define el tamaño de la celda y la pocision de la ficha para que coincida con el tablero de la imagen
+    //se hace adivinando los numeros magicos para que coincidan
     TAMANO_CELDA = 66.3;
     OFFSET_X = 228;
-    OFFSET_Y = 85;
+    OFFSET_Y = 85;//85
 
-    // Define el tamaño de tus imágenes
+    // tamaño que van a tener las fichas
     ANCHO_FICHA = 60;
     ALTO_FICHA = 60;
 
     constructor() {
         this.canvas = document.getElementById('canvas-peg');
         
-        // --- Elementos HTML del Menú Principal ---
+        //los elementos principales dle html
         this.menuPrincipal = document.querySelector('.menu-principal-peg');
         this.botonesPersonaje = document.querySelectorAll('.personaje-container');
         this.botonJugar = document.getElementById('play-peg');
         
-        // --- Elementos HTML del Menú de Fin de Juego ---
+        // elementos varios que se utilizan para menu,reiniciar el juego, etc
         this.menuFinJuego = document.getElementById('fin-juego-menu');
         this.tituloFinJuego = document.getElementById('fin-juego-titulo');
         this.botonReiniciar = document.getElementById('button-reiniciar-peg'); 
@@ -29,18 +27,12 @@ export class View {
         this.mensajeFinJuego = document.getElementById('fin-juego-mensaje');
         this.timerDisplay = document.getElementById('timer-display');
         this.resetAll = document.getElementById('reset-tablero');
-        
-        // --- Comprobaciones de seguridad ---
-        if (!this.canvas || !this.menuPrincipal || !this.botonJugar || !this.menuFinJuego || !this.botonReiniciar || !this.botonVolverMenu) {
-            console.error("Vista Error: No se encontraron uno o más elementos HTML esenciales (canvas, menús o botones).");
-            return;
-        }
 
         this.canvas.width = 850;
         this.canvas.height = 575;
         this.ctx = this.canvas.getContext('2d');
         
-        // Almacén de imágenes
+        // donde guardamos las imagenes de los personajes
         this.imagenes = {};
     }
 
@@ -137,27 +129,25 @@ export class View {
         });
     }
 
-    // --- Métodos de Dibujado (¡ACTUALIZADOS!) ---
+    // funcion que renderiza el tablero con las fichas
 
-    /**
-     * Dibuja el tablero Y LOS HINTS.
-     * @param {Array<Array<Ficha|null>>} modeloDeTablero
-     * @param {Array<{fila: number, col: number}>} hints - ¡NUEVO!
-     */
     render(modeloDeTablero, hints) {
+        //reiniciamos para poder redibujar encima
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         
         for (let fila = 0; fila < 7; fila++) {
             for (let col = 0; col < 7; col++) {
                 
+                //obtenemos cada pieza
                 const pieza = modeloDeTablero[fila][col];
                 
                 if (pieza !== null && !pieza.estaSiendoArrastrada) { 
-                    
+                    //dibujamos las piezas en los lugares que deben de ir
                     const img = this.imagenes[pieza.tipo];
                     const x = this.OFFSET_X + (col * this.TAMANO_CELDA);
                     const y = this.OFFSET_Y + (fila * this.TAMANO_CELDA);
-
+                    
+                    //hacemos que la iamgen sea circular, ya que estaban cuadradas por defecto
                     if (img) {
                         this.ctx.save();
                         this.ctx.beginPath();
@@ -177,16 +167,15 @@ export class View {
             }
         }
 
-        // --- ¡NUEVO! ---
-        // Dibujamos los hints ENCIMA del tablero
+        // Dibujamos los hints siempre y cuando estos existan
         if (hints && hints.length > 0) {
             this.dibujarHints(hints);
         }
     }
 
-    /**
-     * Dibuja la ficha que está siendo arrastrada.
-     */
+    
+     // Dibuja la ficha que está siendo arrastrada.
+     
     dibujarFichaFlotante(mouseX, mouseY, ficha) {
         const img = this.imagenes[ficha.tipo];
         const x = mouseX;
@@ -208,7 +197,8 @@ export class View {
             );
             this.ctx.restore();
         } else {
-            // Fallback
+            // si por alguna razon se rompe la ruta de la imagen o nos olvidamos de agregarla,
+            //tenemos este else como un backup para dibujar una ficha generica y darnos cuenta donde esta el error de dibujado
             this.ctx.beginPath();
             this.ctx.arc(x, y, 28, 0, Math.PI * 2);
             this.ctx.fillStyle = 'green';
@@ -218,11 +208,10 @@ export class View {
         }
     }
 
-     // --- ¡NUEVA FUNCIÓN DE HINTS DE FLECHA ANIMADOS! ---
-    /**
-     * Dibuja los hints (flechas rebotantes) en las celdas de destino.
-     * @param {Array<{fila: number, col: number}>} hints 
-     */
+     
+    
+     // Dibuja los hints (flechas rebotantes) en las celdas de destino.
+    
     dibujarHints(hints) {
         // Calculamos un "rebote" vertical usando una onda sinusoidal.
         // Date.now() / 150 controla la velocidad del rebote.
@@ -235,7 +224,7 @@ export class View {
             const y = this.OFFSET_Y + (hint.fila * this.TAMANO_CELDA);
             
             // Dibujamos una flecha en la celda (x, y) con el rebote (yOffset)
-            // La flecha se dibuja "encima" de la celda
+            // La flecha se dibuja encima de la celda
             this._dibujarFlecha(x, y + yOffset - 25); // -25px para que esté arriba del hueco
         }
     }

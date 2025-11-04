@@ -82,18 +82,18 @@ body, main {
     height: 575px;
     background-image: url('https://e0.pxfuel.com/wallpapers/691/991/desktop-wallpaper-background-dragon-ball-z-dragon-ball-super-scenery.jpg');
     background-size: cover; 
-    background-position: center; 
+    background-position:center; 
 }
 
 #peg-solitaire-body .game-screen {
     width: 850px;             /* ancho fijo */
     height: 575px;            /* alto fijo */
-    position: relative;
-    margin: 0 auto;           /* centra el contenedor */
+    position: relative;         /* centra el contenedor */
     background-image: url('../assets/img/peg-solitaire-utils/peg.jpg');
-    background-size: contain;   /* muestra la imagen completa sin recortar */
+    background-size: cover;   /* muestra la imagen completa sin recortar */
     background-repeat: no-repeat;
     background-position: center;
+    
 }
 
 /* canvas fijo, coincide con las dimensiones del contenedor */
@@ -101,11 +101,11 @@ body, main {
     position: absolute;
     top: 0;
     left: 0;
-    width: 850px;   /* tamaño visual fijo */
+    width: 100%;   /* tamaño visual fijo */
     height: 575px;
     display: block;
     background-color: transparent;
-    border-radius: 10px; /* opcional */
+    
     z-index: 10;
 }
 
@@ -869,6 +869,13 @@ textarea:focus {
     border-radius: 10px;
     object-fit: cover;
     border: 5px solid var(--color-primary-450);
+}
+
+#peg-solitaire-body .multimedia img {
+    border-top: none;
+    border-bottom: none;
+    border-right: 5px solid var(--color-primary-450);;
+    border-left: 5px solid var(--color-primary-450);;
 }
 
 .image-wrapper {
