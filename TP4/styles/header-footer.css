@@ -8,7 +8,7 @@ header {
     justify-content: center;
     position: sticky;
     top: 0;
-    z-index: 100000000000000;
+    z-index: 1000;
     left: 0;
     padding: 0 1rem;
 }
@@ -384,7 +384,7 @@ h1 span {
         flex: 1 1 auto; 
         display: flex;
         flex-direction: row; 
-        flex-wrap: nowrap; 
+        flex-wrap: wrap; 
         justify-content: space-between; 
         gap: 2rem; 
         margin-top: 0;
