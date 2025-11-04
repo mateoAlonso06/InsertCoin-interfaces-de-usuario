@@ -1,0 +1,102 @@
+.recommended-games h3 {
+    text-align: start;
+    font-size: 16px;
+    color: var(--color-accent-400);
+    margin-left: 1rem; 
+}
+
+.recommended-games .principal-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.recommended-games .principal-container .left-arrow,
+.recommended-games .principal-container .right-arrow {
+    position: absolute;
+    border: none;
+    background:rgb(0, 0, 0,0.3) ;
+    font-size: 40px;
+    height: 50%;
+    top: calc(50% - 25%);
+    line-height: 40px;
+    width: 50px;
+    color: white;
+    z-index: 50;
+    cursor: pointer;
+    transition: 2s ease all;
+    user-select: none; /*evita que se seleccione el texto al hacer click*/
+}
+
+.recommended-games .principal-container .left-arrow{
+    left: 0;
+}
+
+.recommended-games .principal-container .right-arrow{
+    right: 0;
+}
+
+.recommended-games .carousel-container {
+    width: 100%;
+    padding: 20px 0;
+    overflow: hidden;
+    scroll-behavior: smooth;
+    position: relative; 
+}
+
+.recommended-games .carousel-container .carousel {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.recommended-games .carousel-container .carousel .game-card {
+    min-width: calc(16.666% - 20px); 
+    box-shadow: 5px 5px 10px rgba(0,0,0,.5);
+    margin: 10px;
+    cursor: pointer;
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.recommended-games .carousel-container .carousel .game-card:hover {
+    transform: scale(1.1);
+    transform-origin: center;
+    transition: .5s ease-in-out;
+}
+
+.recommended-games .carousel-container .carousel .game-card img {
+    width: 100%;
+    vertical-align: top; /* Removes extra space below inline images */
+}
+
+.hidden {
+    display: none;
+}
+
+.game-card {
+  opacity: 1;
+  transform: scale(1);
+  transition: transform 0.3s ease-in-out;
+}
+
+
+
+@keyframes wave3D {
+  0% {
+    transform: perspective(800px) rotateY(15deg) scale(0.9);
+    opacity: 0.7;
+  }
+  50% {
+    transform: perspective(800px) rotateY(-10deg) scale(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: perspective(800px) rotateY(0deg) scale(1);
+    opacity: 1;
+  }
+}
+
+.game-card.animar {
+  animation: wave3D 0.8s ease-in-out forwards;
+}

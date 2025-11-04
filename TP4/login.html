@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login</title>
+    <script src="https://kit.fontawesome.com/a405ba9b1d.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/login.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<body>
+
+    <div class="form-container">
+        <div class="logo">
+            <img src="assets/icons/logo-insertcoin.svg" alt="Logo InsertCoin">
+        </div>
+        <form class="login-form" id="login-form">
+            <div class="inputs-form-login">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Email">
+                <span class="error" id="errorEmail"></span>
+
+                <label for="password">Contraseña</label>
+                <input type="password" id="contraseña" placeholder="password">
+                <p class="error" id="errorPassword"></p>
+
+                <a href="#" class="form-link">¿Has olvidado tu contraseña?</a>
+            </div>
+            <button type="submit" class="login-btn">Iniciar sesión<a href="index.html"></a></button>
+            <h6>O iniciar sesión con</h6>
+            <div class="social-login">
+                <a href="index.html"><img src="assets/img/google.png" alt="iniciar sesión con google"></a>
+                <a href="index.html"><img src="assets/img/facebook.png" alt="iniciar sesión con facebook"></a>
+            </div>
+            <div class="register">
+                <a href="signup.html" class="form-link">Registrarme</a>    
+            </div>
+        </form>
+    </div>
+
+    <script src="scripts/login-form.js"></script>
+    <script src="https://kit.fontawesome.com/a405ba9b1d.js" crossorigin="anonymous"></script>
+
+</body>
+</html>             

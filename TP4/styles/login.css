@@ -1,0 +1,274 @@
+/*
+Hoja de estilos para formulario de login y posible sign-up
+*/ 
+
+body {
+    font-family: var(--font-family-primary);
+    background-image: url("../assets/img/banners/fondo_background.jpg"); 
+    background-size: cover;     
+    background-repeat: no-repeat; 
+    background-position: center;   
+    margin: 0;
+    padding: 0;
+}
+
+label {
+    margin-top: 1.5rem;
+}
+
+.logo {
+    display: block;
+    margin: 0 auto 1rem auto;
+    width: 120px;
+    height: auto;
+}
+
+
+.form-container {
+    max-width: 40rem;
+    border: 2px solid var(--color-primary-400);
+    margin: 60px auto;
+    padding: 30px 25px;
+    background: #1A1A2E;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    flex-direction: column;
+}
+
+.form-container h2, h6 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #f5f5f5;
+}
+
+.login-form {
+    margin-bottom: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.login-form label {
+    display: block;
+    margin-bottom: 6px;
+    color: #f5f5f5;
+    font-size: 15px;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+
+.inputs-form-login {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+
+input::placeholder {
+    color: var(--color-neutral-400);
+    font-size: 12px;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 10px;
+    background: var(--color-primary-450);
+    color: #f5f5f5;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 2rem;
+    position: relative; 
+    overflow: hidden;   
+    z-index: 1;         
+    
+    /* Transición para el texto y color del botón */
+    transition: color 0.3s ease, background  0.3s ease; 
+}
+
+/* PSEUDO-ELEMENTO PARA EL RELLENO */
+.login-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%; 
+    transform: translateX(-50%) scaleX(0); 
+    width: 100%; 
+    height: 100%;
+    background-color: var(--color-primary-700); 
+    border-radius: 10px; 
+    transition: transform 0.4s cubic-bezier(0.2, 1, 0.3, 1); 
+    z-index: -1; 
+}
+
+.login-btn:hover {
+    background: transparent; 
+    color: #f5f5f5; 
+}
+
+.login-btn:hover::before {
+    transform: translateX(-50%) scaleX(1); /* Se expande de 0 a 100% de ancho */
+}
+
+.login-btn:hover {
+    background: var(--color-primary-700);
+}
+
+
+.form-link { 
+    color: var(--color-accent-400);
+    font-size: 8px;
+}
+
+
+.social-login {
+    margin-bottom: 1rem;
+}
+
+.social-login button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    font-size: 10px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-login a {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    font-size: 10px;
+    cursor: pointer;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.register, p {
+    text-align: center;
+}
+
+
+/*---------------------------------------------------------------*/
+
+/*Hoja para el sign-up*/
+#ua {
+    color: var(--color-secondary-600);
+}
+
+#n {
+    color: var(--color-accent-400);
+}
+
+.recaptcha {
+    width: 100%; 
+    max-width: 300px;
+    display: block;
+    margin: 10px auto;
+    
+}
+
+.obligatorio {
+    color: var(--color-accent-400);
+}
+
+/*------------MENSAJE DE ERROR-----------*/
+.form-container > .login-form > .inputs-form-login > .input-error,
+.login-form input.input-error{
+    border: 2px solid var(--color-error-400);
+}
+
+.error {
+    color: var(--color-error-400);
+    margin-bottom: 5px;
+    margin-top: 5px;
+    font-size: 10px;
+    text-align: start;
+}
+
+
+
+.input-group {
+    position: relative;
+    width: 100%;
+}
+
+.error-field + .warning-icon {
+    display: block;
+}
+
+/*------------ANIMACIONES-----------*/
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0);
+    backdrop-filter: blur(0px);
+    transition: all 0.5s ease;
+    z-index: 999;
+    pointer-events: none;
+}
+
+.overlay.active {
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(3px);
+    pointer-events: all;
+}
+
+@keyframes slideFromRight {
+    0% {
+        transform: translate(100%, -50%);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+}
+
+.success-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(100%, -50%);
+    background-color: var(--color-bg-800);
+    color: var(--color-primary-400);
+    padding: 30px 50px;
+    border: 2px solid var(--color-primary-400);
+    border-radius: 10px;
+    font-family: var(--font-family-primary);
+    text-align: center;
+    animation: slideFromRight 0.8s ease-out forwards;
+    z-index: 1000;
+    box-shadow: 0 0 30px rgba(var(--color-primary-400), 0.3);
+}
+
+.success-message h2 {
+    margin: 0;
+    font-size: 24px;
+    text-transform: uppercase;
+}
+
+.success-message p {
+    margin: 10px 0 0;
+    font-size: 16px;
+}

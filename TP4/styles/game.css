@@ -1,5 +1,3 @@
-
-
 *, *::before, *::after {
     box-sizing: border-box; 
 }
@@ -84,16 +82,31 @@ body, main {
     height: 575px;
     background-image: url('https://e0.pxfuel.com/wallpapers/691/991/desktop-wallpaper-background-dragon-ball-z-dragon-ball-super-scenery.jpg');
     background-size: cover; 
-    background-position: center; 
+    background-position:center; 
 }
 
 #peg-solitaire-body .game-screen {
-    width: 100%;
-    position: relative; 
+    width: 850px;             /* ancho fijo */
+    height: 575px;            /* alto fijo */
+    position: relative;         /* centra el contenedor */
+    background-image: url('../assets/img/peg-solitaire-utils/peg.jpg');
+    background-size: cover;   /* muestra la imagen completa sin recortar */
+    background-repeat: no-repeat;
+    background-position: center;
+    
+}
+
+/* canvas fijo, coincide con las dimensiones del contenedor */
+#canvas-peg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;   /* tamaño visual fijo */
     height: 575px;
-    background-image: url('../assets/img/peg-solitaire-utils/Pegsolitarie.svg');
-    background-size: cover; 
-    background-position: center; 
+    display: block;
+    background-color: transparent;
+    
+    z-index: 10;
 }
 
 #canvas {
@@ -109,11 +122,11 @@ body, main {
     position: absolute;
     bottom: .5rem;
     right: .5rem;
+    z-index: 50;
     color: var(--color-neutral-100);
     cursor: pointer;
     display: flex;
     gap: 5px;
-    z-index: 50; 
 }
 
 
@@ -464,7 +477,6 @@ body, main {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 5rem;
     margin: 1.8rem 0 0 0;
 }
 
@@ -472,7 +484,7 @@ body, main {
 .personaje-container {
     display: flex;
     flex-direction: column;
-    align-items: center;    
+    align-items: center;     
 }
 
 .personaje{
@@ -859,6 +871,13 @@ textarea:focus {
     border: 5px solid var(--color-primary-450);
 }
 
+#peg-solitaire-body .multimedia img {
+    border-top: none;
+    border-bottom: none;
+    border-right: 5px solid var(--color-primary-450);;
+    border-left: 5px solid var(--color-primary-450);;
+}
+
 .image-wrapper {
     position: relative;
     display: inline-block;
@@ -902,5 +921,220 @@ textarea:focus {
     color: var(--color-neutral-100);
 }
 
+
+
+#canvas-peg {
+    /* Se posiciona de forma absoluta SOBRE el .game-screen */
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    /* Ocupa el 100% de su padre (.game-screen) */
+    width: 100%;
+    height: 100%;
+    
+    /* ¡AQUÍ ESTÁ LA TRANSPARENCIA! */
+    background-color: transparent;
+}
+
+/* --- ESTILOS PARA EL MENÚ DE FIN DE JUEGO --- */
+
+#timer-display {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+    z-index: 10; /* Se asegura de que esté sobre el canvas */
+}
+
+/* El contenedor del menú */
+#fin-juego-menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+    pointer-events: auto;
+    z-index: 999; /* <-- asegurarse que quede por encima del canvas */
+}
+
+
+/* Estilos para el texto del menú */
+#fin-juego-titulo {
+    font-size: 48px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.fin-juego-botones button {
+    background-color: #ff4500;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    margin: 10px;
+    font-size: 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.fin-juego-botones button:hover {
+    background-color: #ff6347;
+}
+
+#fin-juego-mensaje {
+    font-size: 24px;
+    margin-top: 10px;
+}
+
+.menu-principal-peg {
+    /* 1. Superposición */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centra el menú */
+    width: 600px;         
+    max-width: 90vw;      
+    height: 300px;         
+    z-index: 100;
+    z-index: 100; /* Asegura que esté por encima del canvas */
+    background-color: rgb(224, 154, 14); /* Fondo oscuro (casi opaco) */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #333;
+    gap: 2rem; 
+    border-radius: 10px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    /* Por defecto está visible, luego lo ocultaremos con JS */
+}
+
+/* 3. Título ("Selecciona un personaje") */
+.menu-principal-peg h3 {
+    font-family: 'Press Start 2P', cursive;
+    color: white;
+    font-size: 1.5rem; /* 24px */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    margin: 0;
+}
+
+/* 4. Avatares */
+/* Hacemos los selectores específicos para no afectar el .personajes de la barra lateral */
+.menu-principal-peg .avatares {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem; /* Espacio entre los personajes */
+    padding: 1rem;
+}
+
+.menu-principal-peg .personaje-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, filter 0.2s ease;
+    filter: brightness(0.8); /* Ligeramente oscuros por defecto */
+}
+
+.menu-principal-peg .personaje {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid white;
+    overflow: hidden;
+    background-color: #333;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.menu-principal-peg .personaje img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.menu-principal-peg .personaje-container h4 {
+    font-family: 'Rock Salt', cursive;
+    color: #ccc;
+    font-size: 1.25rem;
+    margin-top: 1rem;
+    transition: color 0.2s ease;
+}
+
+/* 5. Efectos Interactivos (Hover y Selected) */
+
+.menu-principal-peg .personaje-container:hover {
+    transform: scale(1.1);
+    filter: brightness(1);
+}
+
+.menu-principal-peg .personaje-container:hover h4 {
+    color: white;
+}
+
+/* Esta clase la pondremos con JS */
+.menu-principal-peg .personaje-container.selected {
+    transform: scale(1.1);
+    filter: brightness(1);
+}
+
+.menu-principal-peg .personaje-container.selected .personaje {
+    border-color: #FFD700; /* Borde dorado */
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.7); /* Brillo dorado */
+}
+
+.menu-principal-peg .personaje-container.selected h4 {
+    color: #FFD700;
+}
+
+
+/* 6. Botón "Jugar" */
+#play-peg {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.2rem;
+    color: white;
+    background-color: #00C853; /* Verde brillante */
+    padding: 1rem 2rem;
+    border: 3px solid black;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px rgba(0,0,0,0.5);
+    transition: all 0.1s ease;
+    margin-top: 1rem;
+}
+
+#play-peg:hover {
+    background-color: #00E676;
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px rgba(0,0,0,0.5);
+}
+
+#play-peg:active {
+    transform: translate(4px, 4px);
+    box-shadow: none;
+}
+
+
+.oculto {
+    display: none !important; /* Usamos !important para asegurarnos de que gane */
+}
 
 
