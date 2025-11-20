@@ -1,54 +1,30 @@
-/* --- ESTE ES TU ARCHIVO: styles/flappy.css --- */
-
-/* ¡IMPORTANTE!
- * Este archivo ASUME que "styles/game.css" ya definió:
- * #flappy-body .game-screen {
- * position: relative;
- * width: 1000px;
- * height: 575px;
- * overflow: hidden;
- * }
-*/
-
-
-/* --- LÓGICA DE PARALLAX --- */
-
-/* 1. La animación de scroll horizontal */
+/*animacion parallaxx*/
 @keyframes scroll {
     0% {
         transform: translateX(0);
     }
     100% {
-        /* ¡ARREGLO!
-           Movemos -50% (el ancho de UNA imagen)
-           en lugar de -100% (el ancho de todo el div). */
+        
         transform: translateX(-50%);
     }
 }
 
-/* 2. La clase base para todas las capas */
 .parallax-layer {
     position: absolute;
     top: 0;
     left: 0;
     height: 100%;
-    
-    /* ¡TRUCO! El div es 200% de ancho... */
     width: 200%; 
-    
-    /* ...para que la imagen de fondo (que es 50% del div)
-       pueda repetirse 2 veces y llenar el espacio. */
+    /*ocupa el 50% del 200 pero el 50 es el ancho total del contenedor*/
     background-size: 50% 100%;
+    /*al repetirse, se obtienen 2 imagenes iguales pegadas una al lado de la otra*/
     background-repeat: repeat-x;
-    
-    /* Aplicamos la animación a todas las capas */
     animation: scroll linear infinite;
-    
     /* Alinea las imágenes abajo */
     background-position: center bottom; 
 }
 
-/* 3. Las 9 capas con sus imágenes y velocidades */
+/*capas del parallax con diferentes velocidades y profundidades */
 
 #fondo {
     background-image: url('../assets/img/flappy/9.png');
@@ -98,63 +74,54 @@
 }
 
 
-/* --- EL PÁJARO (¡AHORA 2x MÁS GRANDE!) --- */
+
 #pajaro {
     position: absolute;
     top: 250px;
     left: 100px;
     
-    /* 1. Definimos el tamaño de UN frame (128*2, 96*2) */
+    /*este es el tamanio que va a tener cada frame del spritesheet */
     width: 256px; 
     height: 192px; 
     
-    /* 2. Usamos el spritesheet (¡revisá la ruta!) */
     background-image: url('../assets/img/flappy/Flight.png');
-    
-    /* 3. Arreglamos el bug de "muchos corriendo" */
     background-repeat: no-repeat;
     
-    /* 4. Escalamos la imagen completa (2x) */
-    /* Ancho Total: (8 frames * 128px) * 2 = 2048px */
-    /* Alto Total: (1 fila * 96px) * 2 = 192px */
+    /* escalamos la imagen para que se vea ams grande el mosntruo */
+    /* ancho Total: (8 frames * 128px) * 2 = 2048px */
+    /* alto Total: (1 fila * 96px) * 2 = 192px */
     background-size: 2048px 192px;
     
-    /* 5. Posicionamos el fondo en el primer frame (0, 0) */
+    /* frame donde comienza la img */
     background-position: 0px 0px; 
+    z-index: 20; 
+    image-rendering: pixelated;
     
-    z-index: 20; /* Encima de los troncos */
-    
-    image-rendering: pixelated; /* Mantiene el pixel art */
-    
-    /* 6. ¡La magia de la animación! (8 steps) */
     animation: aleteo 0.8s steps(8) infinite;
 }
 
-/* --- ANIMACIÓN DE SPRITESHEET (2x) --- */
 @keyframes aleteo {
-    /* 8 frames * 256px de ancho (escalado) = 2048px */
+    
     100% {
-        /* Mueve la imagen de fondo 2048px a la izquierda */
         background-position-x: -2048px;
     }
 }
 
 
-/* --- ESTILOS DE OBSTÁCULOS (TRONCOS) --- */
+/* troncos*/
 
-/* 1. La animación que mueve los troncos */
 @keyframes mover-tronco {
     0% {
-        /* Empieza justo fuera de la pantalla (1000px) */
+        /* arranca fuera de la pantalla */
         transform: translateX(1000px); 
     }
     100% {
-        /* Termina justo fuera de la pantalla, a la izquierda */
+        /* desaparece fuera de esta*/
         transform: translateX(-100px); 
     }
 }
 
-/* 2. El contenedor del "par" de troncos */
+/* contenedor de los troncos */
 .tronco-container {
     position: absolute;
     top: 0;
@@ -162,63 +129,51 @@
     width: 100px; 
     height: 100%; 
     animation: mover-tronco 8s linear ;
-    z-index: 15; /* Detrás del pájaro */
+    z-index: 15; 
 }
 
-/* 3. Estilo base (solo lo común) */
-/* 3. Estilo base (para repetir patrón) */
 .tronco {
     position: absolute;
     width: 100%;
     box-sizing: border-box;
-
-    
     background-size: auto; 
-    
     background-repeat: repeat; 
 }
 
-/* 4. Estilo específico para el tronco de arriba */
+
 .tronco-arriba {
     top: 0;
-    /* ¡Asegúrate de cambiar esto por tu nueva textura! */
     background-image: url('../assets/img/flappy/Wood_12-512x512.png');
-    
-    /* Ya no se necesita 'rotate' si el patrón es simétrico */
 }
 
-/* 5. Estilo específico para el tronco de abajo */
+
 .tronco-abajo {
     bottom: 0;
-    /* ¡Asegúrate de cambiar esto por tu nueva textura! */
     background-image: url('../assets/img/flappy/Wood_12-512x512.png');
 }
-/* --- CLASE GENÉRICA PARA OCULTAR --- */
+
 .oculto {
     display: none ; 
 }
 
-/* --- ESTILOS DE GAME OVER (ACTUALIZADO CON MENÚ) --- */
 
-/* 1. El CONTENEDOR del menú */
+
+/* contenedor del menu game over */
 #game-over {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    
-    /* Estilo de la caja */
-    background-color: rgba(0, 0, 0, 0.75); /* Fondo oscuro semitransparente */
+    background-color: rgba(0, 0, 0, 0.75); 
     border: 4px solid #FFF;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0,0,0,0.5);
     padding: 20px 40px;
     text-align: center;
-    
-    z-index: 100; /* Por encima de todo */
+    z-index: 100; 
 }
 
-/* 2. Título "GAME OVER" (Mantenemos el estilo que tenías) */
+
 #game-over h2 {
     font-family: 'Press Start 2P', cursive;
     font-size: 48px;
@@ -226,27 +181,24 @@
     text-shadow: 
         -3px -3px 0 #000, 3px -3px 0 #000,
         -3px 3px 0 #000, 3px 3px 0 #000;
-    margin: 0 0 10px 0; /* Ajuste de margen */
+    margin: 0 0 10px 0; 
     padding: 0;
 }
 
-/* 3. Párrafo del puntaje final */
 #game-over p {
     font-family: 'Press Start 2P', cursive;
     font-size: 24px;
-    color: #FFD700; /* Color dorado para el score */
-    margin: 15px 0 25px 0; /* Espacio antes de los botones */
+    color: #FFD700; 
+    margin: 15px 0 25px 0; 
     text-shadow: -2px 2px 0 #000;
 }
 
-/* 4. Contenedor de botones */
 .game-over-buttons {
     display: flex;
-    flex-direction: column; /* Botones apilados */
-    gap: 15px; /* Espacio entre botones */
+    flex-direction: column; 
+    gap: 15px; 
 }
 
-/* 5. Estilo de los botones */
 .game-over-buttons button {
     font-family: 'Press Start 2P', cursive;
     font-size: 16px;
@@ -260,40 +212,35 @@
 }
 
 .game-over-buttons button:hover {
-    transform: scale(1.05); /* Efecto al pasar el mouse */
+    transform: scale(1.05); 
     filter: brightness(1.1);
 }
 
-/* Estilo para el botón de Reiniciar */
 #btn-restart {
-    background-color: #27ae60; /* Verde */
+    background-color: #27ae60; 
 }
 
-/* Estilo para el botón de Menú */
 #btn-main-menu {
-    background-color: #2980b9; /* Azul */
+    background-color: #2980b9; 
 }
 
-/* 2. La clase para pausar las animaciones */
 #flappy-game-screen.pausado .parallax-layer,
 #flappy-game-screen.pausado .tronco-container {
     animation-play-state: paused;
 }
 
 #flappy-game-screen.pausado #pajaro {
-    /* Opcional: pausar también el aleteo */
     animation-play-state: paused;
 }
 
 
-/* --- ESTILO DE PUNTAJE --- */
+/*puntaje del juego*/
 
 #puntaje {
     position: absolute;
     top: 20px;
     left: 50%;
     transform: translateX(-50%);
-    
     font-family: 'Press Start 2P', cursive;
     font-size: 36px;
     color: white;
@@ -303,45 +250,38 @@
         -2px  2px 0 #000,
          2px  2px 0 #000;
     
-    z-index: 90; /* Encima del juego, debajo de Game Over */
+    z-index: 90; 
 }
 
 
 
-/* --- ANIMACIÓN DE MUERTE DEL PÁJARO --- */
+/* animacion de muerte del monstruo */
 
-/* Keyframes para la animación de muerte/explosión */
 @keyframes explotar {
     0% { background-position-x: 0; }
-    25% { background-position-x: -256px; } /* Segundo frame (256px de ancho) */
-    50% { background-position-x: -512px; } /* Tercer frame (256*2) */
-    75% { background-position-x: -768px; } /* Cuarto frame (256*3) */
-    100% { background-position-x: -768px; } /* Queda en el último frame */
+    25% { background-position-x: -256px; } 
+    50% { background-position-x: -512px; } 
+    75% { background-position-x: -768px; } 
+    100% { background-position-x: -768px; } 
 }
 
-/* Clase para aplicar la animación de muerte */
 #pajaro.pajaro-muerte {
-    background-image: url('../assets/img/flappy/Death.png'); /* ¡Ajusta esta ruta si es diferente! */
-    background-size: 1024px 192px; /* 256px * 4 frames = 1024px de ancho total, 192px de alto */
-    animation: explotar 0.5s steps(1) forwards; /* 0.5 segundos, 1 paso por frame, se queda en el final */
-    animation-play-state: running; /* Asegurar que se reproduzca */
-
-    /* Desactivar el aleteo si está activo */
-    animation-name: explotar; /* Reemplaza 'aleteo' por 'explotar' */
+    background-image: url('../assets/img/flappy/Death.png'); 
+    background-size: 1024px 192px; 
+    animation: explotar 0.5s steps(1) forwards; 
+    animation-play-state: running; 
+    animation-name: explotar; 
 }
 
-/* Opcional: Cuando el juego termina, el pájaro no debería aletear más */
 #flappy-game-screen.pausado #pajaro {
-    /* Mantenemos el estado pausado para que se vea el último frame del aleteo */
-    /* Pero la animación de muerte la sobreescribirá */
     animation-play-state: paused; 
 }
 
 
-/* --- ANIMACIÓN DEL BONUS (LLAVE) --- */
+/* animacion de las llaves(bonus) */
 @keyframes rotate-key {
     100% {
-        /* Mueve el fondo 24 frames * 32px = 768px */
+        /* 24 frames * 32px = 768px */
         background-position-x: -768px;
     }
 }
@@ -350,128 +290,83 @@
     position: absolute;
     width: 32px;
     height: 32px;
-    
-    /* ¡Ajusta esta ruta a donde guardaste la llave! */
     background-image: url('../assets/img/flappy/key_32x32_24f.png'); 
-    
-    /* Ancho total: 24 frames * 32px = 768px */
     background-size: 768px 32px;
-    
-    /* Animación: 24 pasos, 1s de duración, infinita */
     animation: rotate-key 1s steps(24) infinite;
-    
-    /* Se moverá junto con el 'tronco-container' */
-    /* Lo posicionaremos con JS */
-    z-index: 16; /* Encima del tronco, debajo del pájaro */
-    image-rendering: pixelated; /* Mantiene el pixel art */
+    z-index: 16; 
+    image-rendering: pixelated; 
 }
 
 
-/* --- ANIMACIÓN DEL MURCIÉLAGO ENEMIGO --- */
+/* animacion del murcielago de fondo */
 
-/* 1. Keyframe para el movimiento horizontal */
 @keyframes mover-murcielago {
     0% {
-        /* Comienza justo fuera de la pantalla (izquierda) */
         transform: translateX(0px);
     }
     100% {
-        /* Termina justo fuera de la pantalla (derecha) */
-        /* 1000px (ancho pantalla) + 256px (ancho sprite) */
         transform: translateX(1256px); 
     }
 }
 
-/* 2. Clase para el murciélago enemigo */
 .murcielago-enemigo {
     position: absolute;
-    /* Comienza fuera de la pantalla izquierda */
     left: -256px; 
-    /* La altura (top) la definirá el JS */
-    
-    /* Reutilizamos el tamaño y sprite del jugador */
+    /* reutilizamos el tamanio y sprite del personajje */
     width: 256px; 
     height: 192px; 
     background-image: url('../assets/img/flappy/Flight.png');
     background-size: 2048px 192px; 
-    
-    z-index: 2; /* Detrás de los troncos y el pájaro */
+    z-index: 2; 
     image-rendering: pixelated;
-
-    /* ¡APLICAMOS DOS ANIMACIONES! */
-    /* 1. El aleteo (que ya existe) */
-    /* 2. El movimiento (nuevo) */
     animation: 
         aleteo 0.8s steps(8) infinite, 
-        mover-murcielago 7s linear; /* 7 segundos en cruzar */
+        mover-murcielago 7s linear; 
 }
 
 
-/* --- ANIMACIÓN DEL ESQUELETO CAMINANTE --- */
+/* animacion del esqueleto que camina*/
 
-/* 1. Keyframe para la animación de 4 frames */
 @keyframes walk-skeleton {
     100% {
-        /* ¡AJUSTA ESTO! (Ancho de 1 frame * 4) */
-        /* Mi ejemplo: 128px * 4 = 512px */
         background-position-x: -512px; 
     }
 }
 
-/* 2. Keyframe para el movimiento horizontal */
 @keyframes move-skeleton {
     0% {
         transform: translateX(0px);
     }
     100% {
-        /* 1000px (pantalla) + 128px (ancho sprite) = 1128px */
-        /* Si cambias el 'width' del esqueleto, ¡ajusta este valor! */
         transform: translateX(1128px); 
     }
 }
 
-/* 3. Clase para el esqueleto */
+
 .esqueleto-caminando {
     position: absolute;
-    /* Comienza fuera de la pantalla izquierda */
     left: -128px; 
-    
-    /* ¡AJUSTA ESTO! 
-       Colócalo justo encima de tu capa de suelo.
-       'bottom: 40px;' es solo un ejemplo. */
     bottom: 0px; 
-    
-    /* ¡AJUSTA ESTO! Dimensiones de 1 frame */
     width: 128px; 
     height: 128px;
-    
-    /* ¡AJUSTA ESTA RUTA! */
     background-image: url('../assets/img/flappy/Walk.png');
     background-repeat: no-repeat;
-    
-    /* ¡AJUSTA ESTO! (Ancho total del spritesheet) */
-    /* Mi ejemplo: 512px de ancho, 128px de alto */
     background-size: 512px 128px; 
-    
-    /* z-index: 11 -> Encima del bat (10), detrás de troncos (15) */
     z-index: 8; 
     image-rendering: pixelated;
-
-    /* Aplicamos ambas animaciones */
     animation: 
-        walk-skeleton 0.6s steps(4) infinite, /* 0.6s, 4 frames, infinito */
-        move-skeleton 8s linear; /* 8s, misma velocidad que los troncos */
+        walk-skeleton 0.6s steps(4) infinite, 
+        move-skeleton 8s linear; 
 }
 
-/* 1. Keyframe para la animación de 8 frames (corregido) */
+/* animacion del goblin que corre*/
 @keyframes walk-goblin {
     100% {
-        /* Ancho total del spritesheet: 150px * 8 frames = 1200px */
         background-position-x: -1200px; 
     }
 }
 
-/* 2. ¡NUEVO! Keyframe de movimiento (específico para 150px) */
+
 @keyframes move-goblin {
     0% {
         transform: translateX(0px);
@@ -483,32 +378,21 @@
 }
 
 
-/* 3. Clase para el goblin (corregida) */
 .goblin-atacante {
     position: absolute;
-    /* Comienza fuera (ancho de 1 frame) */
     left: -150px; 
-    
-    /* Mantenemos tu 'bottom' y 'z-index' */
     bottom: 10px; 
     z-index: 8; 
-
-    /* Dimensiones de 1 frame (corregido) */
     width: 150px; 
     height: 150px;
     
     background-image: url('../assets/img/flappy/Run.png');
-    background-repeat: no-repeat; /* Importante para evitar "varios" */
-    
-    /* Tamaño total del spritesheet (corregido) */
+    background-repeat: no-repeat; 
     background-size: 1200px 150px; 
-    
     image-rendering: pixelated;
-
-    /* Aplicamos las animaciones (corregidas) */
     animation: 
-        walk-goblin 0.8s steps(8) infinite, /* 0.8s, 8 frames, infinito */
-        move-goblin 9s linear; /* 9s, usando el NUEVO movimiento */
+        walk-goblin 0.8s steps(8) infinite, 
+        move-goblin 9s linear; 
 }
 
 
@@ -519,35 +403,25 @@
     left: 0;
     width: 100%;
     height: 100%;
-    
-    /* Fondo oscuro semitransparente */
     background-color: rgba(0, 0, 0, 0.6); 
-    
-    /* Lo ponemos encima de todo */
     z-index: 200; 
-    
-    /* Centrar el contenido */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
     color: white;
     font-family: 'Press Start 2P', cursive;
-    
-    /* Evita que se vea 'cortado' si el juego está pausado */
     animation-play-state: running !important; 
 }
 
 #main-menu h1 {
     font-size: 52px;
     color: #FFF;
-    text-shadow: -4px 4px 0 #c0392b; /* Sombra roja */
+    text-shadow: -4px 4px 0 #c0392b; 
     margin-bottom: 50px;
 }
 
 #main-menu button {
-    /* Reutilizamos un estilo similar al de Game Over */
     font-family: 'Press Start 2P', cursive;
     font-size: 24px;
     color: #FFF;
@@ -556,31 +430,24 @@
     border-radius: 5px;
     padding: 15px 30px;
     cursor: pointer;
-    
-    background-color: #27ae60; /* Verde */
-    
-    /* Animación simple */
+    background-color: #27ae60; 
     transition: all 0.1s ease;
     
 }
 
 #main-menu button:hover {
     transform: scale(1.05);
-    animation-play-state: paused; /* Pausa el pulso al pasar el mouse */
+    animation-play-state: paused; 
     filter: brightness(1.1);
 }
-
-/* Animación de pulso para el botón */
-
-
 
 .oculto {
     display: none ;
 }
 
-/* --- LÓGICA DEL MODO IMPOSIBLE --- */
+/* logica del modo imposible */
 
-/* 1. La animación de desvanecimiento */
+/*animacion que hacen los troncos al ir desapareciendo*/
 @keyframes fade-out-tronco {
     0% {opacity: 1;}
     40%{opacity: 0;}
@@ -625,11 +492,11 @@
 }
 
 #btn-restart-win {
-    background-color: #27ae60; /* Verde */
+    background-color: #27ae60; 
 }
 
 #btn-main-menu-win {
-    background-color: #2980b9; /* Azul */
+    background-color: #2980b9; 
 }
 
 

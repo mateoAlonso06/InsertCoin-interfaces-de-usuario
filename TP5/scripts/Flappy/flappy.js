@@ -1,29 +1,29 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- Elementos del DOM ---
+    // elementos del html
     const pajaro = document.getElementById('pajaro');
     const gameScreen = document.getElementById('flappy-game-screen'); 
     const gameOverMensaje = document.getElementById('game-over'); 
     const debugBox = document.getElementById('debug-box'); 
     const puntajeDisplay = document.getElementById('puntaje'); 
 
-    // --- Elementos del menú Game Over ---
+    // menu del game over
     const finalScoreText = document.getElementById('final-score');
     const btnRestart = document.getElementById('btn-restart');
     const btnMainMenu = document.getElementById('btn-main-menu');
 
-    // --- Elementos del Menú Principal ---
+    // menu principal
     const mainMenu = document.getElementById('main-menu');
     const btnNormal = document.getElementById('btn-normal'); 
     const btnImposible = document.getElementById('btn-imposible'); 
 
-    // --- ¡NUEVO! Elementos del Menú de Victoria ---
+    // menu de victoria
     const gameWonMenu = document.getElementById('game-won');
     const finalScoreWinText = document.getElementById('final-score-win');
     const btnRestartWin = document.getElementById('btn-restart-win');
     const btnMainMenuWin = document.getElementById('btn-main-menu-win');
 
-    // --- Configuración de Física del Pájaro ---
+    // config inicial de la fisica del pajaro(ahora monstruo)
     let velocidadVertical = 0;
     const gravedad = 0.5; 
     const fuerzaSalto = -10; 
@@ -32,34 +32,32 @@ document.addEventListener('DOMContentLoaded', () => {
     let ultimoTiempo = 0;
     let juegoTerminado = false; 
 
-    // --- Variable de Modo de Juego ---
-    let modoJuego = 'normal'; // 'normal' o 'imposible'
+    // modo de juego (normal o imposible)
+    let modoJuego = 'normal'; 
 
-    // --- Configuración de Troncos ---
+    // config de los troncos
     const alturaHueco = 200; 
     const tiempoGeneracionTronco = 3000; 
     let ultimoTiempoTronco = 0;
     let troncosGenerados = 0; 
 
-    // --- Generadores de Fondo ---
+    // generar los elementos de fondo con spritesheets
     let generadorMurcielagos = null; 
     let generadorEsqueletos = null; 
     let generadorGoblins = null; 
 
-    // --- Configuración de Puntaje ---
+    // puntaje de la aprtida y condicion para ganar el juego
     let puntaje = 0;
     let puntajeMaximo = 25;
 
-    // --- Constantes de Hitbox ---
+    // constantes del hitbox del monstruo para que se mantenga grande en pantalla pero que su hitbox sea mas chica
     const birdVisualHeight = 192;
     const gameHeight = 575; 
     const paddingHorizontal = 100; 
     const paddingVertical = 70;
 
 
-    /**
-     * El "motor" del juego.
-     */
+    
     function gameLoop(tiempoActual) {
         // No ejecutar si el juego no empezó o ya terminó (sea ganando o perdiendo)
         if (!juegoIniciado || juegoTerminado) {
@@ -67,13 +65,15 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         
+        //la variable delta ayuda a que la fisica del juego sea independiente del framerate, corrigiendo si hay bajones de fps el salto del monstruo
         const delta = (tiempoActual - ultimoTiempo) / 16.67; 
         ultimoTiempo = tiempoActual;
 
-        // --- 1. Física del Pájaro ---
+        // fisica del monstruo
         velocidadVertical += gravedad * delta;
         posicionPajaro += velocidadVertical * delta;
 
+        //verificar limites del mapa
         if (posicionPajaro + paddingVertical < 0) {
             posicionPajaro = 0 - paddingVertical; 
             velocidadVertical = 0;
@@ -87,33 +87,35 @@ document.addEventListener('DOMContentLoaded', () => {
             gameOver();
         }
 
-        // --- 2. Actualizar DOM del Pájaro ---
+        // actualizar pos en pantalla del personaje
         if(pajaro) pajaro.style.top = `${posicionPajaro}px`;
         
-        // --- 3. Generación de Troncos ---
+        // genera los troncos en intervalos de tiempoo
         if (tiempoActual - ultimoTiempoTronco > tiempoGeneracionTronco) {
             generarTronco(); 
             ultimoTiempoTronco = tiempoActual; 
         }
         
-        // --- 5. Actualizar Puntaje (y chequear victoria) ---
+        
         actualizarPuntaje(); 
 
         checkAllCollisions();
         
-        // --- 6. Continuar el Bucle ---
+        
         requestAnimationFrame(gameLoop);
     }
 
-    /**
-     * Función de "Salto".
-     */
+    // funcion para saltar(dependemos de esta funcion para que el juego de inicio)
     function saltar(e) {
         if (e) e.preventDefault(); 
-        if (juegoTerminado) return; // No saltar si ganaste o perdiste
+        if (juegoTerminado) return; //si termina el juego, que no salte al escuchar el click
 
         if (!juegoIniciado) {
             juegoIniciado = true;
+
+            /*lo que hace el performance.now() es sincronizar los tiempos del navegador para que el monstruo
+             salte de forma fluida y no aparezca en cualquier
+            lado de la pantalla de repente(depende de la tasa de refresco y componentes de tu computadora)*/  
             ultimoTiempo = performance.now(); 
             ultimoTiempoTronco = performance.now(); 
             
@@ -129,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    // --- Funciones de Navegación ---
+    // funciones de navegacion 
 
     function empezarJuego(modo) {
         modoJuego = modo; 
@@ -140,9 +142,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function reiniciarJuego() {
-        const modoActual = modoJuego; // Guardar el modo
+        const modoActual = modoJuego; 
         resetJuego();      
-        empezarJuego(modoActual); // Reiniciar en el MISMO modo
+        empezarJuego(modoActual); 
     }
 
     function irAlMenu() {
@@ -162,45 +164,47 @@ document.addEventListener('DOMContentLoaded', () => {
         posicionPajaro = 250;
         troncosGenerados = 0;
         
-        // 2. Resetear Pájaro
         if(pajaro) {
             pajaro.classList.remove('pajaro-muerte');
             pajaro.classList.add('oculto');
             pajaro.style.top = `${posicionPajaro}px`;
         }
 
-        // 3. Limpiar el DOM de elementos generados
+        //se limpia el dom de los elementos generados
         const elementosJuego = document.querySelectorAll(
             '.tronco-container, .murcielago-enemigo, .esqueleto-caminando, .goblin-atacante'
         );
         elementosJuego.forEach(el => el.remove());
 
-        // 4. Resetear Marcadores
+        
         if(puntajeDisplay) {
             puntajeDisplay.textContent = '0';
             puntajeDisplay.classList.add('oculto');
         }
 
-        // 5. Resetear Escenario
+        
         if(gameScreen) gameScreen.classList.remove('pausado');
 
-        // 6. Cambiar Menús
+        
         if(gameOverMensaje) gameOverMensaje.classList.add('oculto');
         if(mainMenu) mainMenu.classList.remove('oculto');
-        if(gameWonMenu) gameWonMenu.classList.add('oculto'); // Ocultar menú de victoria
+        if(gameWonMenu) gameWonMenu.classList.add('oculto'); 
     }
 
 
-    // --- Fábricas de Elementos ---
+    //funciones para generar los spritesheets de fondo
     
     function generarMurcielago() {
         if (!gameScreen) return;
+        //creamos el elemento y le damos la clase del spritesheet
         const murcielago = document.createElement('div');
         murcielago.classList.add('murcielago-enemigo');
+        //calculamos alturas random donde este puede aparecer
         const alturaMaxima = 300;
         const topPosition = Math.floor(Math.random() * alturaMaxima);
         murcielago.style.top = `${topPosition}px`;
         gameScreen.appendChild(murcielago);
+        //una vez terminada la animacion, lo eliminamos del dom
         murcielago.addEventListener('animationend', (e) => {
             if (e.animationName === 'mover-murcielago') {
                 murcielago.remove();
@@ -247,8 +251,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const troncoAbajo = document.createElement('div');
         troncoArriba.classList.add('tronco', 'tronco-arriba');
         troncoAbajo.classList.add('tronco', 'tronco-abajo');
-        troncoContainer.dataset.scored = 'false';
+        troncoContainer.dataset.scored = 'false';//es una bandera para saber si se debe sumar lo puntos
         
+        //calculos para generar los troncos y el espacio del medio
         const alturaMinima = 50;
         const alturaMaxima = gameScreen.clientHeight - alturaHueco - alturaMinima;
         const alturaTroncoArriba = Math.floor(Math.random() * (alturaMaxima - alturaMinima)) + alturaMinima;
@@ -279,7 +284,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Lógica de Puntaje y Colisión ---
 
     function actualizarPuntaje() {
         if (!pajaro || juegoTerminado) return; // No sumar puntos si ya ganaste/perdiste
@@ -288,6 +292,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const birdLeft = birdHitbox.left + paddingHorizontal; 
         const troncos = document.querySelectorAll('.tronco-container');
 
+        //se calcula que la izquierda del personajes sea mayor a la derecha del tronco para sumar puntos
         for (const tronco of troncos) {
             if (tronco.dataset.scored === 'false') {
                 const troncoRect = tronco.getBoundingClientRect();
@@ -296,7 +301,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     if(puntajeDisplay) puntajeDisplay.textContent = puntaje; 
                     tronco.dataset.scored = 'true'; 
                     
-                    // --- ¡CHEQUEO DE VICTORIA! ---
                     if (puntaje >= puntajeMaximo) {
                         gameWon();
                     }
@@ -306,9 +310,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function checkAllCollisions() {
-        if (!pajaro || juegoTerminado) return; // No chequear colisiones si ya terminó
+        if (!pajaro || juegoTerminado) return; 
 
         const birdRect = pajaro.getBoundingClientRect();
+        //se crea un hitbox mas chico, ya que la imagen del monstruo es muy grande
         const birdHitbox = {
             left: birdRect.left + paddingHorizontal,
             right: birdRect.right - paddingHorizontal,
@@ -316,12 +321,7 @@ document.addEventListener('DOMContentLoaded', () => {
             bottom: birdRect.bottom - paddingVertical
         };
 
-        if (juegoIniciado && debugBox) {
-            debugBox.style.left = `${birdHitbox.left}px`;
-            debugBox.style.top = `${birdHitbox.top}px`;
-            debugBox.style.width = `${birdHitbox.right - birdHitbox.left}px`;
-            debugBox.style.height = `${birdHitbox.bottom - birdHitbox.top}px`;
-        }
+        
 
         const troncos = document.querySelectorAll('.tronco-container');
         for (const troncoContainer of troncos) {
@@ -337,7 +337,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
             
-            // 2. Comprobar colisión con la llave
+            // colision con la llave del bonus y misma logica que con los troncos
             const bonusKey = troncoContainer.querySelector('.bonus-key');
             if (bonusKey) { 
                 const keyRect = bonusKey.getBoundingClientRect();
@@ -346,7 +346,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     if(puntajeDisplay) puntajeDisplay.textContent = puntaje; 
                     bonusKey.remove(); 
                     
-                    // --- ¡CHEQUEO DE VICTORIA (AL AGARRAR LLAVE)! ---
                     if (puntaje >= puntajeMaximo) {
                         gameWon();
                     }
@@ -371,7 +370,6 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if(pajaro) pajaro.classList.add('pajaro-muerte'); 
         if(puntajeDisplay) puntajeDisplay.classList.add('oculto');
-        if (debugBox) debugBox.style.display = 'none';
 
         clearInterval(generadorMurcielagos);
         clearInterval(generadorEsqueletos); 
@@ -385,14 +383,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }, tiempoDeEspera); 
     }
 
-    /**
-     * ¡NUEVA FUNCIÓN DE VICTORIA!
-     */
+    
     function gameWon() {
         if (juegoTerminado) return; 
         juegoTerminado = true; 
-        console.log("¡GANASTE!");
-        console.log("El menú de victoria es:", gameWonMenu);
 
         if(puntajeDisplay) puntajeDisplay.classList.add('oculto');
         if (debugBox) debugBox.style.display = 'none';
@@ -401,18 +395,15 @@ document.addEventListener('DOMContentLoaded', () => {
         clearInterval(generadorEsqueletos); 
         clearInterval(generadorGoblins); 
 
-        // Pausar el escenario
         if(gameScreen) gameScreen.classList.add('pausado');
         
-        // Actualizar el texto del puntaje
         if(finalScoreWinText) finalScoreWinText.textContent = `SCORE: ${puntaje}`;
         
-        // Mostrar el menú de victoria
         if(gameWonMenu) gameWonMenu.classList.remove('oculto');
     }
 
 
-    // --- Event Listeners ---
+    // listeners
     
     if (gameScreen) {
         gameScreen.addEventListener('mousedown', saltar); 
@@ -422,7 +413,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { passive: false }); 
     }
 
-    // Listeners para los botones de Game Over
+    // listeners para los botones de perder
     if (btnRestart) {
         btnRestart.addEventListener('click', reiniciarJuego);
     }
@@ -430,7 +421,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btnMainMenu.addEventListener('click', irAlMenu);
     }
 
-    // Listeners para el Menú Principal
+    // listeners para el Menú Principal
     if (btnNormal) {
         btnNormal.addEventListener('click', () => empezarJuego('normal'));
     }
@@ -438,7 +429,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btnImposible.addEventListener('click', () => empezarJuego('imposible'));
     }
 
-    // Listeners para el Menú de Victoria
+    // listeners para el Menú de Victoria
     if (btnRestartWin) {
         btnRestartWin.addEventListener('click', reiniciarJuego);
     }
@@ -446,9 +437,9 @@ document.addEventListener('DOMContentLoaded', () => {
         btnMainMenuWin.addEventListener('click', irAlMenu);
     }
 
-    // --- ¡Arrancar el motor! ---
+
     if (gameScreen) {
         requestAnimationFrame(gameLoop);
     }
 
-}); // --- Fin del DOMContentLoaded ---
+}); 
